@@ -35,6 +35,8 @@ def register():
 
         if existing_user:
             flash("Username already exist")
+        elif ' ' in request.form.get('user_name')== False:
+            flash("Enter Full Name")
         elif request.form.get("user_password") != request.form.get(
                 "user_password_confirm"):
             flash("Password doesn't match")
@@ -50,17 +52,41 @@ def register():
 
             session["user"] = request.form.get("user_email")
             session["user_name"] = request.form.get("user_name")
-
+            flash(f"Welcome {session['user_name']}")
             return redirect(url_for("index"))
 
     return render_template("register.html")
+
 
 @app.route("/sign_in", methods=["GET", "POST"])
 def sign_in():
 
     return render_template("sign_in.html")
 
+
+@app.route("/sign_out")
+def sign_out():
+    # remove user from session cookies
+    flash("You have been logged out")
+    session.pop("user")
+    return redirect(url_for("index"))
+
+
+@app.route("/profile/<user_name>", methods=["GET", "POST"])
+def profile(user_email):
+    # grab the session user's username from
+    user_email = mongo.db.users.find_one(
+        {"user_email": session["user_email"]})["user_email"]
+    user_name = mongo.db.users.find_one(
+        {"user_name": session["user_email"]})["user_name"]
+    
+    if session["user_email"]:
+        return render_template("profile.html", user_email=user_email)
+
+    return redirect(url_for("index"))
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
-        port =int(os.environ.get("PORT")),
-        debug =True)
+            port =int(os.environ.get("PORT")),
+            debug =True)

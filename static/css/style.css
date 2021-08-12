@@ -11,3 +11,24 @@ body {
   .brand-logo{
     margin-left: 10px;
   }
+
+  /* ------- Index page hero image ------ */
+
+.top-container {
+  height: 80vh;
+  width: 100%;
+  background-image: url("/static/images/library.jpg");
+  background-size:     cover;                     
+  background-repeat:   no-repeat;
+  background-position: center center; 
+
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
