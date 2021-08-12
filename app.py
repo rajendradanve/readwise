@@ -81,9 +81,16 @@ def profile(user_email):
         {"user_name": session["user_email"]})["user_name"]
     
     if session["user_email"]:
-        return render_template("profile.html", user_email=user_email)
+        return render_template("profile.html", user_name=user_email)
 
     return redirect(url_for("index"))
+
+
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    tasks = list(mongo.db.tasks.find({"$text":{"$search":query}}))
+    return render_template("index.html", tasks=tasks)
 
 
 if __name__ == "__main__":
