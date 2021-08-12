@@ -19,8 +19,14 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-@app.route("/index", methods=["GET", "POST"])
+@app.route("/index")
 def index():
+
+    return render_template("index.html")
+
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
 
     if request.method == "POST":
         # check if username already exist in db
@@ -42,8 +48,17 @@ def index():
 
             mongo.db.users.insert_one(register)
 
-    return render_template("index.html")
+            session["user"] = request.form.get("user_email")
+            session["user_name"] = request.form.get("user_name")
 
+            return redirect(url_for("index"))
+
+    return render_template("register.html")
+
+@app.route("/sign_in", methods=["GET", "POST"])
+def sign_in():
+
+    return render_template("sign_in.html")
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
