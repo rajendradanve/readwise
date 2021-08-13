@@ -29,8 +29,11 @@
         <a href="{{url_for('index')}}" class="brand-logo"><i class="fas fa-book-reader"></i> ReadWise</a>
         <a href="#" data-target="mobile-demo" class="right sidenav-trigger"><i class="fas fa-bars">menu</i></a>
         <ul class="right hide-on-med-and-down">
+          {% if session.username %}
+          <li class="red-text">Welcome {{session.username}}</li>
+          {% endif %}
           <li><a href="{{url_for('index')}}">Home</a></li>
-          {% if session.user %}
+          {% if session.username %}
           <li><a href="badges.html">Profile</a></li>
           <li><a href="badges.html">Add Book</a></li>
           <li><a href="{{url_for('sign_out')}}">Sign Out</a></li>

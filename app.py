@@ -31,28 +31,24 @@ def register():
     if request.method == "POST":
         # check if username already exist in db
         existing_user = mongo.db.users.find_one(
-            {"user_email": request.form.get("user_email").lower()})
+            {"username": request.form.get("username").lower()})
 
         if existing_user:
             flash("Username already exist")
-        elif ' ' in request.form.get('user_name')== False:
-            flash("Enter Full Name")
         elif request.form.get("user_password") != request.form.get(
                 "user_password_confirm"):
             flash("Password doesn't match")
         else:
             register = {
-                "user_name": request.form.get("user_name"),
-                "user_email": request.form.get("user_email").lower(),
+                "username": request.form.get("username"),
                 "user_password": generate_password_hash(
                     request.form.get("user_password"))
                 }
 
             mongo.db.users.insert_one(register)
 
-            session["user"] = request.form.get("user_email")
-            session["user_name"] = request.form.get("user_name")
-            flash(f"Welcome {session['user_name']}")
+            session["username"] = request.form.get("username")
+            flash(f"Welcome {session['username']}")
             return redirect(url_for("index"))
 
     return render_template("register.html")
@@ -60,6 +56,29 @@ def register():
 
 @app.route("/sign_in", methods=["GET", "POST"])
 def sign_in():
+     if request.method == "POST":
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+        
+        if existing_user:
+            # ensure hashed password matches user input
+            if check_password_hash(
+                existing_user["user_password"], request.form.get(
+                        "user_password")):
+                session["username"] = request.form.get("username").lower()
+                flash("Welcome, {}".format(
+                    request.form.get("username")))
+                return redirect(url_for(
+                    "profile", username=session["username"]))
+            else:
+                # invalid password match
+                flash("Incorrect Username and/or Password")
+                return redirect(url_for("sign_in"))
+
+        else:
+            # Username doesn't exist
+            flash("Incorrect Username and/or Password")
+            return redirect(url_for("sign_in"))
 
     return render_template("sign_in.html")
 
@@ -68,29 +87,28 @@ def sign_in():
 def sign_out():
     # remove user from session cookies
     flash("You have been logged out")
-    session.pop("user")
+    session.pop("username")
     return redirect(url_for("index"))
 
 
-@app.route("/profile/<user_name>", methods=["GET", "POST"])
-def profile(user_email):
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
     # grab the session user's username from
-    user_email = mongo.db.users.find_one(
-        {"user_email": session["user_email"]})["user_email"]
-    user_name = mongo.db.users.find_one(
-        {"user_name": session["user_email"]})["user_name"]
+    username = mongo.db.users.find_one(
+        {"username": session["username"]})["username"]
     
-    if session["user_email"]:
-        return render_template("profile.html", user_name=user_email)
+    if session["username"]:
+        return render_template("profile.html", username=username)
 
     return redirect(url_for("index"))
+
 
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
-    tasks = list(mongo.db.tasks.find({"$text":{"$search":query}}))
-    return render_template("index.html", tasks=tasks)
+    books = list(mongo.db.tasks.find({"$text":{"$search":query}}))
+    return render_template("index.html", books=books)
 
 
 if __name__ == "__main__":
