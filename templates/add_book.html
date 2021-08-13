@@ -1,19 +1,61 @@
 {% extends "base.html" %}
 {% block content %}
-<h4 class="center-align">Add Book Information</h4>
-<p>Here you can add summary of the book here which helps others </p>
+
 <div class="row">
-  <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register')}}">
+  <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_book')}}">
     <div class="card-panel">
+      <h4 class="center-align">Add Book Information</h4>
+<p class="center-align">Here you can add summary of the book here which helps others </p>
       <div class="row">
         <div class="input-field col s12">
-          <i class="fas fa-user-plus prefix light-blue-text text-darken-4"></i>
-          <input id="user_name" name="user_name" type="text" class="validate" pattern="^[a-zA-Z0-9]{5,15}$"
-            minlength="5" maxlength="50" required>
-          <label for="user_name">Full Name</label>
-
+          <i class="fas fa-book prefix light-blue-text text-darken-4"></i>
+          <input id="book_name" name="book_name" type="text" class="validate" pattern="^[a-zA-Z0-9]{5,100}$"
+            minlength="5" maxlength="100" required>
+          <label for="book_name">Book Name</label>
         </div>
       </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="fas fa-user prefix light-blue-text text-darken-4"></i>
+          <input id="book_author" name="book_author" type="text" class="validate" pattern="^[a-zA-Z0-9]{5,100}$"
+            minlength="5" maxlength="100" required>
+          <label for="book_author">Author</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="fas fa-file-image prefix light-blue-text text-darken-4"></i>
+          <input id="book_image" name="book_image" type="file" accept="image/png, image/gif, image/jpeg, image/jpg" class="validate" required>
+        </div>
+      </div>
+
+      <div class="row">
+        
+        <div class="input-field col s12">
+          <i class="fas fa-globe prefix light-blue-text text-darken-4"></i>
+          <select>
+            <option value="" disabled selected>Choose your option</option>
+            {% for language in languages %}
+                <option value="{{language.language}}">{{language.language}}</option>
+             {% endfor %}
+          </select>
+          <label>Language</label>
+        </div>
+      </div>
+
+      <div class="row">
+      <div class="input-field col s12">
+        <select multiple>
+          <option value="" disabled selected>Choose your option</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+        <label>Materialize Multiple Select</label>
+      </div>
+    </div>
+
       <div class="row">
         <div class="input-field col s12">
           <i class="fas fa-at prefix light-blue-text text-darken-4"></i>

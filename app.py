@@ -56,20 +56,18 @@ def register():
 
 @app.route("/sign_in", methods=["GET", "POST"])
 def sign_in():
-     if request.method == "POST":
+    if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-        
+       
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(
                 existing_user["user_password"], request.form.get(
                         "user_password")):
                 session["username"] = request.form.get("username").lower()
-                flash("Welcome, {}".format(
-                    request.form.get("username")))
                 return redirect(url_for(
-                    "profile", username=session["username"]))
+                    "index", username=session["username"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -81,6 +79,14 @@ def sign_in():
             return redirect(url_for("sign_in"))
 
     return render_template("sign_in.html")
+
+
+@app.route("/add_book", methods=["GET", "POST"])
+def add_book():
+
+    languages = mongo.db.languages.find().sort("language", 1)
+    return render_template("add_book.html", languages=languages)
+
 
 
 @app.route("/sign_out")
