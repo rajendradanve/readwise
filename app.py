@@ -85,7 +85,11 @@ def sign_in():
 def add_book():
 
     languages = mongo.db.languages.find().sort("language", 1)
-    return render_template("add_book.html", languages=languages)
+    categories = mongo.db.categories.find().sort("category", 1)
+    age_groups = mongo.db.age_groups.find().sort("age_group", 1)
+    return render_template(
+            "add_book.html", languages=languages, categories=categories,
+            age_groups=age_groups)
 
 
 
