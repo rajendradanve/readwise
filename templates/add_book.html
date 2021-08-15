@@ -71,39 +71,18 @@
     </div>
       <div class="row">
         <div class="input-field col s12">
-          <i class="fas fa-at prefix light-blue-text text-darken-4"></i>
-          <input id="age_limit" name="user_email" type="email" class="validate" minlength="5" maxlength="50" required>
-          <label for="user_email">Email</label>
+          <i class="fas fa-sticky-note prefix light-blue-text text-darken-4"></i>
+          <textarea id="textarea1" class="materialize-textarea" required></textarea>
+          <label for="book_summery">Book Summery</label>
 
         </div>
       </div>
+    
       <div class="row">
-        <div class="input-field col s12">
-          <i class="fas fa-user-lock prefix light-blue-text text-darken-4"></i>
-          <input id="user_password" name="user_password" type="password" class="validate" pattern="^[a-zA-Z0-9]{5,15}$"
-            minlength="5" maxlength="15" required>
-          <label for="user_password">Password</label>
-        </div>
+        <button type="submit" class="col s4 offset-s4 btn-large light-blue text-darken-4 text-shadow">Add Book<i
+            class="fas fa-plus"></i></button>
       </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="fas fa-user-lock prefix light-blue-text text-darken-4"></i>
-          <input id="user_password_confirm" name="user_password_confirm" type="password" class="validate"
-            pattern="^[a-zA-Z0-9]{5,15}$" minlength="5" maxlength="15" required>
-          <label for="user_password_confirm">Confirm Password</label>
-        </div>
-      </div>
-      <div class="row">
-        <button type="submit" class="col s4 offset-s4 btn-large light-blue text-darken-4 text-shadow">Register <i
-            class="fas fa-sign-in-alt"></i></button>
-      </div>
-      <div class="row">
-        <div class="col s12">
-          <p class="center-align">
-            Already Registered? <a href="{{ url_for('sign_in')}}" class="light-blue-text text-darken-4">Sign In</a>
-          </p>
-        </div>
-      </div>
+      
     </div>
   </form>
 </div>
