@@ -83,6 +83,11 @@ def sign_in():
 
 @app.route("/add_book", methods=["GET", "POST"])
 def add_book():
+    if request.method == "POST":
+        add_book = {
+            "book_name": request.form.get("book_name"),
+            "book_author": request.form.get("book_author")
+        }
 
     languages = mongo.db.languages.find().sort("language", 1)
     categories = mongo.db.categories.find().sort("category", 1)
