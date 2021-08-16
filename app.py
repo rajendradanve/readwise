@@ -23,7 +23,8 @@ mongo = PyMongo(app)
 @app.route("/index")
 def index():
 
-    return render_template("index.html")
+    books = mongo.db.books.find()
+    return render_template("index.html", books=books)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -87,12 +88,12 @@ def add_book():
     if request.method == "POST":    
         
         book_image_file = request.files['book_image_file']
-        book_filename = request.form.get(
-                "book_name") + book_image_file.filename
+        book_name = request.form.get("book_name")
+        book_filename = book_name.replace(" ","") + book_image_file.filename
         mongo.save_file(book_filename, book_image_file)
         date = datetime.datetime.now().date()
         today_date = date.strftime("%x")
-        current_time = date.strftime("%H") + ":" + date.strftime("%M")
+        current_time = date.strftime("%H:%M")
 
         add_book = {
             "book_name": request.form.get("book_name"),
