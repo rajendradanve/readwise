@@ -84,12 +84,15 @@ def sign_in():
 
 @app.route("/add_book", methods=["GET", "POST"])
 def add_book():
-    if request.method == "POST":
-
-        if 'book_image_file' in request.files:
-            book_image_file = request.files['book_image_file']
-            book_filename = request.form.get("book_name")+book_image_file.filename
-            mongo.save_file(book_filename, book_image_file)
+    if request.method == "POST":    
+        
+        book_image_file = request.files['book_image_file']
+        book_filename = request.form.get(
+                "book_name") + book_image_file.filename
+        mongo.save_file(book_filename, book_image_file)
+        date = datetime.datetime.now().date()
+        today_date = date.strftime("%x")
+        current_time = date.strftime("%H") + ":" + date.strftime("%M")
 
         add_book = {
             "book_name": request.form.get("book_name"),
@@ -101,10 +104,13 @@ def add_book():
             "book_shopping-link": request.form.get("book_shopping-link"),
             "book_image_file": book_filename,
             "book_added_by_user": session["username"],
-            "book_added_date": datetime.datetime.now().date()
+            "book_added_date": today_date,
+            "book_added_time": current_time
         }
 
         mongo.db.books.insert_one(add_book)
+        flash("Book Data Added Successfully")
+        return redirect(url_for("add_book"))
 
     languages = mongo.db.languages.find().sort("language", 1)
     categories = mongo.db.categories.find().sort("category", 1)
@@ -136,7 +142,7 @@ def profile(username):
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
-    books = list(mongo.db.tasks.find({"$text":{"$search":query}}))
+    books = list(mongo.db.tasks.find({"$text": {"$search":query}}))
     return render_template("index.html", books=books)
 
 

@@ -2,14 +2,15 @@
 {% block content %}
 
 <div class="row">
-  <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_book')}}">
+  <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_book')}}" enctype="multipart/form-data">
     <div class="card-panel">
       <h4 class="center-align">Add Book Information</h4>
 <p class="center-align">Here you can add summary of the book here which helps others </p>
+
       <div class="row">
         <div class="input-field col s12">
           <i class="fas fa-book prefix light-blue-text text-darken-4"></i>
-          <input id="book_name" name="book_name" type="text" class="validate" pattern="^[a-zA-Z0-9]{5,100}$"
+          <input id="book_name" name="book_name" type="text" class="validate" pattern="^[a-zA-Z0-9 ]{5,100}$"
             minlength="5" maxlength="100" required>
           <label for="book_name">Book Name</label>
         </div>
@@ -18,7 +19,7 @@
       <div class="row">
         <div class="input-field col s12">
           <i class="fas fa-user prefix light-blue-text text-darken-4"></i>
-          <input id="book_author" name="book_author" type="text" class="validate" pattern="^[a-zA-Z0-9]{5,100}$"
+          <input id="book_author" name="book_author" type="text" class="validate" pattern="^[a-zA-Z0-9 ]{5,100}$"
             minlength="5" maxlength="100" required>
           <label for="book_author">Author</label>
         </div>
@@ -75,17 +76,14 @@
       <div class="row">
         <div class="input-field col s12">
           <i class="fas fa-shopping-cart prefix light-blue-text text-darken-4"></i>
-          <input id="book_shopping-link" name="book_shopping-link" type="text" class="validate" pattern="^[a-zA-Z0-9]{5,100}$"
-            minlength="10" maxlength="200" required>
+          <input id="book_shopping-link" name="book_shopping-link" type="text" class="validate" required>
           <label for="book_shopping-link">Enter Book Buying URL</label>
         </div>
       </div>
       <div class="row">
-        <label id="lable_for_book_image_file" for="book_image_file">Upload Book Image File</label>
+        <label for="book_image_file">Upload Book Image File</label>
         <div class="input-field col s12">
-          
           <i class="fas fa-file-image prefix light-blue-text text-darken-4"></i>
-          
           <input id="book_image_file" name="book_image_file" type="file" accept="image/png, image/gif, image/jpeg, image/jpg" class="validate" required>
         </div>
       </div>
