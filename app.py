@@ -1,4 +1,5 @@
 import os
+import datetime
 from flask import (
     Flask, flash, render_template,  
     redirect, request, session, url_for)
@@ -84,10 +85,26 @@ def sign_in():
 @app.route("/add_book", methods=["GET", "POST"])
 def add_book():
     if request.method == "POST":
+
+        if 'book_image_file' in request.files:
+            book_image_file = request.files['book_image_file']
+            book_filename = request.form.get("book_name")+book_image_file.filename
+            mongo.save_file(book_filename, book_image_file)
+
         add_book = {
             "book_name": request.form.get("book_name"),
-            "book_author": request.form.get("book_author")
+            "book_author": request.form.get("book_author"),
+            "book_language": request.form.get("book_language"),
+            "book_category": request.form.get("book_category"),
+            "book_age_group": request.form.get("book_age_group"),
+            "book_summary": request.form.get("book_summary"),
+            "book_shopping-link": request.form.get("book_shopping-link"),
+            "book_image_file": book_filename,
+            "book_added_by_user": session["username"],
+            "book_added_date": datetime.datetime.now().date()
         }
+
+        mongo.db.books.insert_one(add_book)
 
     languages = mongo.db.languages.find().sort("language", 1)
     categories = mongo.db.categories.find().sort("category", 1)
@@ -95,7 +112,6 @@ def add_book():
     return render_template(
             "add_book.html", languages=languages, categories=categories,
             age_groups=age_groups)
-
 
 
 @app.route("/sign_out")
@@ -110,13 +126,11 @@ def sign_out():
 def profile(username):
     # grab the session user's username from
     username = mongo.db.users.find_one(
-        {"username": session["username"]})["username"]
-    
+        {"username": session["username"]})["username"]  
     if session["username"]:
         return render_template("profile.html", username=username)
 
     return redirect(url_for("index"))
-
 
 
 @app.route("/search", methods=["GET", "POST"])
