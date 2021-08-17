@@ -42,11 +42,12 @@
 
   
   <div class="row">
+    {% for book in books %}
     <div class="col s12 m4">
-      {% for book in books %}
+      
       <div class="card">
         <div class="card-image">
-          <img src="{{url_for('file', filename=book.book_image_file)}}">
+          <img src="{{url_for('book_image', filename=book.book_image_file)}}">
           <span class="card-title">{{book.book_name}}</span>
         </div>
         <div class="card-content">
@@ -57,8 +58,9 @@
           <a href="#">This is a link</a>
         </div>
       </div>
-      {% endfor %}
+     
     </div>
+    {% endfor %}
   </div>
   
   

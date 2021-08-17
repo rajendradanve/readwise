@@ -19,6 +19,10 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
+@app.route("/file/<filename>")
+def book_image(filename):
+    return mongo.send_file(filename)
+
 @app.route("/")
 @app.route("/index")
 def index():
