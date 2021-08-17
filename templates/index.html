@@ -43,20 +43,22 @@
   
   <div class="row">
     {% for book in books %}
-    <div class="col s12 m4">
+    <div class="col s12 m3">
       
       <div class="card">
+        <a href="#">
         <div class="card-image">
-          <img src="{{url_for('book_image', filename=book.book_image_file)}}">
-          <span class="card-title">{{book.book_name}}</span>
+          <img id="book_image" src="{{url_for('book_image', filename=book.book_image_file)}}">
+          
         </div>
         <div class="card-content">
-          <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
+          <span class="card-title black-text">{{book.book_name}}</span>
+          {% for i in range(5)%}
+          <i id="start-{{i}}" class="far fa-star"></i>
+          {% endfor %}
         </div>
-        <div class="card-action">
-          <a href="#">This is a link</a>
-        </div>
+        
+      </a>
       </div>
      
     </div>

@@ -35,6 +35,18 @@ body {
   justify-content: center;
 }
 
+#book_info_card{
+-webkit-box-shadow: -2px 2px 4px 3px rgba(0,0,0,0.3); 
+box-shadow: -2px 2px 4px 3px rgba(0,0,0,0.3);
+}
+
+#book_image{
+  max-height: 350px;
+  min-height: 250px;
+  
+}
+
 #lable_for_book_image_file{
   margin-left: 40px;
 }
+
