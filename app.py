@@ -21,7 +21,9 @@ mongo = PyMongo(app)
 
 @app.route("/file/<filename>")
 def book_image(filename):
+    # Getting file from mongo database
     return mongo.send_file(filename)
+
 
 @app.route("/")
 @app.route("/index")
@@ -137,11 +139,22 @@ def sign_out():
 def profile(username):
     # grab the session user's username from
     username = mongo.db.users.find_one(
-        {"username": session["username"]})["username"]  
-    if session["username"]:
-        return render_template("profile.html", username=username)
+        {"username": session["username"]})["username"]
+    if not session["username"]:
+        return redirect(url_for("index"))
 
-    return redirect(url_for("index"))
+    
+    return render_template("profile.html", username=username)
+
+
+@app.route("/book/<bookname>")
+def profile(bookname):
+    
+
+    return render_template("book.html", bookname=bookname)
+
+
+
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -153,5 +166,5 @@ def search():
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
-            port =int(os.environ.get("PORT")),
-            debug =True)
+            port = int(os.environ.get("PORT")),
+            debug = True)
