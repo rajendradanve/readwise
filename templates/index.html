@@ -46,8 +46,9 @@
     <div class="col s12 m3">
       
       <div class="card">
-        <a href="#">
+        <a href="{{url_for('book_detail', book_id=book._id)}}">
         <div class="card-image">
+
           <img id="book_image" src="{{url_for('book_image', filename=book.book_image_file)}}">
           
         </div>

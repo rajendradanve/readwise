@@ -143,18 +143,13 @@ def profile(username):
     if not session["username"]:
         return redirect(url_for("index"))
 
-    
     return render_template("profile.html", username=username)
 
 
-@app.route("/book/<bookname>")
-def profile(bookname):
-    
-
-    return render_template("book.html", bookname=bookname)
-
-
-
+@app.route("/book/<book_id>")
+def book_detail(book_id):
+    book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
+    return render_template("book.html", book=book)
 
 
 @app.route("/search", methods=["GET", "POST"])
