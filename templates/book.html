@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="row">
+<div class="row row-top-margin">
     
-    <div class="col s10 offset-s1 m4 l2">
+    <div class="col s10 offset-s1 m4 offset-m1">
         <img src="{{url_for('book_image', filename=book.book_image_file)}}">
     </div>
-    <div class="col s12 m8 l10">
+    <div class="col s10 offset-s1 m6 offset-m1">
         <h3><span class="card-title black-text">{{book.book_name}}</span></h3>
+        <h6>Book Summary</h6>
+        <p>Author: {{book.book_author}}</p>
+        <p>Language: {{book.book_language}}</p>
     </div>
     
   </div>
