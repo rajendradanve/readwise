@@ -99,31 +99,32 @@ def add_book():
         if existing_book:
             flash("Book already exist")
         else:
-        book_image_file = request.files['book_image_file']
-        book_name = request.form.get("book_name").strip()
-        book_filename = book_name.replace(" ","") + book_image_file.filename
-        mongo.save_file(book_filename, book_image_file)
-        date = datetime.datetime.now().date()
-        today_date = date.strftime("%x")
-        current_time = date.strftime("%H:%M")
+            book_image_file = request.files['book_image_file']
+            book_name = request.form.get("book_name").strip().title()
+            book_filename = book_name.replace(
+                    " ","") + book_image_file.filename
+            mongo.save_file(book_filename, book_image_file)
+            date = datetime.datetime.now().date()
+            today_date = date.strftime("%x")
+            current_time = date.strftime("%H:%M")
 
-        add_book = {
-            "book_name": request.form.get("book_name"),
-            "book_author": request.form.get("book_author"),
-            "book_language": request.form.get("book_language"),
-            "book_category": request.form.get("book_category"),
-            "book_age_group": request.form.get("book_age_group"),
-            "book_summary": request.form.get("book_summary"),
-            "book_shopping-link": request.form.get("book_shopping-link"),
-            "book_image_file": book_filename,
-            "book_added_by_user": session["username"],
-            "book_added_date": today_date,
-            "book_added_time": current_time
-        }
+            add_book = {
+                "book_name": book_name,
+                "book_author": request.form.get("book_author"),
+                "book_language": request.form.get("book_language"),
+                "book_category": request.form.get("book_category"),
+                "book_age_group": request.form.get("book_age_group"),
+                "book_summary": request.form.get("book_summary"),
+                "book_shopping-link": request.form.get("book_shopping-link"),
+                "book_image_file": book_filename,
+                "book_added_by_user": session["username"],
+                "book_added_date": today_date,
+                "book_added_time": current_time
+            }
 
-        mongo.db.books.insert_one(add_book)
-        flash("Book Data Added Successfully")
-        return redirect(url_for("add_book"))
+            mongo.db.books.insert_one(add_book)
+            flash("Book Data Added Successfully")
+            return redirect(url_for("add_book"))
 
     languages = mongo.db.languages.find().sort("language", 1)
     categories = mongo.db.categories.find().sort("category", 1)
@@ -158,28 +159,30 @@ def book_detail(book_id):
     return render_template("book.html", book=book)
 
 
-@app.route("/add_category/")
+@app.route("/add_category/", methods=["GET", "POST"])
 def add_category():
+
     if request.method == "POST":
         new_category = request.form.get("new_category")
-        new_category = new_category.strip().title().replace(" and ", " & ")
+        new_category = new_category.strip().title().replace(" And ", " & ")
         # Check if category already exist in the list
         existing_category = mongo.db.categories.find_one(
-                "category": new_category)
+                {"category": new_category})
         
         if existing_category:
             flash("Category already exists")
         else:
-            mongo.db.categories.insert_one({"category": "new_category"})
+            mongo.db.categories.insert_one({"category": new_category})
             flash("Category Added Successfully")
             return redirect(url_for("add_category"))
 
     return render_template("add_category.html")
 
 
-@app.route("/delete_category/")
+@app.route("/delete_category/", methods=["GET", "POST"])
 def delete_category():
-
+    
+    categories = mongo.db.categories.find().sort("category", 1)
     return render_template("delete_category.html")
 
 

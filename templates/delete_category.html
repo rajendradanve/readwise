@@ -1,3 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
+    <div class="row row-top-margin">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_category')}}">
+            <div class="card-panel">
+                <h4 class="center-align">Delete Category</h4>
+                <div class="row">
+                    <div class="input-field col s12">
+                      <i class="fas fa-cogs prefix light-blue-text text-darken-4"></i>
+                      <select name="book_category">
+                        <option value="" disabled selected>Choose your option</option>
+                        {% for category in categories %}
+                        <option value="{{category.category}}">{{category.category}}</option>
+                        {% endfor %}
+                      </select>
+                      <label>Choose Category To Delete</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <button type="submit" class="col s4 offset-s4 btn-large light-blue text-darken-4 text-shadow">Add Category <i
+                        class="fas fa-plus"></i></button>
+                  </div>
+            </div>
+            
+        </form>
+        </div>
+    </div>
 {% endblock %}
