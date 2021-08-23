@@ -91,10 +91,16 @@ def sign_in():
 
 @app.route("/add_book", methods=["GET", "POST"])
 def add_book():
-    if request.method == "POST":    
+    if request.method == "POST":
+
+        existing_book = mongo.db.books.find_one(
+            {"book_name": request.form.get("book_name").strip()})
         
+        if existing_book:
+            flash("Book already exist")
+        else:
         book_image_file = request.files['book_image_file']
-        book_name = request.form.get("book_name")
+        book_name = request.form.get("book_name").strip()
         book_filename = book_name.replace(" ","") + book_image_file.filename
         mongo.save_file(book_filename, book_image_file)
         date = datetime.datetime.now().date()
@@ -154,6 +160,19 @@ def book_detail(book_id):
 
 @app.route("/add_category/")
 def add_category():
+    if request.method == "POST":
+        new_category = request.form.get("new_category")
+        new_category = new_category.strip().title().replace(" and ", " & ")
+        # Check if category already exist in the list
+        existing_category = mongo.db.categories.find_one(
+                "category": new_category)
+        
+        if existing_category:
+            flash("Category already exists")
+        else:
+            mongo.db.categories.insert_one({"category": "new_category"})
+            flash("Category Added Successfully")
+            return redirect(url_for("add_category"))
 
     return render_template("add_category.html")
 
