@@ -152,6 +152,30 @@ def book_detail(book_id):
     return render_template("book.html", book=book)
 
 
+@app.route("/add_category/")
+def add_category():
+
+    return render_template("add_category.html")
+
+
+@app.route("/delete_category/")
+def delete_category():
+
+    return render_template("delete_category.html")
+
+
+@app.route("/add_language/")
+def add_language():
+
+    return render_template("add_language.html")
+
+
+@app.route("/delete_language/")
+def delete_language():
+
+    return render_template("delete_language.html")
+
+
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
