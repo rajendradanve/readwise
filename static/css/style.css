@@ -53,3 +53,13 @@ box-shadow: -2px 2px 4px 3px rgba(0,0,0,0.3);
 .row-top-margin{
   margin-top: 20px;
 }
+
+.card{
+  border-radius: 20px;
+}
+
+.social-icon{
+  display: inline;
+  margin-left: 10px;
+  margin-right: 10px;
+}
