@@ -186,6 +186,18 @@ def add_language():
     return render_template("add_language.html")
 
 
+@app.route("/edit_book/<book_id>", methods=["GET", "POST"])
+def edit_book(book_id):
+    book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
+
+    languages = mongo.db.languages.find().sort("language", 1)
+    categories = mongo.db.categories.find().sort("category", 1)
+    age_groups = mongo.db.age_groups.find().sort("age_group", 1)
+    return render_template(
+            "edit_book.html", book=book, languages=languages,
+            categories=categories, age_groups=age_groups)
+
+
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
