@@ -1,10 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
+{% if book.book_added_by_user == session["username"] %}
 <div class="row row-top-margin">
-    <div class="col s10 offset-s1 m4 offset-m1">
-        <img src="{{url_for('book_image', filename=book.book_image_file)}}">
+  <div class="col s12 right-align">
+    <a class="waves-effect waves-light blue btn">Edit Book <i class="fas fa-edit"></i></a>
+  </div>
+</div>
+{% endif%}
+<div class="row row-top-margin valign-wrapper">
+    <div class="col s10 offset-s1 m3 offset-m1">
+        <img src="{{book.book_image_url}}">
     </div>
-    <div class="col s10 offset-s1 m6 offset-m1">
+    <div class="col s10 offset-s1 m9 left-align">
         <h3><span class="card-title black-text">{{book.book_name}}</span></h3>
         <p><strong>Author: </strong>{{book.book_author}}</p>
         <p><strong>Language: </strong>{{book.book_language}}</p>

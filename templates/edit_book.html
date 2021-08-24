@@ -2,16 +2,15 @@
 {% block content %}
 
 <div class="row">
-  <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_book')}}" enctype="multipart/form-data">
+  <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_book', book_id=book._id)}}" enctype="multipart/form-data">
     <div class="card-panel">
-      <h4 class="center-align">Add Book Information</h4>
-<p class="center-align">Here you can add summary of the book here which helps others </p>
+      <h4 class="center-align">Edit Book Information</h4>
 
       <div class="row">
         <div class="input-field col s12">
           <i class="fas fa-book prefix light-blue-text text-darken-4"></i>
           <input id="book_name" name="book_name" type="text" class="validate"
-            minlength="5" maxlength="100" required>
+            minlength="5" maxlength="100" value="{{book.book_name}}" required>
           <label for="book_name">Book Name</label>
         </div>
       </div>
@@ -20,16 +19,8 @@
         <div class="input-field col s12">
           <i class="fas fa-user prefix light-blue-text text-darken-4"></i>
           <input id="book_author" name="book_author" type="text" class="validate"
-            minlength="5" maxlength="100" required>
+            minlength="5" maxlength="100" value="{{book.book_author}}" required>
           <label for="book_author">Author</label>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="fas fa-image prefix light-blue-text text-darken-4"></i>
-          <input id="book_image_url" name="book_image_url" type="text" class="validate" required>
-          <label for="book_image_url">Book Image URL</label>
         </div>
       </div>
       
@@ -39,6 +30,9 @@
           <select name="book_language">
             <option value="" disabled selected>Choose your option</option>
             {% for language in languages %}
+                {% if languages.language == book.book_laguage %}
+                <option value="{{language.language}}" selected>{{language.language}}</option>
+                {% endif %}
                 <option value="{{language.language}}">{{language.language}}</option>
              {% endfor %}
           </select>
@@ -52,6 +46,9 @@
         <select name="book_category">
           <option value="" disabled selected>Choose your option</option>
           {% for category in categories %}
+            {% if category.category == book.book_category%}
+            <option value="{{category.category}}" selected>{{category.category}}</option>
+            {% endif %}
           <option value="{{category.category}}">{{category.category}}</option>
           {% endfor %}
         </select>
@@ -65,6 +62,9 @@
         <select name="book_age_group">
           <option value="" disabled selected>Choose your option</option>
           {% for age_group in age_groups %}
+          {% if age_group.age_group %}
+          <option value="{{age_group.age_group}}" selected>{{age_group.age_group}}</option>
+          {% endif %}
           <option value="{{age_group.age_group}}">{{age_group.age_group}}</option>
           {% endfor %}
         </select>
@@ -75,7 +75,7 @@
       <div class="row">
         <div class="input-field col s12">
           <i class="fas fa-sticky-note prefix light-blue-text text-darken-4"></i>
-          <textarea name="book_summary" id="book_summary" class="materialize-textarea" required></textarea>
+          <textarea name="book_summary" id="book_summary" class="materialize-textarea" value="{{book.book_summary}}" required></textarea>
           <label for="book_summery">Book Summery</label>
 
         </div>
@@ -84,8 +84,15 @@
       <div class="row">
         <div class="input-field col s12">
           <i class="fas fa-shopping-cart prefix light-blue-text text-darken-4"></i>
-          <input id="book_shopping-link" name="book_shopping-link" type="text" class="validate" required>
+          <input id="book_shopping-link" name="book_shopping-link" type="text" class="validate" value="{{book.book_shopping_link}}" required>
           <label for="book_shopping-link">Enter Book Buying URL</label>
+        </div>
+      </div>
+      <div class="row">
+        <label for="book_image_file">Upload Book Image File</label>
+        <div class="input-field col s12">
+          <i class="fas fa-file-image prefix light-blue-text text-darken-4"></i>
+          <input id="book_image_file" name="book_image_file" type="file" accept="image/png, image/gif, image/jpeg, image/jpg" class="validate" required>
         </div>
       </div>
       

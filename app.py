@@ -19,12 +19,6 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
-@app.route("/file/<filename>")
-def book_image(filename):
-    # Getting file from mongo database
-    return mongo.send_file(filename)
-
-
 @app.route("/")
 @app.route("/index")
 def index():
@@ -99,11 +93,7 @@ def add_book():
         if existing_book:
             flash("Book already exist")
         else:
-            book_image_file = request.files['book_image_file']
             book_name = request.form.get("book_name").strip().title()
-            book_filename = book_name.replace(
-                    " ","") + book_image_file.filename
-            mongo.save_file(book_filename, book_image_file)
             date = datetime.datetime.now().date()
             today_date = date.strftime("%x")
             current_time = date.strftime("%H:%M")
@@ -116,7 +106,7 @@ def add_book():
                 "book_age_group": request.form.get("book_age_group"),
                 "book_summary": request.form.get("book_summary"),
                 "book_shopping-link": request.form.get("book_shopping-link"),
-                "book_image_file": book_filename,
+                "book_image_url": request.form.get("book_image_url"),
                 "book_added_by_user": session["username"],
                 "book_added_date": today_date,
                 "book_added_time": current_time
@@ -144,10 +134,8 @@ def sign_out():
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-    # grab the session user's username from
-    username = mongo.db.users.find_one(
-        {"username": session["username"]})["username"]
-    if not session["username"]:
+    # check is admin is log in to show profile page.
+    if session["username"] != "admin":
         return redirect(url_for("index"))
 
     return render_template("profile.html", username=username)
@@ -170,7 +158,7 @@ def add_category():
                 {"category": new_category})
         
         if existing_category:
-            flash("Category already exists")
+            flash("Category Already Exists")
         else:
             mongo.db.categories.insert_one({"category": new_category})
             flash("Category Added Successfully")
@@ -179,23 +167,23 @@ def add_category():
     return render_template("add_category.html")
 
 
-@app.route("/delete_category/", methods=["GET", "POST"])
-def delete_category():
-    
-    categories = mongo.db.categories.find().sort("category", 1)
-    return render_template("delete_category.html")
-
-
-@app.route("/add_language/")
+@app.route("/add_language/", methods=["GET", "POST"])
 def add_language():
 
+    if request.method == "POST":
+        new_language = request.form.get("new_language")
+        new_language = new_language.strip().title()
+        # Check if category already exist in the list
+        existing_language = mongo.db.languages.find_one(
+                {"language": new_language})
+        
+        if existing_language:
+            flash("Language Already Exists")
+        else:
+            mongo.db.languages.insert_one({"language": new_language})
+            flash("Language Added Successfully")
+            return redirect(url_for("add_language"))
     return render_template("add_language.html")
-
-
-@app.route("/delete_language/")
-def delete_language():
-
-    return render_template("delete_language.html")
 
 
 @app.route("/search", methods=["GET", "POST"])
