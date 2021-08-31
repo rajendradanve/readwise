@@ -214,11 +214,13 @@ def edit_book_id(book_id):
 
 
 # Function to update feature book status
-@app.route("/edit/book")
+@app.route("/edit/book", methods=["GET", "POST"])
 def edit_book():
 
-    
-
+    if request.method == "POST":
+        
+        return redirect(url_for("edit_book_id", book_id=request.form.get("edit_book_id")))
+        
     books = mongo.db.books.find()
     return render_template("edit_book.html", books=books)
 
