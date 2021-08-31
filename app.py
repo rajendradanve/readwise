@@ -232,6 +232,12 @@ def search():
     return render_template("home.html", books=books)
 
 
+@app.route("/books")
+def all_books():
+    books = mongo.db.books.find()
+    return render_template("all_books.html", books=books)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port = int(os.environ.get("PORT")),

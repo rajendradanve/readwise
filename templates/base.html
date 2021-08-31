@@ -33,6 +33,7 @@
           <li class="red-text">Welcome {{session.username}}</li>
           {% endif %}
           <li><a href="{{url_for('home')}}">Home</a></li>
+          <li><a href="{{url_for('all_books')}}">All Books</a></li>
           {% if session.username %}
             {% if session["username"] == "admin" %}
               <li><a href="{{url_for('profile', username=session['username'])}}">Profile</a></li>
