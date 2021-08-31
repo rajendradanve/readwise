@@ -26,13 +26,13 @@
     <!--navbar-->
     <nav>
       <div class="nav-wrapper light-blue accent-2">
-        <a href="{{url_for('index')}}" class="brand-logo"><i class="fas fa-book-reader"></i> ReadWise</a>
+        <a href="{{url_for('home')}}" class="brand-logo"><i class="fas fa-book-reader"></i> ReadWise</a>
         <a href="#" data-target="mobile-demo" class="right sidenav-trigger"><i class="fas fa-bars">menu</i></a>
         <ul class="right hide-on-med-and-down">
           {% if session.username %}
           <li class="red-text">Welcome {{session.username}}</li>
           {% endif %}
-          <li><a href="{{url_for('index')}}">Home</a></li>
+          <li><a href="{{url_for('home')}}">Home</a></li>
           {% if session.username %}
             {% if session["username"] == "admin" %}
               <li><a href="{{url_for('profile', username=session['username'])}}">Profile</a></li>

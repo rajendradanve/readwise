@@ -18,13 +18,28 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+# created dict for multiple admin users
+ADMIN_USER_NAMES = ['admin', 'admin1']
+
+
+def is_logged_in():
+    if session and session["username"]:
+        return True
+    return False
+
+
+def is_admin():
+    if session and session["username"] in ADMIN_USER_NAMES:
+        return True
+    return False
+
 
 @app.route("/")
-@app.route("/index")
-def index():
+@app.route("/home")
+def home():
 
     books = mongo.db.books.find()
-    return render_template("index.html", books=books)
+    return render_template("home.html", books=books)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -51,7 +66,7 @@ def register():
 
             session["username"] = request.form.get("username")
             flash(f"Welcome {session['username']}")
-            return redirect(url_for("index"))
+            return redirect(url_for("home"))
 
     return render_template("register.html")
 
@@ -69,7 +84,7 @@ def sign_in():
                         "user_password")):
                 session["username"] = request.form.get("username").lower()
                 return redirect(url_for(
-                    "index", username=session["username"]))
+                    "home", username=session["username"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -99,17 +114,17 @@ def add_book():
             current_time = date.strftime("%H:%M")
 
             add_book = {
-                "book_name": book_name,
-                "book_author": request.form.get("book_author"),
-                "book_language": request.form.get("book_language"),
-                "book_category": request.form.get("book_category"),
-                "book_age_group": request.form.get("book_age_group"),
-                "book_summary": request.form.get("book_summary"),
-                "book_shopping-link": request.form.get("book_shopping-link"),
-                "book_image_url": request.form.get("book_image_url"),
-                "book_added_by_user": session["username"],
-                "book_added_date": today_date,
-                "book_added_time": current_time
+                "name": book_name,
+                "author": request.form.get("book_author"),
+                "language": request.form.get("book_language"),
+                "category": request.form.get("book_category"),
+                "age_group": request.form.get("book_age_group"),
+                "summary": request.form.get("book_summary"),
+                "shopping-link": request.form.get("book_shopping-link"),
+                "image_url": request.form.get("book_image_url"),
+                "added_by_user": session["username"],
+                "added_date": today_date,
+                "added_time": current_time
             }
 
             mongo.db.books.insert_one(add_book)
@@ -129,14 +144,14 @@ def sign_out():
     # remove user from session cookies
     flash("You have been logged out")
     session.pop("username")
-    return redirect(url_for("index"))
+    return redirect(url_for("home"))
 
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # check is admin is log in to show profile page.
     if session["username"] != "admin":
-        return redirect(url_for("index"))
+        return redirect(url_for("home"))
 
     return render_template("profile.html", username=username)
 
@@ -186,23 +201,33 @@ def add_language():
     return render_template("add_language.html")
 
 
-@app.route("/edit_book/<book_id>", methods=["GET", "POST"])
-def edit_book(book_id):
+@app.route("/edit/book/<book_id>", methods=["GET", "POST"])
+def edit_book_id(book_id):
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
 
     languages = mongo.db.languages.find().sort("language", 1)
     categories = mongo.db.categories.find().sort("category", 1)
     age_groups = mongo.db.age_groups.find().sort("age_group", 1)
     return render_template(
-            "edit_book.html", book=book, languages=languages,
+            "edit_book_id.html", book=book, languages=languages,
             categories=categories, age_groups=age_groups)
+
+
+# Function to update feature book status
+@app.route("/edit/book")
+def edit_book():
+
+    
+
+    books = mongo.db.books.find()
+    return render_template("edit_book.html", books=books)
 
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
     books = list(mongo.db.tasks.find({"$text": {"$search":query}}))
-    return render_template("index.html", books=books)
+    return render_template("home.html", books=books)
 
 
 if __name__ == "__main__":
