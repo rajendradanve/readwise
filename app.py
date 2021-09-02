@@ -203,8 +203,38 @@ def add_language():
 
 @app.route("/edit/book/<book_id>", methods=["GET", "POST"])
 def edit_book_id(book_id):
-    book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
 
+    if request.method == "POST":
+
+        book_name = request.form.get("book_name").strip().title()
+        date = datetime.datetime.now().date()
+        today_date = date.strftime("%x")
+        current_time = date.strftime("%H:%M")
+        is_feature = True if request.form.get("is_feature") else False
+
+        update_book = {
+            "name": book_name,
+            "author": request.form.get("book_author"),
+            "language": request.form.get("book_language"),
+            "category": request.form.get("book_category"),
+            "age_group": request.form.get("book_age_group"),
+            "summary": request.form.get("book_summary"),
+            "shopping-link": request.form.get("book_shopping-link"),
+            "image_url": request.form.get("book_image_url"),
+            "added_by_user": session["username"],
+            "added_date": today_date,
+            "added_time": current_time,
+            "is_feature":  is_feature
+        }
+
+        mongo.db.books.update({"_id": ObjectId(book_id)}, update_book)
+        flash("Book Data Updated Successfully")
+
+        redirect_book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
+        return render_template("book.html", book=redirect_book)
+        
+
+    book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
     languages = mongo.db.languages.find().sort("language", 1)
     categories = mongo.db.categories.find().sort("category", 1)
     age_groups = mongo.db.age_groups.find().sort("age_group", 1)
