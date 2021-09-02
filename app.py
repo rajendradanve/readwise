@@ -228,11 +228,9 @@ def edit_book_id(book_id):
         }
 
         mongo.db.books.update({"_id": ObjectId(book_id)}, update_book)
-        flash("Book Data Updated Successfully")
-
+        flash("Book Updated Successfully")
         redirect_book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
         return render_template("book.html", book=redirect_book)
-        
 
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
     languages = mongo.db.languages.find().sort("language", 1)
@@ -240,7 +238,8 @@ def edit_book_id(book_id):
     age_groups = mongo.db.age_groups.find().sort("age_group", 1)
     return render_template(
             "edit_book_id.html", book=book, languages=languages,
-            categories=categories, age_groups=age_groups)
+            categories=categories, age_groups=age_groups,
+            is_logged_in=is_logged_in(), is_admin=is_admin())
 
 
 # Function to update feature book status
