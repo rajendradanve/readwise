@@ -27,20 +27,20 @@
   </div>
 </div>
 
-  
+{% if featured_books|length > 0 %}
   <div class="row">
-    {% for book in books %}
+    {% for featured_book in featured_books %}
     <div class="col s12 m3">
       
       <div class="card center-align">
-        <a href="{{url_for('book_detail', book_id=book._id)}}">
+        <a href="{{url_for('book_detail', book_id=featured_book._id)}}">
         <div class="card-image">
 
-          <img id="book_image" src="{{book.image_url}}">
+          <img id="book_image" src="{{featured_book.image_url}}">
           
         </div>
         <div class="card-content">
-          <span class="card-title black-text">{{book.name}}</span>
+          <span class="card-title black-text">{{featured_book.name}}</span>
           <form action="">
             {% for i in range(5)%}
             <i id="stars-{{i}}" class="far fa-star"></i>
@@ -55,7 +55,9 @@
     </div>
     {% endfor %}
   </div>
-  
+{% else %} 
+  <h3 class="red-text test-darken-4 center-align">No featured books available currently</h3>
+  <h3 class="red-text test-darken-4 center-align"><a href="{{url_for('all_books')}}">Click Here</a> to see all books</h3>
   
 {% endblock %}
 

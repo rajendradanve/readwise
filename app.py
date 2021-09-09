@@ -38,8 +38,8 @@ def is_admin():
 @app.route("/home")
 def home():
 
-    books = mongo.db.books.find()
-    return render_template("home.html", books=books)
+    featured_books = mongo.db.books.filter({"is_feature": True})
+    return render_template("home.html", featured_books=featured_books)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -219,7 +219,7 @@ def edit_book_id(book_id):
             "category": request.form.get("book_category"),
             "age_group": request.form.get("book_age_group"),
             "summary": request.form.get("book_summary"),
-            "shopping_link": request.form.get("book_shopping-link"),
+            "shopping_link": request.form.get("book_shopping_link"),
             "image_url": request.form.get("book_image_url"),
             "added_by_user": session["username"],
             "added_date": today_date,
