@@ -38,7 +38,7 @@ def is_admin():
 @app.route("/home")
 def home():
 
-    featured_books = mongo.db.books.filter({"is_feature": True})
+    featured_books = mongo.db.books.find({"is_feature": True})
     return render_template("home.html", featured_books=featured_books)
 
 
