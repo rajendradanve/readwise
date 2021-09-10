@@ -26,19 +26,46 @@
     </div>
   </div>
   <hr class="solid">
+  {% if is_user_logged %}
+  <form action="">
   <div class="row">
     <div class="col s12">
-        {% if is_user_logged %}
-        <form action="">
-            {% for i in range(5)%}
-            <input type="radio" id="review_stars-{{i}}" name="rating" value="5">
-            
-          {% endfor %}
-        </form>
-        {% else%}
-        <p> <a href="{{url_for('sign_in')}}">Sign in</a>  to register your review for the book</p>
-        {% endif %}
+        
+          <fieldset class="rating">
+            <input type="radio" id="star5" name="star_rating" value="5"/><label for="star5" class="full" title="Awesome"></label>
+            <input type="radio" id="star4.5" name="star_rating" value="4.5"/><label for="star4.5" class="half"></label>
+            <input type="radio" id="star4" name="star_rating" value="4"/><label for="star4" class="full"></label>
+            <input type="radio" id="star3.5" name="star_rating" value="3.5"/><label for="star3.5" class="half"></label>
+            <input type="radio" id="star3" name="star_rating" value="3"/><label for="star3" class="full"></label>
+            <input type="radio" id="star2.5" name="star_rating" value="2.5"/><label for="star2.5" class="half"></label>
+            <input type="radio" id="star2" name="star_rating" value="2"/><label for="star2" class="full"></label>
+            <input type="radio" id="star1.5" name="star_rating" value="1.5"/><label for="star1.5" class="half"></label>
+            <input type="radio" id="star1" name="star_rating" value="1"/><label for="star1" class="full"></label>
+            <input type="radio" id="star0.5" name="star_rating" value="0.5"/><label for="star0.5" class="half"></label>
+          </fieldset>
+          
+      </div>
+      
+    </div>
+    <div class="row">
+      <div class="col">
+        <h6 id="rating_value"></h6>
+      </div>
     </div>
     
-  </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <textarea id="review_text_area" class="materialize-textarea"></textarea>
+        <label for="review_text_area">Write Your Review</label>
+      </div>
+    </div>
+  </form>
+    {% else%}
+    <div class="row">
+      <div class="col">
+        <p> <a href="{{url_for('sign_in')}}">Sign in</a>  to register your review for the book</p>
+      </div>
+    </div>
+    {% endif %}
+
 {% endblock %}
