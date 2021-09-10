@@ -28,7 +28,7 @@
   <hr class="solid">
   <div class="row">
     <div class="col s12">
-        {% if session["username"] %}
+        {% if is_user_logged %}
         <form action="">
             {% for i in range(5)%}
             <input type="radio" id="review_stars-{{i}}" name="rating" value="5">
@@ -36,7 +36,7 @@
           {% endfor %}
         </form>
         {% else%}
-        <p>Sign in to register your review for the book</p>
+        <p> <a href="{{url_for('sign_in')}}">Sign in</a>  to register your review for the book</p>
         {% endif %}
     </div>
     

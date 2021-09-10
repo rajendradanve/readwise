@@ -9,7 +9,7 @@
               <span class="card-title center-align">Welcome to ReadWise</span>
               <p>Explore books, read reviews of the books and add reviews books you read to help others</p>
             </div>
-            {% if not session.username %}
+            {% if not is_user_logged %}
             <div class="card-action center-align">
                 <a class="waves-effect waves-light btn" href="{{url_for('register')}}">Register</a>
                 <p>

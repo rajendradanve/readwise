@@ -39,11 +39,16 @@ def is_admin():
 def home():
 
     featured_books = mongo.db.books.find({"is_feature": True})
-    return render_template("home.html", featured_books=featured_books)
+    return render_template(
+        "home.html", featured_books=featured_books,
+        is_user_logged=is_logged_in())
 
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+
+    if is_logged_in():
+        return redirect(url_for("home"))
 
     if request.method == "POST":
         # check if username already exist in db
@@ -73,6 +78,10 @@ def register():
 
 @app.route("/sign_in", methods=["GET", "POST"])
 def sign_in():
+
+    if is_logged_in():
+        return redirect(url_for("home"))
+
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
@@ -100,6 +109,10 @@ def sign_in():
 
 @app.route("/add_book", methods=["GET", "POST"])
 def add_book():
+
+    if not is_logged_in():
+        return redirect(url_for("home"))
+
     if request.method == "POST":
 
         existing_book = mongo.db.books.find_one(
@@ -141,6 +154,10 @@ def add_book():
 
 @app.route("/sign_out")
 def sign_out():
+
+    if not is_logged_in():
+        return redirect(url_for("home"))
+
     # remove user from session cookies
     flash("You have been logged out")
     session.pop("username")
@@ -150,7 +167,7 @@ def sign_out():
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # check is admin is log in to show profile page.
-    if session["username"] != "admin":
+    if not is_logged_in():
         return redirect(url_for("home"))
 
     return render_template("profile.html", username=username)
@@ -159,7 +176,8 @@ def profile(username):
 @app.route("/book/<book_id>")
 def book_detail(book_id):
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
-    return render_template("book.html", book=book)
+    return render_template("book.html",
+    book=book, is_user_logged=is_logged_in())
 
 
 @app.route("/add_category/", methods=["GET", "POST"])
@@ -248,7 +266,8 @@ def edit_book():
 
     if request.method == "POST":
         
-        return redirect(url_for("edit_book_id", book_id=request.form.get("edit_book_id")))
+        return redirect(url_for(
+            "edit_book_id", book_id=request.form.get("edit_book_id")))
         
     books = mongo.db.books.find()
     return render_template("edit_book.html", books=books)
@@ -261,7 +280,7 @@ def search():
     return render_template("home.html", books=books)
 
 
-@app.route("/books")
+@app.route("/books/all")
 def all_books():
     books = mongo.db.books.find()
     return render_template("all_books.html", books=books)
