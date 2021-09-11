@@ -180,7 +180,7 @@ def book_detail(book_id):
             "username": session["username"],
             "book_id": book_id,
             "review_text": request.form.get("review_text"),
-            "star_value": request.form.get("star_rating"),
+            "star_value": int(request.form.get("star_rating")),
             "time_stamp": datetime.datetime.now()
         }
 
@@ -195,6 +195,8 @@ def book_detail(book_id):
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
     comments = mongo.db.comments.find(
         {"book_id": book_id})
+
+    
 
     return render_template("book.html", book=book,
         is_user_logged=is_logged_in(), is_already_commented=is_already_commented,
