@@ -37,7 +37,6 @@ def is_admin():
 @app.route("/")
 @app.route("/home")
 def home():
-
     featured_books = mongo.db.books.find({"is_feature": True})
     return render_template(
         "home.html", featured_books=featured_books,
@@ -46,7 +45,6 @@ def home():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-
     if is_logged_in():
         return redirect(url_for("home"))
 
@@ -117,7 +115,7 @@ def add_book():
 
         existing_book = mongo.db.books.find_one(
             {"book_name": request.form.get("book_name").strip()})
-        
+      
         if existing_book:
             flash("Book already exist")
         else:
@@ -164,7 +162,7 @@ def sign_out():
     return redirect(url_for("home"))
 
 
-@app.route("/profile/<username>", methods=["GET", "POST"])
+@app.route("/profile", methods=["GET", "POST"])
 def profile(username):
     # check is admin is log in to show profile page.
     if not is_logged_in():
@@ -173,11 +171,30 @@ def profile(username):
     return render_template("profile.html", username=username)
 
 
-@app.route("/book/<book_id>")
+@app.route("/book/<book_id>", methods=["GET", "POST"])
 def book_detail(book_id):
+
+    if is_logged_in() and request.method == "POST":
+
+        comment = {
+            "username": session["username"],
+            "book_id": book_id,
+            "review_text": request.form.get("review_text"),
+            "star_value": request.form.get("star_rating"),
+            "time_stamp": datetime.datetime.now()
+        }
+
+        mongo.db.comments.insert_one(comment)
+        flash("Comment Added Successfully")
+        return redirect(url_for("book_detail(book_id)"))
+
+    is_already_commented = mongo.db.comments.find_one(
+            {"username": session["username"],
+            "book_id": book_id})
+      
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
-    return render_template("book.html",
-    book=book, is_user_logged=is_logged_in())
+    return render_template("book.html", book=book,
+    is_user_logged=is_logged_in(), is_already_commented=is_already_commented)
 
 
 @app.route("/add_category/", methods=["GET", "POST"])

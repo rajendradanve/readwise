@@ -26,8 +26,8 @@
     </div>
   </div>
   <hr class="solid">
-  {% if is_user_logged %}
-  <form action="">
+  {% if is_user_logged and not is_already_commented %}
+  <form action="{{ url_for('book_detail(book_id)')}}" method="POST">
   <div class="row">
     <div class="col s12">
         
@@ -55,8 +55,8 @@
     
     <div class="row">
       <div class="input-field col s12">
-        <textarea id="review_text_area" class="materialize-textarea"></textarea>
-        <label for="review_text_area">Write Your Review</label>
+        <textarea id="review_text" class="materialize-textarea"></textarea>
+        <label for="review_text">Write Your Review</label>
       </div>
     </div>
   </form>
