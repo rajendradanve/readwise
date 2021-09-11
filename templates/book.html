@@ -26,25 +26,23 @@
     </div>
   </div>
   <hr class="solid">
-  {% if is_user_logged and not is_already_commented %}
-  <form action="{{ url_for('book_detail(book_id)')}}" method="POST">
+  {% if is_user_logged and is_already_commented %}
+  <div class="row">
+    <div class="col">
+      <p> Your already provided your review.</p>
+    </div>
+  </div>
+  {% elif is_user_logged and not is_already_commented %}
+  <form action="{{url_for('book_detail', book_id=book._id)}}" method="POST">
   <div class="row">
     <div class="col s12">
-        
           <fieldset class="rating">
-            <input type="radio" id="star5" name="star_rating" value="5"/><label for="star5" class="full" title="Awesome"></label>
-            <input type="radio" id="star4.5" name="star_rating" value="4.5"/><label for="star4.5" class="half"></label>
+            <input type="radio" id="star5" name="star_rating" value="5"/><label for="star5" class="full" ></label>
             <input type="radio" id="star4" name="star_rating" value="4"/><label for="star4" class="full"></label>
-            <input type="radio" id="star3.5" name="star_rating" value="3.5"/><label for="star3.5" class="half"></label>
             <input type="radio" id="star3" name="star_rating" value="3"/><label for="star3" class="full"></label>
-            <input type="radio" id="star2.5" name="star_rating" value="2.5"/><label for="star2.5" class="half"></label>
             <input type="radio" id="star2" name="star_rating" value="2"/><label for="star2" class="full"></label>
-            <input type="radio" id="star1.5" name="star_rating" value="1.5"/><label for="star1.5" class="half"></label>
-            <input type="radio" id="star1" name="star_rating" value="1"/><label for="star1" class="full"></label>
-            <input type="radio" id="star0.5" name="star_rating" value="0.5"/><label for="star0.5" class="half"></label>
+            <input type="radio" id="star1" name="star_rating" value="1"/><label for="star1" class="full"></label>    
           </fieldset>
-          
-      </div>
       
     </div>
     <div class="row">
@@ -55,9 +53,12 @@
     
     <div class="row">
       <div class="input-field col s12">
-        <textarea id="review_text" class="materialize-textarea"></textarea>
+        <textarea id="review_text" name="review_text" class="materialize-textarea"></textarea>
         <label for="review_text">Write Your Review</label>
       </div>
+    </div>
+    <div class="row">
+      <button type="submit" class="col s2 offset-s5 btn light-blue text-darken-4 text-shadow">Submit Review</button>
     </div>
   </form>
     {% else%}
@@ -67,5 +68,36 @@
       </div>
     </div>
     {% endif %}
+    {% if comments.count() > 0 %}
+   
+    {% for comment in comments%}
+    <hr class="solid grey">
+    <div class="row">
+      <div class="col">
+        {% for i in range(5)%}
+            {% if (comment.star_value | int > i) %}
+            <span class="color-star">
+            <i id="stars_comments-{{i}}" class="fas fa-star"></i>
+            </span>
+            {% else %}
+            
+            <i id="stars_comments-{{i}}" class="far fa-star"></i>
+          
+            {% endif %}
+          {% endfor %}
+        <p>{{comment.review_text}}</p>
+        <p class="grey-text">{{comment.username}}</p>
+      </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <hr class="solid">
+    <div class="row">
+      <div class="col">
+        <p> No reveiws yet. You will be first to review.</p>
+      </div>
+    </div>
+    {% endif %}
+    
 
 {% endblock %}

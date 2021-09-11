@@ -85,12 +85,6 @@ box-shadow: -2px 2px 4px 3px rgba(0,0,0,0.3);
 	cursor: pointer;
 }
 
-.rating > .half:before{
-	content: '\f089';
-	position: absolute;
-	cursor: pointer;
-}
-
 
 .rating > label{
 	color: #ddd;
@@ -100,7 +94,8 @@ box-shadow: -2px 2px 4px 3px rgba(0,0,0,0.3);
 
 .rating > input:checked ~ label,
 .rating:not(:checked) > label:hover, 
-.rating:not(:checked) > label:hover ~ label{
+.rating:not(:checked) > label:hover ~ label,
+.color-star{
 	color: #FDCC0D;
 }
 

@@ -186,15 +186,19 @@ def book_detail(book_id):
 
         mongo.db.comments.insert_one(comment)
         flash("Comment Added Successfully")
-        return redirect(url_for("book_detail(book_id)"))
+        return redirect(url_for("book_detail", book_id=book_id))
 
     is_already_commented = mongo.db.comments.find_one(
             {"username": session["username"],
             "book_id": book_id})
       
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
+    comments = mongo.db.comments.find(
+        {"book_id": book_id})
+
     return render_template("book.html", book=book,
-    is_user_logged=is_logged_in(), is_already_commented=is_already_commented)
+        is_user_logged=is_logged_in(), is_already_commented=is_already_commented,
+        comments=comments)
 
 
 @app.route("/add_category/", methods=["GET", "POST"])
