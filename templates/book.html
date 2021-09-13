@@ -9,8 +9,29 @@
 {% endif%}
 <div class="row row-top-margin valign-wrapper">
     <div class="col s10 offset-s1 m3 offset-m1">
-        <img src="{{book.image_url}}">
+      <div class="row">
+        <div class="col">
+          <img src="{{book.image_url}}">
+        </div>
+      </div>
+        <div class="row">
+          <div class="col center-align">
+            
+            {% for i in range(5)%}
+            {% if (avg_review > i) %}
+            <span class="color-star">
+            <i id="stars_comments-{{i}}" class="fas fa-star"></i>
+            </span>
+            {% else %}
+            
+            <i id="stars_comments-{{i}}" class="far fa-star"></i>
+          
+            {% endif %}
+          {% endfor %}
+          </div>
+        </div>
     </div>
+   
     <div class="col s10 offset-s1 m9 left-align">
         <h3><span class="card-title black-text">{{book.name}}</span></h3>
         <p><strong>Author: </strong>{{book.author}}</p>

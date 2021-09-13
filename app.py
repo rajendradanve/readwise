@@ -190,17 +190,27 @@ def book_detail(book_id):
 
     is_already_commented = mongo.db.comments.find_one(
             {"username": session["username"],
-            "book_id": book_id})
+             "book_id": book_id})
       
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
     comments = mongo.db.comments.find(
         {"book_id": book_id})
 
-    
+    avg_result = [
+        {"$match": {"book_id": book_id}},
+        {"$group": {"_id": "$book_id", "avg": {"$avg": "$star_value"}}}
+    ]
 
+    avg_review_list = mongo.db.comments.aggregate(avg_result)
+    
+    for i in avg_review_list:
+        avg_review = round(i["avg"])
+    
     return render_template("book.html", book=book,
-        is_user_logged=is_logged_in(), is_already_commented=is_already_commented,
-        comments=comments)
+                           is_user_logged=is_logged_in(),
+                           is_already_commented=is_already_commented,
+                           comments=comments,
+                           avg_review=avg_review)
 
 
 @app.route("/add_category/", methods=["GET", "POST"])
