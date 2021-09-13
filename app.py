@@ -124,6 +124,7 @@ def add_book():
             date = datetime.datetime.now().date()
             today_date = date.strftime("%x")
             current_time = date.strftime("%H:%M")
+            is_feature = True if request.form.get("is_feature") else False
 
             add_book = {
                 "name": book_name,
@@ -135,6 +136,7 @@ def add_book():
                 "shopping_link": request.form.get("book_shopping_link"),
                 "image_url": request.form.get("book_image_url"),
                 "added_by_user": session["username"],
+                "is_feature":  is_feature,
                 "added_date": today_date,
                 "added_time": current_time
             }
@@ -201,7 +203,7 @@ def book_detail(book_id):
             avg_review = round(i["avg"])
 
         mongo.db.books.update_one({"_id": ObjectId(book_id)},
-                              {"$set": {"avg_review": avg_review}})
+                                {"$set": {"avg_review": avg_review}})
 
         return redirect(url_for("book_detail", book_id=book_id))
 
@@ -213,6 +215,7 @@ def book_detail(book_id):
         is_already_commented = False
       
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
+    
     comments = mongo.db.comments.find(
         {"book_id": book_id})
 
@@ -285,12 +288,14 @@ def edit_book_id(book_id):
             "added_date": today_date,
             "added_time": current_time,
             "is_feature":  is_feature
+            
         }
 
-        mongo.db.books.update({"_id": ObjectId(book_id)}, update_book)
+        mongo.db.books.update_one({"_id": ObjectId(book_id)},
+                                  {"$set": update_book})
         flash("Book Updated Successfully")
-        redirect_book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
-        return render_template("book.html", book=redirect_book)
+        
+        return redirect(url_for('book_detail', book_id=book_id))
 
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
     languages = mongo.db.languages.find().sort("language", 1)
