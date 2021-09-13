@@ -23,7 +23,8 @@ ADMIN_USER_NAMES = ['admin', 'admin1']
 
 
 def is_logged_in():
-    if session and session["username"]:
+
+    if session and session.get("username"):
         return True
     return False
 
@@ -147,7 +148,7 @@ def add_book():
     age_groups = mongo.db.age_groups.find().sort("age_group", 1)
     return render_template(
             "add_book.html", languages=languages, categories=categories,
-            age_groups=age_groups)
+            age_groups=age_groups, is_admin=is_admin())
 
 
 @app.route("/sign_out")
@@ -186,31 +187,39 @@ def book_detail(book_id):
 
         mongo.db.comments.insert_one(comment)
         flash("Comment Added Successfully")
+        # Calculating avg_review after new comments added.
+        # Adding / updating avg_review for the books collection
+        
+        avg_result = [
+            {"$match": {"book_id": book_id}},
+            {"$group": {"_id": "$book_id", "avg": {"$avg": "$star_value"}}}
+        ]
+
+        avg_review_list = mongo.db.comments.aggregate(avg_result)
+    
+        for i in avg_review_list:
+            avg_review = round(i["avg"])
+
+        mongo.db.books.update_one({"_id": ObjectId(book_id)},
+                              {"$set": {"avg_review": avg_review}})
+
         return redirect(url_for("book_detail", book_id=book_id))
 
-    is_already_commented = mongo.db.comments.find_one(
+    if is_logged_in():
+        is_already_commented = mongo.db.comments.find_one(
             {"username": session["username"],
              "book_id": book_id})
+    else:
+        is_already_commented = False
       
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
     comments = mongo.db.comments.find(
         {"book_id": book_id})
 
-    avg_result = [
-        {"$match": {"book_id": book_id}},
-        {"$group": {"_id": "$book_id", "avg": {"$avg": "$star_value"}}}
-    ]
-
-    avg_review_list = mongo.db.comments.aggregate(avg_result)
-    
-    for i in avg_review_list:
-        avg_review = round(i["avg"])
-    
     return render_template("book.html", book=book,
                            is_user_logged=is_logged_in(),
                            is_already_commented=is_already_commented,
-                           comments=comments,
-                           avg_review=avg_review)
+                           comments=comments, is_admin=is_admin())
 
 
 @app.route("/add_category/", methods=["GET", "POST"])
@@ -297,6 +306,9 @@ def edit_book_id(book_id):
 @app.route("/edit/book", methods=["GET", "POST"])
 def edit_book():
 
+    if not is_logged_in():
+        return redirect(url_for("home"))
+
     if request.method == "POST":
         
         return redirect(url_for(
@@ -316,6 +328,7 @@ def search():
 @app.route("/books/all")
 def all_books():
     books = mongo.db.books.find()
+
     return render_template("all_books.html", books=books)
 
 

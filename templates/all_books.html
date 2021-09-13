@@ -55,11 +55,17 @@
         </div>
         <div class="card-content">
           <span class="card-title black-text">{{book.name}}</span>
-          <form action="">
-            {% for i in range(5)%}
-            <i id="stars-{{i}}" class="far fa-star"></i>
+          {% if book.avg_review == null %}
+          <p class="grey-text"> No reviews yet</p>
+          {% else %}
+          {% for i in range(5)%}
+              {% if book.avg_review > i %}
+              <i id="stars-{{i}}" class="fas fa-star"></i>
+              {% else%}
+              <i id="stars-{{i}}" class="far fa-star"></i>
+              {% endif %}
           {% endfor %}
-          </form>
+          {% endif %}
           
         </div>
         
