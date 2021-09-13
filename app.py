@@ -326,9 +326,8 @@ def edit_book():
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
-    books = list(mongo.db.tasks.find({"$text": {"$search":query}}))
-    return render_template("home.html", books=books)
-
+    books = list(mongo.db.tasks.find({"$text": {"$search": query}}))
+    return render_template("all_books.html", books=books)
 
 @app.route("/books/all")
 def all_books():
