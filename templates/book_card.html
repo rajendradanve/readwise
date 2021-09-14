@@ -1,0 +1,28 @@
+<div class="row">
+    {% for book in books_list %}
+      <div class="col s12 m3">
+          <div class="card center-align">
+              <a href="{{url_for('book_detail', book_id=book._id)}}">
+                  <div class="card-image">
+                      <img id="book_image" src="{{book.image_url}}" />
+                  </div>
+                  <!--Showing review-->
+                  <div class="card-content">
+                      <h6 class="card-title black-text">{{book.name}}</h6>
+                      {% if book.avg_review == null %}
+                        <p class="grey-text">No reviews yet</p>
+                      {% else %} 
+                        {% for i in range(5)%} 
+                          {% if book.avg_review > i %}
+                            <i id="stars-{{i}}" class="fas fa-star"></i>
+                          {% else%}
+                            <i id="stars-{{i}}" class="far fa-star"></i>
+                          {% endif %} 
+                        {% endfor %} 
+                      {% endif %}
+                  </div>
+              </a>
+          </div>
+      </div>
+    {% endfor %}
+</div>

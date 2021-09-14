@@ -38,7 +38,7 @@ body {
 }
 
 .text-shadow{
-  text-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
 }
 
 #book_info_card{
@@ -47,9 +47,8 @@ box-shadow: -2px 2px 4px 3px rgba(0,0,0,0.3);
 }
 
 #book_image{
-  max-height: 350px;
-  min-height: 250px;
-  
+  height: 350px;
+  object-fit: fill;
 }
 
 #lable_for_book_image_file{
@@ -72,6 +71,10 @@ box-shadow: -2px 2px 4px 3px rgba(0,0,0,0.3);
 
 .card-title{
   font-size: 1.2em!important;
+  display: -webkit-box!important;
+  -webkit-line-clamp: 2!important;
+  -webkit-box-orient: vertical!important;  
+  overflow: hidden!important;
 }
 
 /*styling star rating*/
@@ -112,4 +115,26 @@ box-shadow: -2px 2px 4px 3px rgba(0,0,0,0.3);
 .rating > label:hover ~ input:checked ~ label,
 .rating > input:checked ~ label:hover ~ label{
 	color: #FDCC0D;
+}
+
+/*--Custom media queries--*/
+
+@media screen and (max-width: 1050px) {
+
+  .card-title{
+    font-size: 1em!important;
+  }
+
+  #book_image{
+    height: 300px;
+    
+  }
+}
+
+@media screen and (max-width: 700px) {
+
+  #book_image{
+    height: 250px;
+    
+  }
 }

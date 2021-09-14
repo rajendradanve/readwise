@@ -43,8 +43,16 @@ def is_admin():
 def home():
     featured_books = list(mongo.db.books.find({"is_feature": True}))
     return render_template(
-        "home.html", featured_books=featured_books,
+        "home.html", books_list=featured_books,
         is_user_logged=is_logged_in())
+
+
+# Showing all books
+@app.route("/books/all")
+def all_books():
+    books = list(mongo.db.books.find())
+    return render_template("all_books.html", books_list=books,
+                           is_user_logged=is_logged_in())
 
 
 # Register new user
@@ -343,12 +351,6 @@ def search():
     
     return render_template("all_books.html", books=books, 
                            is_user_logged=is_logged_in())
-
-
-@app.route("/books/all")
-def all_books():
-    books = list(mongo.db.books.find())
-    return render_template("all_books.html", books=books, is_user_logged=is_logged_in())
 
 
 if __name__ == "__main__":
