@@ -194,7 +194,7 @@ def profile():
 
 # Showing books details.
 # Showing all comments related to book
-@app.route("/book/<book_id>", methods=["GET", "POST"])
+@app.route("/book/<book_id>/view", methods=["GET", "POST"])
 def book_detail(book_id):
 
     if is_logged_in() and request.method == "POST":
@@ -208,7 +208,7 @@ def book_detail(book_id):
         }
 
         mongo.db.comments.insert_one(comment)
-        flash("Comment Added Successfully")
+        flash("Review Added Successfully")
         # Calculating avg_review after new comments added.
         # Adding / updating avg_review for the books collection
         
@@ -244,7 +244,7 @@ def book_detail(book_id):
                            comments=comments, is_admin=is_admin())
 
 
-@app.route("/add_category/", methods=["GET", "POST"])
+@app.route("/category/add", methods=["GET", "POST"])
 def add_category():
 
     if request.method == "POST":
@@ -265,7 +265,7 @@ def add_category():
                            is_admin=is_admin())
 
 
-@app.route("/add_language/", methods=["GET", "POST"])
+@app.route("/language/add", methods=["GET", "POST"])
 def add_language():
 
     if request.method == "POST":
@@ -285,7 +285,7 @@ def add_language():
                            is_admin=is_admin())
 
 
-@app.route("/edit/book/<book_id>", methods=["GET", "POST"])
+@app.route("/book/<book_id>/edit", methods=["GET", "POST"])
 def edit_book_id(book_id):
 
     if request.method == "POST":
@@ -336,10 +336,10 @@ def edit_book():
         return redirect(url_for("home"))
 
     if request.method == "POST":
-        
+       
         return redirect(url_for(
             "edit_book_id", book_id=request.form.get("edit_book_id")))
-        
+       
     books = mongo.db.books.find()
     return render_template("edit_book.html", books=books, is_admin=is_admin(), is_user_logged=is_logged_in())
 
