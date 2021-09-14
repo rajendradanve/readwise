@@ -21,7 +21,7 @@
   </div>
   </div>
 
-  {% if books.count() > 0 %}
+  {% if books | length > 0 %}
   <div class="row">
     {% for book in books %}
     <div class="col s12 m3">

@@ -41,7 +41,7 @@ def is_admin():
 @app.route("/")
 @app.route("/home")
 def home():
-    featured_books = mongo.db.books.find({"is_feature": True})
+    featured_books = list(mongo.db.books.find({"is_feature": True}))
     return render_template(
         "home.html", featured_books=featured_books,
         is_user_logged=is_logged_in())
@@ -127,9 +127,9 @@ def add_book():
             flash("Book already exist")
         else:
             book_name = request.form.get("book_name").strip().title()
-            date = datetime.datetime.now().date()
-            today_date = date.strftime("%x")
-            current_time = date.strftime("%H:%M")
+            now = datetime.datetime.now()
+            today_date = now.date().strftime("%x")
+            current_time = now.strftime("%H:%M")
             is_feature = True if request.form.get("is_feature") else False
 
             add_book = {
@@ -156,7 +156,8 @@ def add_book():
     age_groups = mongo.db.age_groups.find().sort("age_group", 1)
     return render_template(
             "add_book.html", languages=languages, categories=categories,
-            age_groups=age_groups, is_admin=is_admin())
+            age_groups=age_groups, is_admin=is_admin(),
+            is_user_logged=is_logged_in())
 
 
 # Sign out user
@@ -179,7 +180,7 @@ def profile():
     if not is_logged_in():
         return redirect(url_for("home"))
 
-    return render_template("profile.html", is_logged_in=is_logged_in(),
+    return render_template("profile.html", is_user_logged=is_logged_in(),
                            is_admin=is_admin())
 
 
@@ -251,7 +252,8 @@ def add_category():
             flash("Category Added Successfully")
             return redirect(url_for("add_category"))
 
-    return render_template("add_category.html")
+    return render_template("add_category.html", is_user_logged=is_logged_in(),
+                           is_admin=is_admin())
 
 
 @app.route("/add_language/", methods=["GET", "POST"])
@@ -270,7 +272,8 @@ def add_language():
             mongo.db.languages.insert_one({"language": new_language})
             flash("Language Added Successfully")
             return redirect(url_for("add_language"))
-    return render_template("add_language.html")
+    return render_template("add_language.html", is_user_logged=is_logged_in(),
+                           is_admin=is_admin())
 
 
 @app.route("/edit/book/<book_id>", methods=["GET", "POST"])
@@ -313,7 +316,7 @@ def edit_book_id(book_id):
     return render_template(
             "edit_book_id.html", book=book, languages=languages,
             categories=categories, age_groups=age_groups,
-            is_logged_in=is_logged_in(), is_admin=is_admin())
+            is_user_logged=is_logged_in(), is_admin=is_admin())
 
 
 # Function to update feature book status
@@ -329,7 +332,7 @@ def edit_book():
             "edit_book_id", book_id=request.form.get("edit_book_id")))
         
     books = mongo.db.books.find()
-    return render_template("edit_book.html", books=books, is_admin=is_admin())
+    return render_template("edit_book.html", books=books, is_admin=is_admin(), is_user_logged=is_logged_in())
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -337,16 +340,17 @@ def search():
     query = request.form.get("query")
     books = list(mongo.db.books.find({"$text": {"$search": query}}))
     
-    return render_template("all_books.html", books=books)
+    return render_template("all_books.html", books=books, 
+                           is_user_logged=is_logged_in())
 
 
 @app.route("/books/all")
 def all_books():
-    books = mongo.db.books.find()
-    return render_template("all_books.html", books=books)
+    books = list(mongo.db.books.find())
+    return render_template("all_books.html", books=books, is_user_logged=is_logged_in())
 
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
-            port = int(os.environ.get("PORT")),
-            debug = True)
+            port=int(os.environ.get("PORT")),
+            debug=True)

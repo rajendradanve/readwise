@@ -27,7 +27,7 @@
   </div>
 </div>
 
-{% if featured_books.count() > 0 %}
+{% if featured_books | length > 0 %}
   <div class="row">
     {% for featured_book in featured_books %}
     <div class="col s12 m3">
