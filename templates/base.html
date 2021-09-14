@@ -29,12 +29,6 @@
         <a href="{{url_for('home')}}" class="brand-logo"><i class="fas fa-book-reader"></i> ReadWise</a>
         <a href="#" data-target="mobile-demo" class="right sidenav-trigger"><i class="fas fa-bars"></i></a>
         <ul class="right hide-on-med-and-down">
-          {% if is_user_logged %}
-            <li class="red-text">
-              <h5>Welcome {{session.username}}</h5>
-            </li>
-          {% endif %}
-          
           <li><a href="{{url_for('home')}}">Home</a></li>
           <li><a href="{{url_for('all_books')}}">All Books</a></li>
 
@@ -57,12 +51,6 @@
 
     <!-- mobile side navbar-->
     <ul class="sidenav" id="mobile-demo">
-      {% if is_user_logged %}
-        <li class="red-text">
-          <h5>Welcome {{session.username}}</h5>
-        </li>
-      {% endif %}
-      
       <li><a href="{{url_for('home')}}">Home</a></li>
       <li><a href="{{url_for('all_books')}}">All Books</a></li>
 

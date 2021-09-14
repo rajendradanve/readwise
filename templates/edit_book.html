@@ -1,31 +1,30 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 
-<div class="row">
-  <form class="col s12 m8 offset-m2" method="POST" action="{{url_for('edit_book')}}">
-    <div class="card-panel">
-      <h4 class="center-align">Select Book To Edit</h4>
+  <div class="row">
+      <!--Select book to edit-->
+      <form class="col s12 m8 offset-m2" method="POST" action="{{url_for('edit_book')}}">
+          <div class="card-panel">
+              <h4 class="center-align">Select Book To Edit</h4>
 
-      <div class="row"> 
-        <div class="input-field col s12">
-            <i class="fas fa-book prefix light-blue-text text-darken-4"></i>
-          <select name="edit_book_id">
-            <option value="" disabled selected>Choose your option</option>
-            {% for book in books %}
-              {% if is_admin or session["username"] == book.added_by_user %}
-                <option value="{{book._id}}">{{book.name}}</option>
-              {% endif %}
-             {% endfor %}
-          </select>
-          <label>Select Book</label>
-        </div>
-      </div>
+              <div class="row">
+                  <div class="input-field col s12">
+                      <i class="fas fa-book prefix light-blue-text text-darken-4"></i>
+                      <select name="edit_book_id">
+                          <option value="" disabled selected>Choose your option</option>
+                          {% for book in books %} 
+                            {% if is_admin or session["username"] == book.added_by_user %}
+                              <option value="{{book._id}}">{{book.name}}</option>
+                            {% endif %} 
+                          {% endfor %}
+                      </select>
+                      <label>Select Book</label>
+                  </div>
+              </div>
 
-      <div class="row">
-        <button type="submit" class="col s4 offset-s4 btn-large light-blue text-darken-4 text-shadow">Edit Selected Book <i class="fas fa-hand-pointer"></i></button>
-      </div>
-      
-    </div>
-  </form>
-</div>
+              <div class="row">
+                  <button type="submit" class="col s4 offset-s4 btn-large light-blue text-darken-4 text-shadow">Edit Selected Book <i class="fas fa-hand-pointer"></i></button>
+              </div>
+          </div>
+      </form>
+  </div>
 {% endblock %}
