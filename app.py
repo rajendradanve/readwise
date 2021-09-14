@@ -18,10 +18,11 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
-# created dict for multiple admin users
+# Dict for multiple admin users
 ADMIN_USER_NAMES = ['admin', 'admin1']
 
 
+# Check if user is logged in
 def is_logged_in():
 
     if session and session.get("username"):
@@ -29,12 +30,14 @@ def is_logged_in():
     return False
 
 
+# Check if logged in user is admin
 def is_admin():
     if session and session["username"] in ADMIN_USER_NAMES:
         return True
     return False
 
 
+# Main index page to show featured books
 @app.route("/")
 @app.route("/home")
 def home():
@@ -44,6 +47,7 @@ def home():
         is_user_logged=is_logged_in())
 
 
+# Register new user
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if is_logged_in():
@@ -75,6 +79,7 @@ def register():
     return render_template("register.html")
 
 
+# Sign in new user
 @app.route("/sign_in", methods=["GET", "POST"])
 def sign_in():
 
@@ -106,7 +111,8 @@ def sign_in():
     return render_template("sign_in.html")
 
 
-@app.route("/add_book", methods=["GET", "POST"])
+# Add new book by logged in user.
+@app.route("/book/add", methods=["GET", "POST"])
 def add_book():
 
     if not is_logged_in():
@@ -153,6 +159,7 @@ def add_book():
             age_groups=age_groups, is_admin=is_admin())
 
 
+# Sign out user
 @app.route("/sign_out")
 def sign_out():
 
@@ -165,13 +172,15 @@ def sign_out():
     return redirect(url_for("home"))
 
 
+# Showing profile
 @app.route("/profile", methods=["GET", "POST"])
-def profile(username):
-    # check is admin is log in to show profile page.
+def profile():
+    # check is user is log in to show profile page.
     if not is_logged_in():
         return redirect(url_for("home"))
 
-    return render_template("profile.html", username=username)
+    return render_template("profile.html", is_logged_in=is_logged_in(),
+                           is_admin=is_admin())
 
 
 @app.route("/book/<book_id>", methods=["GET", "POST"])
@@ -320,7 +329,7 @@ def edit_book():
             "edit_book_id", book_id=request.form.get("edit_book_id")))
         
     books = mongo.db.books.find()
-    return render_template("edit_book.html", books=books)
+    return render_template("edit_book.html", books=books, is_admin=is_admin())
 
 
 @app.route("/search", methods=["GET", "POST"])

@@ -12,7 +12,9 @@
           <select name="edit_book_id">
             <option value="" disabled selected>Choose your option</option>
             {% for book in books %}
+              {% if is_admin or session["username"] == book.added_by_user %}
                 <option value="{{book._id}}">{{book.name}}</option>
+              {% endif %}
              {% endfor %}
           </select>
           <label>Select Book</label>
