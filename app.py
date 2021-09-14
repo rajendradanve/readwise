@@ -184,6 +184,8 @@ def profile():
                            is_admin=is_admin())
 
 
+# Showing books details.
+# Showing all comments related to book
 @app.route("/book/<book_id>", methods=["GET", "POST"])
 def book_detail(book_id):
 
@@ -207,13 +209,12 @@ def book_detail(book_id):
             {"$group": {"_id": "$book_id", "avg": {"$avg": "$star_value"}}}
         ]
 
-        avg_review_list = mongo.db.comments.aggregate(avg_result)
-    
-        for i in avg_review_list:
-            avg_review = round(i["avg"])
+        avg_review_list = list(mongo.db.comments.aggregate(avg_result))
+        
+        avg_review = avg_review_list[0]["avg"]
 
         mongo.db.books.update_one({"_id": ObjectId(book_id)},
-                                {"$set": {"avg_review": avg_review}})
+                                  {"$set": {"avg_review": avg_review}})
 
         return redirect(url_for("book_detail", book_id=book_id))
 

@@ -1,115 +1,102 @@
 {% extends "base.html" %}
-  {% block content %}
-
-    <div class="row">
-      <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_book')}}" enctype="multipart/form-data">
-        <div class="card-panel">
-          <h4 class="center-align">Add Book Information</h4>
-          <p class="center-align">Here you can add summary of the book here which helps others </p>
-
-          <div class="row">
+{% block content %}
+<div class="row">
+   <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_book')}}" enctype="multipart/form-data">
+      <div class="card-panel">
+         <h4 class="center-align">Add Book Information</h4>
+         <p class="center-align">Here you can add summary of the book here which helps others </p>
+         <div class="row">
             <div class="input-field col s12">
-              <i class="fas fa-book prefix light-blue-text text-darken-4"></i>
-              <input id="book_name" name="book_name" type="text" class="validate" minlength="5" maxlength="100" required>
-              <label for="book_name">Book Name</label>
+               <i class="fas fa-book prefix light-blue-text text-darken-4"></i>
+               <input id="book_name" name="book_name" type="text" class="validate" minlength="5" maxlength="100" required>
+               <label for="book_name">Book Name</label>
             </div>
-          </div>
-
-          <div class="row">
+         </div>
+         <div class="row">
             <div class="input-field col s12">
-              <i class="fas fa-user prefix light-blue-text text-darken-4"></i>
-              <input id="book_author" name="book_author" type="text" class="validate" minlength="5" maxlength="100"
-                required>
-              <label for="book_author">Author</label>
+               <i class="fas fa-user prefix light-blue-text text-darken-4"></i>
+               <input id="book_author" name="book_author" type="text" class="validate" minlength="5" maxlength="100"
+                  required>
+               <label for="book_author">Author</label>
             </div>
-          </div>
-
-          <div class="row">
+         </div>
+         <div class="row">
             <div class="input-field col s12">
-              <i class="fas fa-image prefix light-blue-text text-darken-4"></i>
-              <input id="book_image_url" name="book_image_url" type="text" class="validate" required>
-              <label for="book_image_url">Book Image URL</label>
+               <i class="fas fa-image prefix light-blue-text text-darken-4"></i>
+               <input id="book_image_url" name="book_image_url" type="text" class="validate" required>
+               <label for="book_image_url">Book Image URL</label>
             </div>
-          </div>
-
-          <div class="row">
+         </div>
+         <div class="row">
             <div class="input-field col s12">
-              <i class="fas fa-globe prefix light-blue-text text-darken-4"></i>
-              <select name="book_language">
-                <option value="" disabled selected>Choose your option</option>
-                {% for language in languages %}
-                <option value="{{language.language}}">{{language.language}}</option>
-                {% endfor %}
-              </select>
-              <label>Language</label>
+               <i class="fas fa-globe prefix light-blue-text text-darken-4"></i>
+               <select name="book_language">
+                  <option value="" disabled selected>Choose your option</option>
+                  {% for language in languages %}
+                  <option value="{{language.language}}">{{language.language}}</option>
+                  {% endfor %}
+               </select>
+               <label>Language</label>
             </div>
-          </div>
-
-          <div class="row">
+         </div>
+         <div class="row">
             <div class="input-field col s12">
-              <i class="fas fa-cogs prefix light-blue-text text-darken-4"></i>
-              <select name="book_category">
-                <option value="" disabled selected>Choose your option</option>
-                {% for category in categories %}
-                <option value="{{category.category}}">{{category.category}}</option>
-                {% endfor %}
-              </select>
-              <label>Choose Categories</label>
+               <i class="fas fa-cogs prefix light-blue-text text-darken-4"></i>
+               <select name="book_category">
+                  <option value="" disabled selected>Choose your option</option>
+                  {% for category in categories %}
+                  <option value="{{category.category}}">{{category.category}}</option>
+                  {% endfor %}
+               </select>
+               <label>Choose Categories</label>
             </div>
-          </div>
-
-          <div class="row">
+         </div>
+         <div class="row">
             <div class="input-field col s12">
-              <i class="fas fa-user-shield prefix light-blue-text text-darken-4"></i>
-              <select name="book_age_group">
-                <option value="" disabled selected>Choose your option</option>
-                {% for age_group in age_groups %}
-                <option value="{{age_group.age_group}}">{{age_group.age_group}}</option>
-                {% endfor %}
-              </select>
-              <label>Choose Age Group</label>
+               <i class="fas fa-user-shield prefix light-blue-text text-darken-4"></i>
+               <select name="book_age_group">
+                  <option value="" disabled selected>Choose your option</option>
+                  {% for age_group in age_groups %}
+                  <option value="{{age_group.age_group}}">{{age_group.age_group}}</option>
+                  {% endfor %}
+               </select>
+               <label>Choose Age Group</label>
             </div>
-          </div>
-
-          <div class="row">
+         </div>
+         <div class="row">
             <div class="input-field col s12">
-              <i class="fas fa-sticky-note prefix light-blue-text text-darken-4"></i>
-              <textarea name="book_summary" id="book_summary" class="materialize-textarea" required></textarea>
-              <label for="book_summery">Book Summery</label>
-
+               <i class="fas fa-sticky-note prefix light-blue-text text-darken-4"></i>
+               <textarea name="book_summary" id="book_summary" class="materialize-textarea" required></textarea>
+               <label for="book_summery">Book Summery</label>
             </div>
-          </div>
-
-          <div class="row">
+         </div>
+         <div class="row">
             <div class="input-field col s12">
-              <i class="fas fa-shopping-cart prefix light-blue-text text-darken-4"></i>
-              <input id="book_shopping_link" name="book_shopping_link" type="text" class="validate" required>
-              <label for="book_shopping_link">Enter Book Buying URL</label>
+               <i class="fas fa-shopping-cart prefix light-blue-text text-darken-4"></i>
+               <input id="book_shopping_link" name="book_shopping_link" type="text" class="validate" required>
+               <label for="book_shopping_link">Enter Book Buying URL</label>
             </div>
-          </div>
-
+         </div>
           {% if is_admin %}
             <div class="row">
-              <div class="input-field col s12">
-                <!-- Switch -->
-                <div class="switch">
-                  <i class="fas fa-thumbs-up prefix light-blue-text text-darken-4"></i>
-                  <label for="is_feature">
-                    <input type="checkbox" id="is_feature" name="is_feature">
-                    <span class="lever"></span>
-                    Is Feature?
-                  </label>
+                <div class="input-field col s12">
+                  <!-- Switch -->
+                  <div class="switch">
+                      <i class="fas fa-thumbs-up prefix light-blue-text text-darken-4"></i>
+                      <label for="is_feature">
+                      <input type="checkbox" id="is_feature" name="is_feature">
+                      <span class="lever"></span>
+                      Is Feature?
+                      </label>
+                  </div>
                 </div>
-              </div>
             </div>
-          {% endif %}
-
-          <div class="row">
+         {% endif %}
+         <div class="row">
             <button type="submit" class="col s4 offset-s4 btn-large light-blue text-darken-4 text-shadow">Add Book <i
-                class="fas fa-plus"></i></button>
-          </div>
-
-        </div>
-      </form>
-    </div>
-  {% endblock %}
+               class="fas fa-plus"></i></button>
+         </div>
+      </div>
+   </form>
+</div>
+{% endblock %}
