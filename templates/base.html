@@ -23,14 +23,14 @@
 <body>
 
   <header>
-    <!--navbar-->
-    <nav>
+    <!-- top navbar-->
+    <nav class="nav-extended text-shadow">
       <div class="nav-wrapper light-blue accent-2">
         <a href="{{url_for('home')}}" class="brand-logo"><i class="fas fa-book-reader"></i> ReadWise</a>
-        <a href="#" data-target="mobile-demo" class="right sidenav-trigger"><i class="fas fa-bars">menu</i></a>
+        <a href="#" data-target="mobile-demo" class="right sidenav-trigger"><i class="fas fa-bars"></i></a>
         <ul class="right hide-on-med-and-down">
           {% if session.username %}
-          <li class="red-text">Welcome {{session.username}}</li>
+          <li class="red-text"> <h5>Welcome {{session.username}}</h5></li>
           {% endif %}
           <li><a href="{{url_for('home')}}">Home</a></li>
           <li><a href="{{url_for('all_books')}}">All Books</a></li>
@@ -49,12 +49,25 @@
         </ul>
       </div>
     </nav>
-
+    <!-- mobile side navbar-->
     <ul class="sidenav" id="mobile-demo">
-      <li><a href="sass.html">Sass</a></li>
-      <li><a href="badges.html">Components</a></li>
-      <li><a href="collapsible.html">Javascript</a></li>
-      <li><a href="mobile.html">Mobile</a></li>
+      {% if session.username %}
+      <li class="red-text"> <h5>Welcome {{session.username}}</h5></li>
+      {% endif %}
+      <li><a href="{{url_for('home')}}">Home</a></li>
+      <li><a href="{{url_for('all_books')}}">All Books</a></li>
+      {% if session.username %}
+        {% if session["username"] == "admin" %}
+          <li><a href="{{url_for('profile', username=session['username'])}}">Profile</a></li>
+        {% endif %}
+      <li><a href="{{url_for('add_book')}}">Add Book</a></li>
+      <li><a href="{{url_for('sign_out')}}">Sign Out</a></li>
+      
+      {% else %}
+      <li><a href="{{url_for('sign_in')}}">Sign In</a></li>
+      <li><a href="{{url_for('register')}}">Register</a></li>
+      {% endif %}
+      
     </ul>
   </header>
 
