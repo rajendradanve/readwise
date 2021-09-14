@@ -1,7 +1,7 @@
 <div class="row">
     {% for book in books_list %}
       <div class="col s12 m3">
-          <div class="card center-align">
+          <div class="card book-card center-align">
               <a href="{{url_for('book_detail', book_id=book._id)}}">
                   <div class="card-image">
                       <img id="book_image" src="{{book.image_url}}" />
