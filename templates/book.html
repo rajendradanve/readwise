@@ -59,7 +59,7 @@
 
     {% elif is_user_logged and not is_already_commented %}
       <!-- review submission form-->
-      <form action="{{url_for('book_detail', book_id=book._id)}}" method="POST">
+      <form action="{{url_for('book_review', book_id=book._id)}}" method="POST">
           <div class="row">
               <div class="col s12">
                   <fieldset class="rating">

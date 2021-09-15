@@ -194,37 +194,9 @@ def profile():
 
 # Showing books details.
 # Showing all comments related to book
-@app.route("/book/<book_id>/view", methods=["GET", "POST"])
+@app.route("/book/<book_id>/view")
 def book_detail(book_id):
 
-    if is_logged_in() and request.method == "POST":
-
-        comment = {
-            "username": session["username"],
-            "book_id": book_id,
-            "review_text": request.form.get("review_text"),
-            "star_value": int(request.form.get("star_rating")),
-            "time_stamp": datetime.datetime.now()
-        }
-
-        mongo.db.comments.insert_one(comment)
-        flash("Review Added Successfully")
-        # Calculating avg_review after new comments added.
-        # Adding / updating avg_review for the books collection
-        
-        avg_result = [
-            {"$match": {"book_id": book_id}},
-            {"$group": {"_id": "$book_id", "avg": {"$avg": "$star_value"}}}
-        ]
-
-        avg_review_list = list(mongo.db.comments.aggregate(avg_result))
-        
-        avg_review = avg_review_list[0]["avg"]
-
-        mongo.db.books.update_one({"_id": ObjectId(book_id)},
-                                  {"$set": {"avg_review": avg_review}})
-
-        return redirect(url_for("book_detail", book_id=book_id))
 
     if is_logged_in():
         is_already_commented = mongo.db.comments.find_one(
@@ -242,6 +214,49 @@ def book_detail(book_id):
                            is_user_logged=is_logged_in(),
                            is_already_commented=is_already_commented,
                            comments=comments, is_admin=is_admin())
+
+
+@app.route("/book/<book_id>/review", methods=["GET", "POST"])
+def book_review(book_id):
+    if not is_logged_in():
+        return redirect(url_for("book_detail", book_id=book_id))
+
+    if request.method == "POST":
+        try:
+            book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
+            if not book:
+                return redirect(url_for("home"))
+
+            comment = {
+                "username": session["username"],
+                "book_id": book_id,
+                "review_text": request.form.get("review_text"),
+                "star_value": int(request.form.get("star_rating")),
+                "time_stamp": datetime.datetime.now()
+            }
+
+            mongo.db.comments.insert_one(comment)
+            flash("Review Added Successfully")
+            # Calculating avg_review after new comments added.
+            # Adding / updating avg_review for the books collection
+        
+            avg_result = [
+                {"$match": {"book_id": book_id}},
+                {"$group": {"_id": "$book_id",
+                            "avg": {"$avg": "$star_value"}}}
+            ]
+
+            avg_review_list = list(mongo.db.comments.aggregate(avg_result))
+                
+            avg_review = avg_review_list[0]["avg"]
+
+            mongo.db.books.update_one({"_id": ObjectId(book_id)},
+                                        {"$set": {"avg_review": avg_review}})
+
+            return redirect(url_for("book_detail", book_id=book_id))
+            
+        except:
+            return redirect(url_for("home"))
 
 
 @app.route("/category/add", methods=["GET", "POST"])
