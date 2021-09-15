@@ -10,10 +10,10 @@
   {% endif%}
 
   <div class="row row-top-margin valign-wrapper">
-      <div class="col s10 offset-s1 m3 offset-m1">
+      <div class="col s12 m3">
           <div class="row">
-              <div class="col">
-                  <img src="{{book.image_url}}" />
+              <div class="col center-align">
+                  <img id="book-detail-image" src="{{book.image_url}}" />
               </div>
           </div>
           <div class="row">
@@ -32,18 +32,22 @@
               </div>
           </div>
       </div>
-      <div class="col s10 offset-s1 m9 left-align">
-          <h3><span class="card-title black-text">{{book.name}}</span></h3>
+
+
+      <div class="col s12 m9">
+        <div class="left-align">
+          <h3><span class="black-text">{{book.name}}</span></h3>
           <p><strong>Author: </strong>{{book.author}}</p>
           <p><strong>Language: </strong>{{book.language}}</p>
           <a href="{{book.shopping_link}}" target="_blank"><i class="fas fa-shopping-cart fa-2x"></i></a>
           <hr class="solid" />
           <h6><strong>Summary</strong></h6>
-          <p>{{book.summary}}</p>
+          <p class="summary-text">{{book.summary}}</p>
           <hr class="solid" />
           <h6><strong>Other Information</strong></h6>
           <p><strong>Age: </strong>{{book.age_group}}</p>
           <p><strong>Category: </strong>{{book.category}}</p>
+        </div>
       </div>
   </div>
 
