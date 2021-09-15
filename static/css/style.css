@@ -85,10 +85,6 @@ box-shadow: -2px 2px 4px 3px rgba(0,0,0,0.3);
 }
 
 /* Book Info */
-#book-detail-image{
-  width: 100%;
-  height: auto;
-}
 
 .summary-text{
   text-align: justify;
