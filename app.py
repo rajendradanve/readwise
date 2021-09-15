@@ -197,33 +197,41 @@ def profile():
 @app.route("/book/<book_id>/view")
 def book_detail(book_id):
 
-
     if is_logged_in():
         is_already_commented = mongo.db.comments.find_one(
             {"username": session["username"],
              "book_id": book_id})
     else:
         is_already_commented = False
-      
-    book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
+
+    try:  
+        book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
+        if not book:
+            return redirect(url_for("home"))
+        
+        comments = mongo.db.comments.find(
+            {"book_id": book_id})
+
+        return render_template("book.html", book=book,
+                               is_user_logged=is_logged_in(),
+                               is_already_commented=is_already_commented,
+                               comments=comments, is_admin=is_admin())
     
-    comments = mongo.db.comments.find(
-        {"book_id": book_id})
-
-    return render_template("book.html", book=book,
-                           is_user_logged=is_logged_in(),
-                           is_already_commented=is_already_commented,
-                           comments=comments, is_admin=is_admin())
+    except:
+        return redirect(url_for("home"))
 
 
+# Book review function and function to calculate avg review
 @app.route("/book/<book_id>/review", methods=["GET", "POST"])
 def book_review(book_id):
     if not is_logged_in():
         return redirect(url_for("book_detail", book_id=book_id))
 
     if request.method == "POST":
+
         try:
             book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
+
             if not book:
                 return redirect(url_for("home"))
 
@@ -235,11 +243,10 @@ def book_review(book_id):
                 "time_stamp": datetime.datetime.now()
             }
 
-            mongo.db.comments.insert_one(comment)
-            flash("Review Added Successfully")
+            mongo.db.comments.insert_one(comment)  
             # Calculating avg_review after new comments added.
             # Adding / updating avg_review for the books collection
-        
+     
             avg_result = [
                 {"$match": {"book_id": book_id}},
                 {"$group": {"_id": "$book_id",
@@ -247,14 +254,14 @@ def book_review(book_id):
             ]
 
             avg_review_list = list(mongo.db.comments.aggregate(avg_result))
-                
+                    
             avg_review = avg_review_list[0]["avg"]
 
             mongo.db.books.update_one({"_id": ObjectId(book_id)},
-                                        {"$set": {"avg_review": avg_review}})
-
+                                    {"$set": {"avg_review": avg_review}})
+            flash("Review Added Successfully")
             return redirect(url_for("book_detail", book_id=book_id))
-            
+
         except:
             return redirect(url_for("home"))
 

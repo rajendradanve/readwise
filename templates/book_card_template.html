@@ -9,7 +9,7 @@
                   <!--Showing review-->
                   <div class="card-content">
                       <h6 class="card-title black-text">{{book.name}}</h6>
-                      {% if book.avg_review == null %}
+                      {% if book.avg_review == null or book.avg_review == None %}
                         <p class="grey-text">No reviews yet</p>
                       {% else %} 
                         {% for i in range(5)%} 

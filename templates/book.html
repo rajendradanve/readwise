@@ -20,7 +20,7 @@
           </div>
           <div class="row">
               <div class="col">
-                  {% if book.avg_review == null%}
+                {% if book.avg_review == null or book.avg_review == None %}
                     <p class="grey-text center-align">No reviews yet</p>
                   {% else %} 
                     {% for i in range(5)%} 
@@ -66,11 +66,12 @@
     </div>
   </div>
 
+  <hr class="solid grey" />
  <!--Comment form if not commented by user -->
     {% if is_user_logged and is_already_commented %}
       <!-- review already submitted by the logged in user-->
       <div class="row">
-          <div class="col">
+          <div class="col s12 m8 offset-m1">
               <p>Your already reviewed this book</p>
           </div>
       </div>
@@ -83,11 +84,11 @@
       <form action="{{url_for('book_review', book_id=book._id)}}" method="POST">
           
                   <fieldset class="rating">
-                    <input type="radio" id="star5" name="rating" value="5"/><label for="star5" class="full"></label>
-                    <input type="radio" id="star4" name="rating" value="4"/><label for="star4" class="full"></label>
-                    <input type="radio" id="star3" name="rating" value="3"/><label for="star3" class="full"></label>
-                    <input type="radio" id="star2" name="rating" value="2"/><label for="star2" class="full"></label>
-                    <input type="radio" id="star1" name="rating" value="1"/><label for="star1" class="full"></label>
+                    <input type="radio" id="star5" name="star_rating" value="5"/><label for="star5" class="full"></label>
+                    <input type="radio" id="star4" name="star_rating" value="4"/><label for="star4" class="full"></label>
+                    <input type="radio" id="star3" name="star_rating" value="3"/><label for="star3" class="full"></label>
+                    <input type="radio" id="star2" name="star_rating" value="2"/><label for="star2" class="full"></label>
+                    <input type="radio" id="star1" name="star_rating" value="1"/><label for="star1" class="full"></label>
                   </fieldset>
           <div class="row">
               <div class="input-field col s12">
@@ -111,23 +112,26 @@
           </div>
       </div>
     {% endif %} 
-
+    
     <!--Showing all comments made by users-->
     {% if comments.count() > 0 %} 
       {% for comment in comments%}
-        <hr class="solid grey" />
+      <hr class="solid grey" />
         <div class="row">
-            <div class="col">
+            <div class="col s12 m8 offset-m1">
                 {% for i in range(5)%} {% if (comment.star_value > i) %}
                 <span class="color-star">
                     <i id="stars_comments-{{i}}" class="fas fa-star"></i>
                 </span>
                 {% else %}
                 <i id="stars_comments-{{i}}" class="far fa-star"></i>
-                {% endif %} {% endfor %}
+                {% endif %} 
+                {% endfor %}
                 <p>{{comment.review_text}}</p>
                 <p class="grey-text">{{comment.username}}</p>
+                
             </div>
+            
         </div>
       {% endfor %} 
     {% else %}
