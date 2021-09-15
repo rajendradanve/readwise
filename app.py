@@ -41,7 +41,7 @@ def is_admin():
 @app.route("/")
 @app.route("/home")
 def home():
-    featured_books = list(mongo.db.books.find({"is_feature": True}))
+    featured_books = list(mongo.db.books.find({"is_featured": True}))
     return render_template(
         "home.html", books_list=featured_books,
         is_user_logged=is_logged_in())
@@ -130,15 +130,12 @@ def add_book():
 
         existing_book = mongo.db.books.find_one(
             {"book_name": request.form.get("book_name").strip()})
-      
+
         if existing_book:
             flash("Book already exist")
         else:
             book_name = request.form.get("book_name").strip().title()
-            now = datetime.datetime.now()
-            today_date = now.date().strftime("%x")
-            current_time = now.strftime("%H:%M")
-            is_feature = True if request.form.get("is_feature") else False
+            is_featured = True if request.form.get("is_featured") else False
 
             add_book = {
                 "name": book_name,
@@ -150,9 +147,8 @@ def add_book():
                 "shopping_link": request.form.get("book_shopping_link"),
                 "image_url": request.form.get("book_image_url"),
                 "added_by_user": session["username"],
-                "is_feature":  is_feature,
-                "added_date": today_date,
-                "added_time": current_time
+                "is_featured":  is_featured,
+                "added_timestamp": datetime.datetime.now()
             }
 
             mongo.db.books.insert_one(add_book)
@@ -204,7 +200,7 @@ def book_detail(book_id):
     else:
         is_already_commented = False
 
-    try:  
+    try:
         book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
         if not book:
             return redirect(url_for("home"))
@@ -313,10 +309,7 @@ def edit_book_id(book_id):
     if request.method == "POST":
 
         book_name = request.form.get("book_name").strip().title()
-        date = datetime.datetime.now().date()
-        today_date = date.strftime("%x")
-        current_time = date.strftime("%H:%M")
-        is_feature = True if request.form.get("is_feature") else False
+        is_featured = True if request.form.get("is_featured") else False
 
         update_book = {
             "name": book_name,
@@ -328,9 +321,8 @@ def edit_book_id(book_id):
             "shopping_link": request.form.get("book_shopping_link"),
             "image_url": request.form.get("book_image_url"),
             "added_by_user": session["username"],
-            "added_date": today_date,
-            "added_time": current_time,
-            "is_feature":  is_feature
+            "updated_timestamp": datetime.datetime.now(),
+            "is_featured":  is_featured
             
         }
 
