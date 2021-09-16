@@ -137,6 +137,11 @@ box-shadow: -2px 2px 4px 3px rgba(0,0,0,0.3);
   margin-left: 10px;
 }
 
+/*--add book --*/
+
+.add-book-btn-div{
+  margin-top: 10px;
+}
 
 
 /*--Custom media queries--*/
@@ -177,10 +182,6 @@ box-shadow: -2px 2px 4px 3px rgba(0,0,0,0.3);
     height: 400px;
   }
 
-  .delete-btn-admin{
-    margin-top: 10px;
-  }
-
 }
 
 @media screen and (max-width: 571px) {
@@ -216,8 +217,16 @@ box-shadow: -2px 2px 4px 3px rgba(0,0,0,0.3);
   }
 }
 
-@media (max-width:360px){
+@media (max-width:367px){
 .delete-btn-admin{
   margin-top: 10px;
+  margin-left: 0px;
 }
+}
+
+@media (max-width:742px) and (min-width:571px) {
+  .delete-btn-admin{
+    margin-top: 10px;
+    margin-left: 0px;
+  }
 }
