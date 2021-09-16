@@ -263,8 +263,12 @@ def book_review(book_id):
             return redirect(url_for("home"))
 
 
+# Add category
 @app.route("/category/add", methods=["GET", "POST"])
 def add_category():
+
+    if not is_admin():
+        return redirect(url_for("home"))
 
     if request.method == "POST":
         new_category = request.form.get("new_category")
@@ -284,8 +288,12 @@ def add_category():
                            is_admin=is_admin())
 
 
+# Add language
 @app.route("/language/add", methods=["GET", "POST"])
 def add_language():
+
+    if not is_admin():
+        return redirect(url_for("home"))
 
     if request.method == "POST":
         new_language = request.form.get("new_language")
@@ -304,6 +312,41 @@ def add_language():
                            is_admin=is_admin())
 
 
+# Delete category
+@app.route("/category/delete", methods=["GET", "POST"])
+def delete_category():
+
+    if not is_admin():
+        return redirect(url_for("home"))
+
+    if request.method == "POST": 
+        mongo.db.categories.remove({"_id": request.form.get(
+                                    "cateogry-to-delete")})
+        flash("Category Deleted Successfully")
+        return redirect(url_for("delete_category"))
+
+    categories = list(mongo.db.categories.find().sort("category", 1))
+    return render_template("add_category.html", categories=categories)
+
+
+# Delete language
+@app.route("/language/delete", methods=["GET", "POST"])
+def delete_language():
+
+    if not is_admin():
+        return redirect(url_for("home"))
+
+    if request.method == "POST": 
+        mongo.db.languages.remove({"_id": request.form.get(
+                                    "language-to-delete")})
+        flash("Language Deleted Successfully")
+        return redirect(url_for("delete_language"))
+
+    languages = mongo.db.languages.find().sort("language", 1)
+    return render_template("add_category.html", languages=languages)
+
+
+# Edit selected book
 @app.route("/book/<book_id>/edit", methods=["GET", "POST"])
 def edit_book_id(book_id):
 
@@ -368,7 +411,7 @@ def delete_book(book_id):
 
         if not book:
             return redirect(url_for("home"))
-        
+       
         mongo.db.books.remove({"_id": ObjectId(book_id)})
         flash("Book Deleted Successfully")
         return redirect(url_for("profile"))
@@ -378,7 +421,7 @@ def delete_book(book_id):
         return redirect(url_for("profile"))
 
 
-#search book
+# Search book
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
