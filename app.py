@@ -178,7 +178,7 @@ def sign_out():
 
 
 # Showing profile
-@app.route("/profile", methods=["GET", "POST"])
+@app.route("/profile")
 def profile():
     # check is user is log in to show profile page.
     if not is_logged_in():
@@ -360,17 +360,32 @@ def edit_book():
 
 
 # Function to delete Book
-@app.route("/book/<book_id>/delete")
 def delete_book(book_id):
 
-    return None
+    # check is user is log in to show profile page.
+    if not is_logged_in():
+        return redirect(url_for("home"))
 
-    
+    try:
+        book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
+
+        if not book:
+            return redirect(url_for("home"))
+        
+        mongo.db.books.remove({"_id": ObjectId(book_id)})
+        flash("Book Deleted Successfully")
+        return redirect(url_for("profile"))
+
+    except:
+        flash("Error To Delete Book. Try Again.")
+        return redirect(url_for("profile"))
+
+
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
     books = list(mongo.db.books.find({"$text": {"$search": query}}))
-    
+   
     return render_template("all_books.html", books=books, 
                            is_user_logged=is_logged_in())
 

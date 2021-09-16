@@ -65,6 +65,10 @@ box-shadow: -2px 2px 4px 3px rgba(0,0,0,0.3);
   height: 500px;
 }
 
+.book-card-profile{
+  height: 550px;
+}
+
 #lable_for_book-card-image_file{
   margin-left: 40px;
 }
@@ -128,6 +132,10 @@ box-shadow: -2px 2px 4px 3px rgba(0,0,0,0.3);
 .rating > input:checked ~ label:hover ~ label{
 	color: #FDCC0D;
 }
+/*--profile --*/
+.delete-btn{
+  margin-left: 10px;
+}
 
 /*--Custom media queries--*/
 
@@ -145,6 +153,10 @@ box-shadow: -2px 2px 4px 3px rgba(0,0,0,0.3);
 
   .book-card{
     height: 450px;
+  }
+
+  .book-card-profile{
+    height: 500px;
   }
 
   .brand-logo{
@@ -165,7 +177,7 @@ box-shadow: -2px 2px 4px 3px rgba(0,0,0,0.3);
 
 }
 
-@media screen and (max-width: 585px) {
+@media screen and (max-width: 571px) {
 
   .card-title{
     font-size: 1.2em!important;
@@ -180,6 +192,20 @@ box-shadow: -2px 2px 4px 3px rgba(0,0,0,0.3);
     
     margin-top: 15px!important;
   }
+
+  .book-card-profile{
+    height: 450px;
+  }
   
 }
 
+@media (max-width:918px) and (min-width:571px) {
+  .delete-btn{
+    margin-left: 0px;
+    margin-top: 10px
+  }
+
+  .book-card-profile{
+    height: 550px;
+  }
+}

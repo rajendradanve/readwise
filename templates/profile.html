@@ -23,7 +23,7 @@
 <div class="row">
   <div class="col">
     {% if is_admin %}
-      <h5 class="blue-text">Books</h5>
+      <h5 class="blue-text">All Books</h5>
     {% else %}
     <h5 class="blue-text">Books Added By You </h5>
     {% endif %}
@@ -34,37 +34,39 @@
   {% for book in books_list %}
     {% if is_admin or book.added_by_user == session["username"] %}
       <div class="col s12 m3">
-          <div class="card book-card center-align">
+          <div class="card book-card-profile center-align">
               
                   <div class="card-image">
                       <img class="book-card-image" src="{{book.image_url}}" />
                   </div>
-                  <!--Showing review-->
+                  
                   <div class="card-content">
-                      <h6 id="book-name" class="card-title black-text">{{book.name}}</h6>
+                      <h6 class="card-title black-text book-name">{{book.name}}</h6>
                   </div>
                   <div class="card-action">
                     <a class="waves-effect waves-light blue btn" href="{{url_for('edit_book_id', book_id=book._id)}}">Edit</a>
-                    <a id="delete-btn" class="waves-effect waves-light red btn modal-trigger" href="#delete-modal">Delete</a>
+                    <a class="waves-effect waves-light red btn delete-btn modal-trigger" href="#delete-modal-{{book._id}}">Delete</a>
                   </div>
           </div>
       </div>
+
+      <!-- Delete Modal -->
+<div id="delete-modal-{{book._id}}" class="modal">
+  <div class="modal-content">
+    <h5>Delete Book</h5>
+    <p >Are you sure you want to delete "<snap class="red-text" >{{book.name}}</snap>"?</p>
+  </div>
+  <div class="modal-footer">
+    <a href="{{url_for('delete_book', book_id=book._id)}}" class="modal-close waves-effect waves-green btn-flat">Confirm</a>
+    <a href="#" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+  </div>
+</div>
     {% endif %}  
   {% endfor %}
 </div>
 
 
-<!-- Delete Modal -->
-<div id="delete-modal" class="modal">
-  <div class="modal-content">
-    <h5>Delete Book</h4>
-    <p >Are you sure you want to delete "<snap id="delete-confirmation-text" class="red-text" ></snap>"?</p>
-  </div>
-  <div class="modal-footer">
-    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Confirm</a>
-    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-  </div>
-</div>
+
       
 
 {% endblock %}
