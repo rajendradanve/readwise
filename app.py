@@ -343,10 +343,6 @@ def edit_book_id(book_id):
             is_user_logged=is_logged_in(), is_admin=is_admin())
 
 
-# Function to update feature book status
-@app.route("/edit/book", methods=["GET", "POST"])
-def edit_book():
-
     if not is_logged_in():
         return redirect(url_for("home"))
 
@@ -360,6 +356,7 @@ def edit_book():
 
 
 # Function to delete Book
+@app.route("/delete/book/<book_id>")
 def delete_book(book_id):
 
     # check is user is log in to show profile page.
@@ -381,6 +378,7 @@ def delete_book(book_id):
         return redirect(url_for("profile"))
 
 
+#search book
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
