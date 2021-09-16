@@ -184,7 +184,11 @@ def profile():
     if not is_logged_in():
         return redirect(url_for("home"))
 
-    books = list(mongo.db.books.find())
+    if is_admin():
+        books = list(mongo.db.books.find())
+    else:
+        books = list(mongo.db.books.find({"added_by_user": session["username"]}))
+
     return render_template("profile.html", is_user_logged=is_logged_in(),
                            is_admin=is_admin(), books_list=books)
 
@@ -320,13 +324,15 @@ def delete_category():
         return redirect(url_for("home"))
 
     if request.method == "POST": 
-        mongo.db.categories.remove({"_id": request.form.get(
-                                    "cateogry-to-delete")})
+        mongo.db.categories.remove({"_id": ObjectId(request.form.get(
+                                    "cateogry-to-delete"))})
         flash("Category Deleted Successfully")
         return redirect(url_for("delete_category"))
 
     categories = list(mongo.db.categories.find().sort("category", 1))
-    return render_template("add_category.html", categories=categories)
+    return render_template("delete_category.html", categories=categories,
+                           is_user_logged=is_logged_in(),
+                           is_admin=is_admin())
 
 
 # Delete language
@@ -336,14 +342,16 @@ def delete_language():
     if not is_admin():
         return redirect(url_for("home"))
 
-    if request.method == "POST": 
-        mongo.db.languages.remove({"_id": request.form.get(
-                                    "language-to-delete")})
+    if request.method == "POST":
+        mongo.db.languages.remove({"_id": ObjectId(request.form.get(
+                                    "language-to-delete"))})
         flash("Language Deleted Successfully")
         return redirect(url_for("delete_language"))
 
     languages = mongo.db.languages.find().sort("language", 1)
-    return render_template("add_category.html", languages=languages)
+    return render_template("delete_language.html", languages=languages,
+                           is_user_logged=is_logged_in(),
+                           is_admin=is_admin())
 
 
 # Edit selected book
@@ -426,7 +434,7 @@ def delete_book(book_id):
 def search():
     query = request.form.get("query")
     books = list(mongo.db.books.find({"$text": {"$search": query}}))
-   
+ 
     return render_template("all_books.html", books=books, 
                            is_user_logged=is_logged_in())
 

@@ -28,7 +28,7 @@
   {% if books_list | length > 0 %}
     {% include "book_card_template.html" %}
   {% else %}
-    <h5 class="red-text test-darken-4 center-align">No featured books available currently</h5>
-    <h5 class="red-text test-darken-4 center-align"><a href="{{url_for('all_books')}}">Click Here</a> to see all books</h5>
+    <h5 class="center-align">No featured books available currently</h5>
+    <h5 class="center-align"><a href="{{url_for('all_books')}}">Click Here</a> to see all books</h5>
   {% endif %} 
 {% endblock %}
