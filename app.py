@@ -184,8 +184,9 @@ def profile():
     if not is_logged_in():
         return redirect(url_for("home"))
 
+    books = list(mongo.db.books.find())
     return render_template("profile.html", is_user_logged=is_logged_in(),
-                           is_admin=is_admin())
+                           is_admin=is_admin(), books_list=books)
 
 
 # Showing books details.
@@ -358,6 +359,13 @@ def edit_book():
     return render_template("edit_book.html", books=books, is_admin=is_admin(), is_user_logged=is_logged_in())
 
 
+# Function to delete Book
+@app.route("/book/<book_id>/delete")
+def delete_book(book_id):
+
+    return None
+
+    
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
