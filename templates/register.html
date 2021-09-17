@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-<h4 class="center-align">Register</h4>
-<div class="row">
+
+<div class="row row-top-margin">
   <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register')}}">
     <div class="card-panel">
+      <h4 class="center-align">Register</h4>
       <div class="row">
         <div class="input-field col s12">
           <i class="fas fa-user-plus prefix light-blue-text text-darken-4"></i>
@@ -32,7 +33,7 @@
         </div>
       </div>
       <div class="row">
-        <button type="submit" class="col s4 offset-s4 btn-large light-blue text-darken-4 text-shadow">Register <i
+        <button type="submit" class="col s6 offset-s3 btn-large light-blue text-darken-4 text-shadow">Register <i
             class="fas fa-sign-in-alt"></i></button>
       </div>
       <div class="row">

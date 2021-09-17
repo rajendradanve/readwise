@@ -141,6 +141,12 @@ box-shadow: -2px 2px 4px 3px rgba(0,0,0,0.3);
 
 .add-book-btn-div{
   margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.add-book-form{
+  mar: 10px;
+  margin-right: 10px;
 }
 
 
