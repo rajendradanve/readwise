@@ -199,17 +199,17 @@ def profile():
 def book_detail(book_id):
 
     if is_logged_in():
+        is_already_commented = False
+
         is_already_commented = mongo.db.comments.find_one(
             {"username": session["username"],
              "book_id": book_id})
-    else:
-        is_already_commented = False
-
+   
     try:
         book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
         if not book:
             return redirect(url_for("home"))
-        
+      
         comments = mongo.db.comments.find(
             {"book_id": book_id})
 
@@ -235,12 +235,17 @@ def book_review(book_id):
 
             if not book:
                 return redirect(url_for("home"))
+            
+            star_rating = 0
 
+            if request.form.get("star_rating"):
+                star_rating = int(request.form.get("star_rating"))
+                
             comment = {
                 "username": session["username"],
                 "book_id": book_id,
                 "review_text": request.form.get("review_text"),
-                "star_value": int(request.form.get("star_rating")),
+                "star_value": star_rating,
                 "time_stamp": datetime.datetime.now()
             }
 

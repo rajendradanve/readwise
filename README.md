@@ -1,104 +1,355 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# **ReadWise- MS3**
+    
+![Main Page Responsive Design](./static/images/readwise-responsive-main-page.png)
 
-Welcome Rajendra,
+![Game Page Responsive Design](./static/images/readwise-responsive-all-book-page.png)
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. The last update to this file was: **July 2, 2021**
+For live website [click here](https://read-wise.herokuapp.com/)
 
-## Gitpod Reminders
+For GitHub repository [click here](https://github.com/rajendradanve/readwise)
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+#   **Table of Content**
 
-`python3 -m http.server`
+ 1. [About](#About)
+ 2. [UX](#UX)
+    *   [Project Goals](#project-goals)
+    *   [Targeted Audiance](#targeted-audiance)
+    *   [User Goals](#player-goals)
+    *   [Developer Goals](#developer-goals)
+    *   [User Stories](#user-stories)
+    *   [Design Choice](#design-choice)
+    *   [Wireframes](#wireframes)
 
-A blue button should appear to click: _Make Public_,
+ 2. [Features](#features)
+    *   [Existing Features](#existing-features)
+    *   [Features Left to Implement](#features-left-to-implement)
 
-Another blue button should appear to click: _Open Browser_.
+3.  [Technologies Used](#technologies-used)
+   
+4.  [Testing](#testing)
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+5. [Deployment](#deployment)
 
-A blue button should appear to click: _Make Public_,
+6. [Credits](#credits)
 
-Another blue button should appear to click: _Open Browser_.
+7. [Acknowledgements](#acknowledgements)
+  
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+ # **About**
+ ReadWise is the website to register book with summary and other book information and allowing users to add book reviews. 
+ This will help book readers to get overview of the books before buying it. Books are categorized based on subject, language and age group. 
+ This website also gives direct link to buy this book. Register user can provide star rating and write review about the book. 
 
-To log into the Heroku toolbelt CLI:
+ # **UX**
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+##  **Project Goals**
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
 
-------
+## **Targeted Audiance**
 
-## Release History
+- This game is mainly meant to be used especially by kids which helps them to spend time while developing strategic thinking.
+- This is 2 player game but can be played alone while the second player is a computer. 
+- Kids can play this game with parents and other friends. 
+- Of course, adults can play this game just to time pass when they want to relax and wanted some challenging task while relaxing.
+- This game is not gendered specific and can be played by any gender. But in general, pokemon is more popular with boys than girls so mostly theme-wise this is more suitable for boys.
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+##   **Player Goals**
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+**Goal for Kid** 
+    
+* Easy and fun game to play which also teaches to think strategically.
+* Easy controls so that kids can play easily.
+* Can be played alone (with the computer as 2nd player) or with a family member or friend.
+* Simple understandable instructions about how to play the game.
+* Audio interaction suitable for the game.
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+**Goal for Parent**
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+* Game which is easy to play but also will teach my kid about how to think logically.
+* Interactive controls or with easy to understand function.
+* Easily understandable and accessible instructions if required.
+* Game which parent can able to play with kid and generate bond.
+* Just game which will not divert kids with any unwanted advertisements.
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+## **Developer Goals**
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+To develop the game which has
+* Shows developer's understanding of Interactive frontend development.
+* Simple design which mainly suitable for kids can easily understandable and easy to play.
+* Big buttons which are suitable for screen size. 
+* Dynamic grid design based on screen size.  
+        
+## **User Stories**
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+**General Player**
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+A simple, fun game that can be played by anyone. While playing it can also challenge the brain and can teach strategic and logical thinking. The game shall be easy to play and avoid too many options and control. 
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+**As a kid (age 6+), I want**
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+* Easy to use screen layout with fewer buttons
+* Game where I can play with fewer controls
+* Game which I can play alone and also with friends or with my parent
+* Game which will teach me to think strategically
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+**As a Parent, I want**
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+* Easy and simple screen layout so that my kids can play the game easily
+* Simple and minimal control 
+* No advertisement so that kids are not getting divert to unwanted stuff
+* Learn to develop logical thinking ability while playing
+* Able to play with my kid just for fun to generate parental bonding together
+    
+**As an Adult, I want**
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+* Some brain trigger while relaxing
+* Able to play without any other distractions (advertisement)
+* Able to play with friend or kids
 
-------
+## **Design Choice**
 
-## FAQ about the uptime script
+- **Colour Scheme**
 
-**Why have you added this script?**
+The main colors used are from got from pokemon theme colors which as mainly yellow, blue, and navy blue color. 
+Color codes taken from [this link](https://brandpalettes.com/pokemon-color-codes/)
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+- **Typography**
 
-**How will this affect me?**
+Petrona font is mainly used throughout the website with a serif as a backup font in case of any reason the font isn't being imported into the site correctly.
+Petrona looks stylish but still clean font to read and correctly goes with a simple design. Fonts are imported using [Google Fonts](https://fonts.google.com/).
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+- **Pages**
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+The game has mainly 2 pages. Index.html page for choosing a second player and game.html page for main game page.
+Also, the error.html page is designed in case there is an error in the game. 
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+##  **Wireframes**
 
-**So….?**
+*   [Desktop wireframe](assets/wireframe/Wireframe-for-desktop.pdf)
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+*   [Tablet wireframe](assets/wireframe/Wireframe-For-Tablet.pdf)
 
-**Can I opt out?**
+*   [Mobile wireframe](assets/wireframe/Wireframe-Phone.pdf)
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+## **Features**
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+### **Existing Features**
 
-**Anything more?**
+-   Index Page: The main feature of the index page is to choose an opponent player and provide instruction about how to play the game.
+    To justify Pokeball theme page has a background image from pokemon. Also, the page has animated red and yellow Pokeball.
+    It is possible to choose a second player as another human or computer. 
+    
+-   Game Page: The game page has 3 buttons - refresh, home, and music toggle. The main game board has 7 columns and 6 rows.
+    One more of the top row is used to insert the coin. When the second player is computer yellow Pokeball coin will be played randomly.
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+-   Music on and off switch - which allows the users to switch on the music if they would like to. 
 
----
+-   If any player won or the game is drawn, further coin playing is not possible. 
 
-Happy coding!
+### **Features Left to Implement**
+
+-   Choosing who will play first in case one of the players is a computer. 
+
+-   Possibility for the player to choose the Pokeball color.
+
+-   Logical moves by the computer when one of the players is a computer.
+
+-   More audio interaction to be added based on how the game is proceeding. 
+
+
+## **Technologies Used**
+
+**Languages Used**
+
+- [HTML5](https://en.wikipedia.org/wiki/HTML#:~:text=The%20HyperText%20Markup%20Language%2C%20or,displayed%20in%20a%20web%20browser.)
+
+  - The language used to give the site its main structure and all necessary features.
+
+- [CSS3](https://en.wikipedia.org/wiki/CSS)
+
+  - The language used to give the application its visual effects including the font, color, and layout, etc.
+
+- [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
+  - The language used to implement the site's interactive features, allows the users to be interactive and take actions during their visit.
+
+**Frameworks, Libraries & Programs Used**
+
+- [Bootstrap](https://getbootstrap.com/)
+
+    - Bootstrap library is used to create responsive design, beautiful buttons, modal templates.
+
+- [Jquery](https://jquery.com/)
+
+    - Jquery library used to create DOM elements, event handling, animation.
+
+- [Github](https://github.com/)
+
+  - Github is used to create, store and maintain all codes in a repository.
+
+  - Github is also used as the site hosting service for the final website to be published on.
+
+- [Git Version control](https://git-scm.com/)
+
+  - Git 2.30.1 for Mac is used for commit and push codes to Github.
+
+- [Google Fonts](https://fonts.google.com/)
+
+  - The font used for text is imported from google fonts.
+
+- [Fontawesome](https://fontawesome.com/)
+
+  - The icons used for this game are taken from fontawesome.
+
+- [Balsamiq](https://balsamiq.com/)
+
+  - The wireframes were created using Balsamiq.
+
+- [Google DevTools](https://developer.chrome.com/docs/devtools/)
+
+  - Google DevTools was extensively used throughout the project for various styling, testing, and debugging purposes.
+
+- [Am I Responsive](http://ami.responsivedesign.is/)
+
+  - Am I responsive to create the mock-up image presented at the start of this document.
+
+- [W3C Markup Validation service](https://validator.w3.org/)
+
+  - W3C Markup Validation Service has been used to test the HTML codes.
+
+- [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/)
+
+  - W3C CSS Validation Service has been used to test the CSS codes.
+
+- [Code Beautifier](http://minifycode.com/html-beautifier/)
+
+    -   The tools to minify and beautify JavaScript, CSS, and HTML codes.
+
+
+## **Testing**
+
+Testing documentation can be found separately at [TESTING.md](TESTING.md)
+
+## **Deployment**
+
+**Deploy To GitHub Pages**
+
+1. Logged into Github account.
+
+2. Select repository.
+
+3. Select connectfour.
+
+4. On the top right navigation click on settings.
+
+5. Under the settings section, scroll down to the GitHub Pages section.
+
+6. Select Main Branch from the source dropdown menu.
+
+7. Click save.
+
+8. Once clicked, this publishes the project to GitHub Pages and displays the site URL. Click on the URL to view the live site.
+
+**Making a clone or download zip to run locally**
+
+1. Log into GitHub account.
+
+2. Select repository.
+
+3. Select connectfour.
+
+4. Click on the Code dropdown button next to the green Gitpod button.
+
+5. Click on the clipboard icon to copy the clone URL.
+
+6. Open Git Bash.
+
+7. Change the current working directory to the location where you want the cloned directory.
+
+8. Type "git clone" in the Command Line and then paste the URL copied in step 5.
+
+9. Press enter to create your local clone.
+
+10. Alternately, click on Download ZIP, unpack locally, and open with a local code editor.
+
+**Forking the GitHub Repository**
+
+1. Log into GitHub.
+
+2. Select repository.
+
+3. Select connectfour.
+
+4. At the very top right corner click "fork".
+
+5. You will have a copy of the original repository in your own GitHub account.
+
+## **Credits**
+
+Connect four is a classic game and my kids love to play this game in their spare time. 
+As my son used to play with Pokeball when I got an idea to make this game with a Pokeball theme.
+So would like to give credit to my kids for providing me an idea.
+All the codes are written by myself after learning from resources. 
+The resources and the links I used to learn each concept are the following:
+
+**Code**
+
+- [w3schools](https://www.w3schools.com/) 
+    - [audio](https://www.w3schools.com/html/html5_audio.asp)
+    - [setTimeout](https://www.w3schools.com/js/js_timing.asp)
+    - [CSS background-image](https://www.w3schools.com/cssref/pr_background-image.asp)
+    - [Animation using Jquery](https://www.w3schools.com/jquery/jquery_animate.asp)
+    - [Hide scrollbar for a page](https://www.w3schools.com/howto/howto_css_hide_scrollbars.asp)
+
+- [Bootstrap](https://getbootstrap.com/)
+    -[Bootstrap modal](https://getbootstrap.com/docs/5.0/components/modal/)
+    -[Buttons](https://getbootstrap.com/docs/5.0/components/buttons/)
+
+- [Jquery](https://jquery.com/)
+    - Jquery overall documentation used to understand concepts mainly for creating and updating DOM, animation, and event handler.
+
+- [MDN Resources](https://developer.mozilla.org/en-US/docs/Web/Reference)
+    - MDS resources are used to understand concepts mainly for creating and updating DOM, animation, and event handler.
+
+- For continuous animation of Pokeball at Index.html page help is taken from [this link](https://css-tricks.com/using-multi-step-animations-transitions/)
+
+- For rotation of Pokeball while falling help is taken from [this link](https://css-tricks.com/almanac/properties/t/transform-origin/) 
+
+- Transfering opponent player information from index.html to game.html, help is taken from [this link](https://www.aspsnippets.com/Articles/Redirect-to-another-Page-with-multiple-Parameters-using-JavaScript.aspx)
+
+**Color**
+
+- Color codes taken pokemon theme color palette at [this link](https://brandpalettes.com/pokemon-color-codes/)
+
+- Apart from the above color white and whitesmoke colors are used.
+
+- When all coins are filled in a particular column rgba(197, 192, 192, 0.9) color is used to indicate not possible to enter any coin.
+
+**Media**
+
+- Index page background image taken from [this link](https://wallpapercave.com/w/HrO79ZR)
+
+- Pokeball images extracted from the image found at [this link](https://www.clipartkey.com/search/pokeball/)
+
+- Music file while playing the game is downloaded from [this link](https://www.bensound.com/royalty-free-music/track/ukulele)
+
+- Error page background image is taken from [freepik website](www.freepik.com) and image is downloaded from [this link](https://www.freepik.com/vectors/clouds)
+        
+
+## **Acknowledgements**
+
+I would like to thank:
+
+- My mentor Akshat Garg for his encouragement and valuable comments for this project. 
+Thanks to his guidance and tips to improve my code.
+
+- Lessons from code institute helped. Used regularly to check if I am following the correct method of coding.
+
+- Help from in the Slack community.
+
+- Tutor support and student care team.
+
+- My kids because of whom I came up with the idea of this project.
+
+Should you have any queries please reach me at rajendradanve@gmail.com.
