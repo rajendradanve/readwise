@@ -36,6 +36,8 @@ For GitHub repository [click here](https://github.com/rajendradanve/readwise)
   
 
  # **About**
+ This is my third project to exibhit my learning during backend development. 
+ For this project I made a website name [ReadWise](https://read-wise.herokuapp.com/).
  ReadWise is the website to register book with summary and other book information and allowing users to add book reviews. 
  This will help book readers to get overview of the books before buying it. Books are categorized based on subject, language and age group. 
  This website also gives direct link to buy this book. Register user can provide star rating and write review about the book. 
@@ -43,72 +45,85 @@ For GitHub repository [click here](https://github.com/rajendradanve/readwise)
  # **UX**
 
 ##  **Project Goals**
-
+Goal of this website is to add as much as book information along with user reviews as possible. 
+Register user to add different books and reviews for already added book.
+Book will provide information such as author, category, age group, language and basic book summary. User will also able to buy book online by  provided buying link. Non register users will able to browse or search book and read book information and reviews.  
+Admin (website owner) of the website has authority to add or delete category and language, set book as featured book and delete book. User who added book can also delete their book. 
 
 ## **Targeted Audiance**
+- This website can be use by any book reader.
+- Non register users can browse or search book and read related book information along with reviews.
+- Register users can add, delete and provide book review which can help to other readers.
 
-- This game is mainly meant to be used especially by kids which helps them to spend time while developing strategic thinking.
-- This is 2 player game but can be played alone while the second player is a computer. 
-- Kids can play this game with parents and other friends. 
-- Of course, adults can play this game just to time pass when they want to relax and wanted some challenging task while relaxing.
-- This game is not gendered specific and can be played by any gender. But in general, pokemon is more popular with boys than girls so mostly theme-wise this is more suitable for boys.
 
-##   **Player Goals**
+##   **User Goals**
 
-**Goal for Kid** 
-    
-* Easy and fun game to play which also teaches to think strategically.
-* Easy controls so that kids can play easily.
-* Can be played alone (with the computer as 2nd player) or with a family member or friend.
-* Simple understandable instructions about how to play the game.
-* Audio interaction suitable for the game.
+**Goad for Non-register Users** 
 
-**Goal for Parent**
+* Simple webpage layout    
+* Get overview of the some good books at main page.
+* Easy navigaton tab to access to all books page.
+* Getting good information about book along with reivews if available.
+* Easy access to register as new user. Minimal information to fill to register as new user.
 
-* Game which is easy to play but also will teach my kid about how to think logically.
-* Interactive controls or with easy to understand function.
-* Easily understandable and accessible instructions if required.
-* Game which parent can able to play with kid and generate bond.
-* Just game which will not divert kids with any unwanted advertisements.
+**Goal for Register Users**
 
+* Good and simple page layout for all pages.
+* Easy access to sign in page.
+* Simple accessable page to add new book with proper informaiton such as category, language, age-group, book summary, buying link etc.
+* Possibility to add review for the book along with review stars which helps other book readers.
+* Possibility to delete book added by register user.
+
+**Goal for Admin**
+
+* Good and simple page layout for all pages which suitable for all users.
+* Able to add book. 
+* Able to set book as featured or non featured.
+* Simple accessable page to add new book with proper informaiton such as category, language, age-group, book summary, buying link etc.
+* Possibility to add review for the book along with review stars which helps other book readers.
+* Possibility to delete book added by any users.
+* Possibility to add or delete category and language.
 
 ## **Developer Goals**
 
-To develop the game which has
-* Shows developer's understanding of Interactive frontend development.
-* Simple design which mainly suitable for kids can easily understandable and easy to play.
-* Big buttons which are suitable for screen size. 
-* Dynamic grid design based on screen size.  
+To develop the ReadWise website which has
+* Shows developer's understanding of backend development along with interactive front end.
+* Simple webpages with simple layout which to be accessable by register and also non register users.
+* Webpages suitable for all screen sizes. 
         
 ## **User Stories**
 
-**General Player**
+**Non-register User**
 
-A simple, fun game that can be played by anyone. While playing it can also challenge the brain and can teach strategic and logical thinking. The game shall be easy to play and avoid too many options and control. 
+* As a non register user, I shall able to access book list and book pages to get more information without registration.
+* As a non register user, I want to be able to register as new user on the site.
 
-**As a kid (age 6+), I want**
+**Registered User**
 
-* Easy to use screen layout with fewer buttons
-* Game where I can play with fewer controls
-* Game which I can play alone and also with friends or with my parent
-* Game which will teach me to think strategically
+* As a registered user, I shall able to sign in and sign out off the site successfully.
+* As a registered user, I shall able to access all pages meant for registered users.
+* As a registered user, I shall able to add new book. 
+* As a registered user, I shall able to add review and star rating to any book.
+* As a registered user, I shall able to edit book added by me.
+* As a registered user, I shall able to delete book added by me.
 
-**As a Parent, I want**
+**Admin**
 
-* Easy and simple screen layout so that my kids can play the game easily
-* Simple and minimal control 
-* No advertisement so that kids are not getting divert to unwanted stuff
-* Learn to develop logical thinking ability while playing
-* Able to play with my kid just for fun to generate parental bonding together
-    
-**As an Adult, I want**
-
-* Some brain trigger while relaxing
-* Able to play without any other distractions (advertisement)
-* Able to play with friend or kids
+* As a admin, I shall able to sign in and sign out off the site successfully.
+* As a admin, I shall able to access all pages.
+* As a admin, I shall able to add new book. 
+* As a admin, I shall able to add review and star rating to any book.
+* As a admin, I shall able to edit or delete book added by anyone.
+* As a admin, I shall able to add or delete category and language.
 
 ## **Design Choice**
 
+- **Framework**
+
+ReadWise used 
+
+
+Done till this time
 - **Colour Scheme**
 
 The main colors used are from got from pokemon theme colors which as mainly yellow, blue, and navy blue color. 
