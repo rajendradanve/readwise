@@ -173,6 +173,7 @@ Delete Category - Delete category
 - Finding cheapest buying link automatically.
 - Finding E-reader and audio book link if available.
 - Able to sort books based on category, language or age-group.
+- Ability to save favorite books for future reference.
 
 ## **Technologies Used**
 
@@ -226,7 +227,7 @@ Delete Category - Delete category
   - The wireframes were created using Balsamiq.
 
 - [Google DevTools](https://developer.chrome.com/docs/devtools/)
-  - Google DevTools was extensively used throughout the project for various styling, testing, and debugging purposes.
+  - Google DevTools was extensively used throughout the project for various styling, testing, performance and debugging purposes.
 
 - [Am I Responsive](http://ami.responsivedesign.is/)
   - Am I responsive to create the mock-up image presented at the start of this document.
@@ -242,6 +243,10 @@ Delete Category - Delete category
 
 - [PEP8 Online](http://pep8online.com/)
   - Used to check Python Code is PEP8 compliant.
+
+- [WAVE](https://wave.webaim.org/)
+  - Used to test accesibility of site.
+
 
 ## **Testing**
 
