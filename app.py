@@ -1,7 +1,7 @@
 import os
 import datetime
 from flask import (
-    Flask, flash, render_template,  
+    Flask, flash, render_template,
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -14,7 +14,6 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
-
 
 mongo = PyMongo(app)
 
@@ -97,7 +96,7 @@ def sign_in():
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-       
+
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(
@@ -187,7 +186,8 @@ def profile():
     if is_admin():
         books = list(mongo.db.books.find())
     else:
-        books = list(mongo.db.books.find({"added_by_user": session["username"]}))
+        books = list(mongo.db.books.find(
+                                    {"added_by_user": session["username"]}))
 
     return render_template("profile.html", is_user_logged=is_logged_in(),
                            is_admin=is_admin(), books_list=books)
@@ -204,12 +204,12 @@ def book_detail(book_id):
         is_already_commented = mongo.db.comments.find_one(
             {"username": session["username"],
              "book_id": book_id})
-   
+
     try:
         book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
         if not book:
             return redirect(url_for("home"))
-      
+
         comments = mongo.db.comments.find(
             {"book_id": book_id})
 
@@ -217,7 +217,7 @@ def book_detail(book_id):
                                is_user_logged=is_logged_in(),
                                is_already_commented=is_already_commented,
                                comments=comments, is_admin=is_admin())
-    
+
     except:
         return redirect(url_for("home"))
 
@@ -235,12 +235,12 @@ def book_review(book_id):
 
             if not book:
                 return redirect(url_for("home"))
-            
+
             star_rating = 0
 
             if request.form.get("star_rating"):
                 star_rating = int(request.form.get("star_rating"))
-                
+
             comment = {
                 "username": session["username"],
                 "book_id": book_id,
@@ -249,10 +249,10 @@ def book_review(book_id):
                 "time_stamp": datetime.datetime.now()
             }
 
-            mongo.db.comments.insert_one(comment)  
+            mongo.db.comments.insert_one(comment)
             # Calculating avg_review after new comments added.
             # Adding / updating avg_review for the books collection
-     
+
             avg_result = [
                 {"$match": {"book_id": book_id}},
                 {"$group": {"_id": "$book_id",
@@ -260,11 +260,11 @@ def book_review(book_id):
             ]
 
             avg_review_list = list(mongo.db.comments.aggregate(avg_result))
-                    
+
             avg_review = avg_review_list[0]["avg"]
 
             mongo.db.books.update_one({"_id": ObjectId(book_id)},
-                                    {"$set": {"avg_review": avg_review}})
+                                      {"$set": {"avg_review": avg_review}})
             flash("Review Added Successfully")
             return redirect(url_for("book_detail", book_id=book_id))
 
@@ -285,7 +285,7 @@ def add_category():
         # Check if category already exist in the list
         existing_category = mongo.db.categories.find_one(
                 {"category": new_category})
-        
+
         if existing_category:
             flash("Category Already Exists")
         else:
@@ -310,7 +310,7 @@ def add_language():
         # Check if category already exist in the list
         existing_language = mongo.db.languages.find_one(
                 {"language": new_language})
-        
+
         if existing_language:
             flash("Language Already Exists")
         else:
@@ -328,7 +328,7 @@ def delete_category():
     if not is_admin():
         return redirect(url_for("home"))
 
-    if request.method == "POST": 
+    if request.method == "POST":
         mongo.db.categories.remove({"_id": ObjectId(request.form.get(
                                     "cateogry-to-delete"))})
         flash("Category Deleted Successfully")
@@ -363,6 +363,9 @@ def delete_language():
 @app.route("/book/<book_id>/edit", methods=["GET", "POST"])
 def edit_book_id(book_id):
 
+    if not is_logged_in():
+        return redirect(url_for("home"))
+
     if request.method == "POST":
 
         book_name = request.form.get("book_name").strip().title()
@@ -380,13 +383,12 @@ def edit_book_id(book_id):
             "added_by_user": session["username"],
             "updated_timestamp": datetime.datetime.now(),
             "is_featured":  is_featured
-            
         }
 
         mongo.db.books.update_one({"_id": ObjectId(book_id)},
                                   {"$set": update_book})
         flash("Book Updated Successfully")
-        
+
         return redirect(url_for('book_detail', book_id=book_id))
 
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
@@ -397,18 +399,6 @@ def edit_book_id(book_id):
             "edit_book_id.html", book=book, languages=languages,
             categories=categories, age_groups=age_groups,
             is_user_logged=is_logged_in(), is_admin=is_admin())
-
-
-    if not is_logged_in():
-        return redirect(url_for("home"))
-
-    if request.method == "POST":
-       
-        return redirect(url_for(
-            "edit_book_id", book_id=request.form.get("edit_book_id")))
-       
-    books = mongo.db.books.find()
-    return render_template("edit_book.html", books=books, is_admin=is_admin(), is_user_logged=is_logged_in())
 
 
 # Function to delete Book
@@ -424,7 +414,7 @@ def delete_book(book_id):
 
         if not book:
             return redirect(url_for("home"))
-       
+
         mongo.db.books.remove({"_id": ObjectId(book_id)})
         flash("Book Deleted Successfully")
         return redirect(url_for("profile"))
@@ -439,12 +429,12 @@ def delete_book(book_id):
 def search():
     query = request.form.get("query")
     books = list(mongo.db.books.find({"$text": {"$search": query}}))
- 
-    return render_template("all_books.html", books=books, 
+
+    return render_template("all_books.html", books=books,
                            is_user_logged=is_logged_in())
 
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)

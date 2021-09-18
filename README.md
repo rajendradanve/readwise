@@ -120,127 +120,128 @@ To develop the ReadWise website which has
 
 - **Framework**
 
-ReadWise used 
+ReadWise used [materializecss](https://materializecss.com/) for its design.
+Materializecss is a modern responsive front-end framework based on Material Design.
 
-
-Done till this time
 - **Colour Scheme**
 
-The main colors used are from got from pokemon theme colors which as mainly yellow, blue, and navy blue color. 
-Color codes taken from [this link](https://brandpalettes.com/pokemon-color-codes/)
+The main colors used are as light blue accent-2 (#40c4ff) for navbar and light blue assent-4 (#0091ea) used for footer. Also used blue accent-1 (#82b1ff) at some sections. 
+Refer to [materializecss color](https://materializecss.com/color.html) for more details about these colors.  
+
 
 - **Typography**
 
-Petrona font is mainly used throughout the website with a serif as a backup font in case of any reason the font isn't being imported into the site correctly.
-Petrona looks stylish but still clean font to read and correctly goes with a simple design. Fonts are imported using [Google Fonts](https://fonts.google.com/).
+Roboto font is mainly used throughout the website with a sans-serif as a backup font in case of any reason the font isn't being imported into the site correctly.
+Roboto isclean font to read and correctly goes with a simple design. Fonts are imported using [Google Fonts](https://fonts.google.com/).
 
 - **Pages**
 
-The game has mainly 2 pages. Index.html page for choosing a second player and game.html page for main game page.
-Also, the error.html page is designed in case there is an error in the game. 
+Readwise has 12 pages all together.
+Homepage - Showing featured books
+All Book - Showing all books
+Register - To register new user
+Sign In - To sign in user
+Profile - To show profile for admin and register users
+Add Book - To add new book
+Add Language - Add new language 
+Delete Language - Delete language
+Add Category - Add new category
+Delete Category - Delete category
 
 ##  **Wireframes**
 
-*   [Desktop wireframe](assets/wireframe/Wireframe-for-desktop.pdf)
+*   [Desktop wireframe](static/wireframe/ReadWise-DesktopWireframe.pdf)
 
-*   [Tablet wireframe](assets/wireframe/Wireframe-For-Tablet.pdf)
+*   [Tablet wireframe](static/wireframe/ReadWise-TabletWireframe.pdf)
 
-*   [Mobile wireframe](assets/wireframe/Wireframe-Phone.pdf)
+*   [Mobile wireframe](static/wireframe/ReadWise-MobileWireframe.pdf)
 
 ## **Features**
 
 ### **Existing Features**
 
--   Index Page: The main feature of the index page is to choose an opponent player and provide instruction about how to play the game.
-    To justify Pokeball theme page has a background image from pokemon. Also, the page has animated red and yellow Pokeball.
-    It is possible to choose a second player as another human or computer. 
-    
--   Game Page: The game page has 3 buttons - refresh, home, and music toggle. The main game board has 7 columns and 6 rows.
-    One more of the top row is used to insert the coin. When the second player is computer yellow Pokeball coin will be played randomly.
-
--   Music on and off switch - which allows the users to switch on the music if they would like to. 
-
--   If any player won or the game is drawn, further coin playing is not possible. 
+- Showing featured books decided by admin.
+- Adding new book which are categorized based on type of book, suitable age-group, language.
+- Register user able to edit or delete books added by himself.
+- Admin able to add, edit or delete any books.
+- Admin able to set featured book.
+- Admin able to add or delete category or language.
 
 ### **Features Left to Implement**
 
--   Choosing who will play first in case one of the players is a computer. 
-
--   Possibility for the player to choose the Pokeball color.
-
--   Logical moves by the computer when one of the players is a computer.
-
--   More audio interaction to be added based on how the game is proceeding. 
-
+- Allow user to change password. 
+- Finding cheapest buying link automatically.
+- Finding E-reader and audio book link if available.
+- Able to sort books based on category, language or age-group.
 
 ## **Technologies Used**
 
 **Languages Used**
 
 - [HTML5](https://en.wikipedia.org/wiki/HTML#:~:text=The%20HyperText%20Markup%20Language%2C%20or,displayed%20in%20a%20web%20browser.)
-
   - The language used to give the site its main structure and all necessary features.
 
 - [CSS3](https://en.wikipedia.org/wiki/CSS)
-
   - The language used to give the application its visual effects including the font, color, and layout, etc.
 
 - [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+  - Used for activiating materialized functionality
 
-  - The language used to implement the site's interactive features, allows the users to be interactive and take actions during their visit.
+- [Python](https://www.python.org/)
+  - Use to build main logic of the website.
 
-**Frameworks, Libraries & Programs Used**
+**Frameworks, Libraries, Programs & Tools Used**
 
 - [Bootstrap](https://getbootstrap.com/)
-
     - Bootstrap library is used to create responsive design, beautiful buttons, modal templates.
 
 - [Jquery](https://jquery.com/)
-
     - Jquery library used to create DOM elements, event handling, animation.
 
+- [Flask](https://flask.palletsprojects.com/en/1.1.x/)
+  - Flast template is used to manage all HTML pages.
+
+- [Jinja](https://jinja.palletsprojects.com/en/3.0.x/)
+  - Jinja template is used along with Flask 
+
+- [Heroku](https://www.heroku.com/home)
+  - Used for hosting website
+
+- [MongoDB](https://www.mongodb.com/)
+  - Used to store database from book
+
 - [Github](https://github.com/)
-
   - Github is used to create, store and maintain all codes in a repository.
-
-  - Github is also used as the site hosting service for the final website to be published on.
-
+  
 - [Git Version control](https://git-scm.com/)
-
   - Git 2.30.1 for Mac is used for commit and push codes to Github.
 
 - [Google Fonts](https://fonts.google.com/)
-
   - The font used for text is imported from google fonts.
 
 - [Fontawesome](https://fontawesome.com/)
-
   - The icons used for this game are taken from fontawesome.
 
 - [Balsamiq](https://balsamiq.com/)
-
   - The wireframes were created using Balsamiq.
 
 - [Google DevTools](https://developer.chrome.com/docs/devtools/)
-
   - Google DevTools was extensively used throughout the project for various styling, testing, and debugging purposes.
 
 - [Am I Responsive](http://ami.responsivedesign.is/)
-
   - Am I responsive to create the mock-up image presented at the start of this document.
 
 - [W3C Markup Validation service](https://validator.w3.org/)
-
   - W3C Markup Validation Service has been used to test the HTML codes.
 
 - [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/)
-
   - W3C CSS Validation Service has been used to test the CSS codes.
 
 - [Code Beautifier](http://minifycode.com/html-beautifier/)
-
     -   The tools to minify and beautify JavaScript, CSS, and HTML codes.
 
+- [PEP8 Online](http://pep8online.com/)
+  - Used to check Python Code is PEP8 compliant.
 
 ## **Testing**
 

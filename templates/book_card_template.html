@@ -4,7 +4,7 @@
           <div class="card book-card center-align">
               <a href="{{url_for('book_detail', book_id=book._id)}}">
                   <div class="card-image">
-                      <img class="book-card-image" src="{{book.image_url}}" />
+                      <img class="book-card-image" alt="book cover image" src="{{book.image_url}}" />
                   </div>
                   <!--Showing review-->
                   <div class="card-content">
@@ -13,11 +13,15 @@
                         <p class="grey-text">No reviews yet</p>
                       {% else %} 
                         {% for i in range(5)%} 
+                        
                           {% if book.avg_review > i %}
+                          <span class="color-star"></span>
                             <i id="stars-{{i}}" class="fas fa-star"></i>
+                          </span>
                           {% else%}
                             <i id="stars-{{i}}" class="far fa-star"></i>
                           {% endif %} 
+                        
                         {% endfor %} 
                       {% endif %}
                   </div>
