@@ -10,8 +10,9 @@
                   </div>
                   {% if not is_user_logged %}
                     <div class="card-action center-align">
-                        <a class="waves-effect waves-light btn" href="{{url_for('register')}}">Register</a>
-                        <p class="white-text">Already Registered? <a href="{{ url_for('sign_in')}}" class="light-blue-text text-darken-4">Sign In</a></p>
+                        <a class="waves-effect waves-light btn teal darken-3" href="{{url_for('register')}}">Register</a>
+                        <p class="white-text">Already Registered? </p>
+                        <p><a href="{{ url_for('sign_in')}}" class="white-text">Sign In</a></p>
                     </div>
                   {% endif %}
               </div>
