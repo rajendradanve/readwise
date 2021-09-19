@@ -85,14 +85,14 @@ Admin (website owner) of the website has authority to add or delete category and
 * Possibility to delete book added by any users.
 * Possibility to add or delete category and language.
 
-## **Developer Goals**
+**Developer Goals**
 
 To develop the ReadWise website which has
 * Shows developer's understanding of backend development along with interactive front end.
 * Simple webpages with simple layout which to be accessable by register and also non register users.
 * Webpages suitable for all screen sizes. 
-        
-## **User Stories**
+       
+# **User Stories**
 
 **Non-register User**
 
@@ -117,25 +117,25 @@ To develop the ReadWise website which has
 * As a admin, I shall able to edit or delete book added by anyone.
 * As a admin, I shall able to add or delete category and language.
 
-## **Design Choice**
+# **Design Choice**
 
-- **Framework**
+## **Framework**
 
 ReadWise used [materializecss](https://materializecss.com/) for its design.
 Materializecss is a modern responsive front-end framework based on Material Design.
 
-- **Colour Scheme**
+## **Colour Scheme**
 
 The main colors used are as light blue accent-2 (#40c4ff) for navbar and light blue assent-4 (#0091ea) used for footer. Also used blue accent-1 (#82b1ff) at some sections. 
 Refer to [materializecss color](https://materializecss.com/color.html) for more details about these colors.  
 
 
-- **Typography**
+## **Typography**
 
 Roboto font is mainly used throughout the website with a sans-serif as a backup font in case of any reason the font isn't being imported into the site correctly.
 Roboto isclean font to read and correctly goes with a simple design. Fonts are imported using [Google Fonts](https://fonts.google.com/).
 
-- **Pages**
+## **Pages**
 
 Readwise has 12 pages all together.
 Homepage - Showing featured books
@@ -149,7 +149,7 @@ Delete Language - Delete language
 Add Category - Add new category
 Delete Category - Delete category
 
-##  **Wireframes**
+#  **Wireframes**
 
 *   [Desktop wireframe](static/wireframe/ReadWise-DesktopWireframe.pdf)
 
@@ -157,9 +157,9 @@ Delete Category - Delete category
 
 *   [Mobile wireframe](static/wireframe/ReadWise-MobileWireframe.pdf)
 
-## **Features**
+# **Features**
 
-### **Existing Features**
+## **Existing Features**
 
 - Showing featured books decided by admin.
 - Adding new book which are categorized based on type of book, suitable age-group, language.
@@ -168,7 +168,7 @@ Delete Category - Delete category
 - Admin able to set featured book.
 - Admin able to add or delete category or language.
 
-### **Features Left to Implement**
+## **Features Left to Implement**
 
 - Allow user to change password. 
 - Finding cheapest buying link automatically.
@@ -178,9 +178,9 @@ Delete Category - Delete category
 - Getting user email during registration and sending recommendaded books weekly.
 - Pagination for to avoid showing all books on one page.
 
-## **Technologies Used**
+# **Technologies Used**
 
-**Languages Used**
+## **Languages Used**
 
 - [HTML5](https://en.wikipedia.org/wiki/HTML#:~:text=The%20HyperText%20Markup%20Language%2C%20or,displayed%20in%20a%20web%20browser.)
   - The language used to give the site its main structure and all necessary features.
@@ -194,7 +194,7 @@ Delete Category - Delete category
 - [Python](https://www.python.org/)
   - Use to build main logic of the website.
 
-**Frameworks, Libraries, Programs & Tools Used**
+## **Frameworks, Libraries, Programs & Tools Used**
 
 - [Bootstrap](https://getbootstrap.com/)
     - Bootstrap library is used to create responsive design, beautiful buttons, modal templates.
@@ -250,7 +250,7 @@ Delete Category - Delete category
 - [WAVE](https://wave.webaim.org/)
   - Used to test accesibility of site.
 
-## **Mongodb Database**
+# **Mongodb Database**
 Mongodb database for ReadWise website consist of mainly 6 collections as below.
 
 - books
@@ -266,11 +266,11 @@ Mongodb database for ReadWise website consist of mainly 6 collections as below.
 - comments
   - Collection for all comments by different users for different books.
 
-## **Testing**
+# **Testing**
 
 Testing documentation can be found separately at [TESTING.md](TESTING.md)
 
-## **Deployment**
+# **Deployment**
 
 The site is hosted on [Heroku](https://www.heroku.com/home)
 
@@ -278,7 +278,7 @@ Project files are stored on [GitHub](https://github.com/)
 
 Deployment of ths ReadWise done as per mentioned in code institute mini project. 
 
-# Steps for GitHub and Gitpod
+## Steps for GitHub and Gitpod
 
 1. Logged into Github account.
 2. Create a new repository with name readwise.
@@ -287,7 +287,7 @@ Deployment of ths ReadWise done as per mentioned in code institute mini project.
 5. Creat a Procfile for Heroku by command "echo web: python app.py>Procfile" in the terminal window. (Remove any exta line from Procfile as this creates problem sometimes)
 6. Commit and push new files to the GitHub
 
-# Steps for Heroku
+## Steps for Heroku
 
 1. Logged in to Heroku and select "Create New App".
 2. Provide unique name in the "App Name" suitable for the website.
@@ -306,7 +306,7 @@ Deployment of ths ReadWise done as per mentioned in code institute mini project.
 15. If everything is sucessfull then you get "Deployment Sucessfull message" and Click "View" to launch the app to see website in the browser. 
 
 
-**Making a clone or download zip to run locally**
+## **Making a clone or download zip to run locally**
 
 1. Log into GitHub account.
 
@@ -341,31 +341,8 @@ Update your own "SECRET_KEY", "YOUR ROOT" and "YOUR CLUSTER NAME" info above.
 
 10. The app can now be run locally by typing "python3 app.py" in the terminal and website will be available in the browser. 
 
-5. Click on the clipboard icon to copy the clone URL.
 
-6. Open Git Bash.
-
-7. Change the current working directory to the location where you want the cloned directory.
-
-8. Type "git clone" in the Command Line and then paste the URL copied in step 5.
-
-9. Press enter to create your local clone.
-
-10. Alternately, click on Download ZIP, unpack locally, and open with a local code editor.
-
-**Forking the GitHub Repository**
-
-1. Log into GitHub.
-
-2. Select repository.
-
-3. Select connectfour.
-
-4. At the very top right corner click "fork".
-
-5. You will have a copy of the original repository in your own GitHub account.
-
-## **Credits**
+# **Credits**
 
 **Images**
 Main page library image is taken from [Pexels](https://www.pexels.com/photo/row-of-books-in-shelf-256541/)
@@ -406,7 +383,7 @@ Ideas for book categories, age groups are taken from [Book Depository](https://w
 - Standard color used as given in [Materializecss colors](https://materializecss.com/color.html)
 
 
-## **Acknowledgements**
+# **Acknowledgements**
 
 I would like to thank:
 
