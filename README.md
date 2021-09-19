@@ -8,7 +8,7 @@ For live website [click here](https://read-wise.herokuapp.com/)
 
 For GitHub repository [click here](https://github.com/rajendradanve/readwise)
 
-#   **Table of Content**
+##   **Table of Content**
 
  1. [About](#About)
  2. [UX](#UX)
@@ -41,6 +41,7 @@ For GitHub repository [click here](https://github.com/rajendradanve/readwise)
  ReadWise is the website to register book with summary and other book information and allowing users to add book reviews. 
  This will help book readers to get overview of the books before buying it. Books are categorized based on subject, language and age group. 
  This website also gives direct link to buy this book. Register user can provide star rating and write review about the book. 
+
 
  # **UX**
 
@@ -174,6 +175,8 @@ Delete Category - Delete category
 - Finding E-reader and audio book link if available.
 - Able to sort books based on category, language or age-group.
 - Ability to save favorite books for future reference.
+- Getting user email during registration and sending recommendaded books weekly.
+- Pagination for to avoid showing all books on one page.
 
 ## **Technologies Used**
 
@@ -247,6 +250,21 @@ Delete Category - Delete category
 - [WAVE](https://wave.webaim.org/)
   - Used to test accesibility of site.
 
+## **Mongodb Database**
+Mongodb database for ReadWise website consist of mainly 6 collections as below.
+
+- books
+  - Collection for all books data.
+- users
+  - Collection for all registered users.
+- age_group
+  - Collection for selecting age group while adding a book.
+- categories
+  - Collection for book categories.
+- languages
+  - Collection for all languages.
+- comments
+  - Collection for all comments by different users for different books.
 
 ## **Testing**
 
@@ -254,33 +272,74 @@ Testing documentation can be found separately at [TESTING.md](TESTING.md)
 
 ## **Deployment**
 
-**Deploy To GitHub Pages**
+The site is hosted on [Heroku](https://www.heroku.com/home)
+
+Project files are stored on [GitHub](https://github.com/)
+
+Deployment of ths ReadWise done as per mentioned in code institute mini project. 
+
+# Steps for GitHub and Gitpod
 
 1. Logged into Github account.
+2. Create a new repository with name readwise.
+3. Open repository in the GitPod IDE.
+4. Created a requirements.txt file by using command "pip3 freeze --local>requirements.text" in the terminal window. This will create files which tells Heroku what are dependencies required to be install for this project. 
+5. Creat a Procfile for Heroku by command "echo web: python app.py>Procfile" in the terminal window. (Remove any exta line from Procfile as this creates problem sometimes)
+6. Commit and push new files to the GitHub
 
-2. Select repository.
+# Steps for Heroku
 
-3. Select connectfour.
+1. Logged in to Heroku and select "Create New App".
+2. Provide unique name in the "App Name" suitable for the website.
+3. Select the region closest for you.
+4. Click "Create App".
+5. Select "Deploy" from the Heroku app menu.
+6. From the deployment menu select "GitHub" option.
+7. Verify that "Github" profile name is showing int the "Connect to GitHub" section.
+8. Search "readwise" repositary and click "Connect" to connect GitHub repositary with Heroku.
+9. Select "Settings" from the Heroku App menu.
+10. Select "Reveal Config Vars" and add the relevant key and value information. In case of ReadWise it is IP, PORT, MONGO_URI, MONGO_DBNAME, SECRET_KEY.
+11. Select "Deploy" from Heroku App menu.
+12. Scrolled down the page and select "Enable Automatic Deployent" option.
+13. Select "Master Branch" under "Branch Selected". 
+14. Click "Deploy Branch"
+15. If everything is sucessfull then you get "Deployment Sucessfull message" and Click "View" to launch the app to see website in the browser. 
 
-4. On the top right navigation click on settings.
-
-5. Under the settings section, scroll down to the GitHub Pages section.
-
-6. Select Main Branch from the source dropdown menu.
-
-7. Click save.
-
-8. Once clicked, this publishes the project to GitHub Pages and displays the site URL. Click on the URL to view the live site.
 
 **Making a clone or download zip to run locally**
 
 1. Log into GitHub account.
 
-2. Select repository.
+2. Navigate to my repository [ReadWise](https://github.com/rajendradanve/readwise).
 
-3. Select connectfour.
+3. Click on the Code dropdown button next to the green Gitpod button.
 
-4. Click on the Code dropdown button next to the green Gitpod button.
+4. Either, download the zip file or clone the repo using  gh repo clone rajendradanve/readwise in the terminal.
+
+5. Install the modules listed in the requirements.txt file using "python -m pip -r requirements.txt" in the terminal.
+
+6. You will need to create a new project in [MongoDB](https://www.mongodb.com/3) create a new collection called "readwise".
+
+7. Create collections as age_groups, books, categories, comments, languages and users. 
+
+8. insert age groups in age_groups collection based on your choice of age groups for book readers. 
+
+9. Create an env.py file in your application folder and add the following:
+
+```
+import os
+
+os.environ.setdefault("IP", "0.0.0.0")
+os.environ.setdefault("PORT", "5000")
+os.environ.setdefault("SECRET_KEY", "[YOUR SECRET KEY]")
+os.environ.setdefault("MONGO_URI", "mongodb+srv://<YOUR ROOT>@<YOUR CLUSTER NAME>.hoanu.mongodb.net/readwise?retryWrites=true&w=majority")
+os.environ.setdefault("MONGO_DB_NAME", "readwise")
+
+```
+
+Update your own "SECRET_KEY", "YOUR ROOT" and "YOUR CLUSTER NAME" info above.
+
+10. The app can now be run locally by typing "python3 app.py" in the terminal and website will be available in the browser. 
 
 5. Click on the clipboard icon to copy the clone URL.
 
@@ -357,6 +416,10 @@ The resources and the links I used to learn each concept are the following:
 
 - Error page background image is taken from [freepik website](www.freepik.com) and image is downloaded from [this link](https://www.freepik.com/vectors/clouds)
         
+
+## **Credits**
+
+
 
 ## **Acknowledgements**
 
