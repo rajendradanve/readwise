@@ -367,58 +367,43 @@ Update your own "SECRET_KEY", "YOUR ROOT" and "YOUR CLUSTER NAME" info above.
 
 ## **Credits**
 
-Connect four is a classic game and my kids love to play this game in their spare time. 
-As my son used to play with Pokeball when I got an idea to make this game with a Pokeball theme.
-So would like to give credit to my kids for providing me an idea.
-All the codes are written by myself after learning from resources. 
-The resources and the links I used to learn each concept are the following:
+**Images**
+Main page library image is taken from [Pexels](https://www.pexels.com/photo/row-of-books-in-shelf-256541/)
+
+**Text**
+
+Text for added book are mostly taken from [Amazon](https://www.amazon.com/).
+
+Ideas for book categories, age groups are taken from [Book Depository](https://www.bookdepository.com/).
 
 **Code**
 
-- [w3schools](https://www.w3schools.com/) 
-    - [audio](https://www.w3schools.com/html/html5_audio.asp)
-    - [setTimeout](https://www.w3schools.com/js/js_timing.asp)
-    - [CSS background-image](https://www.w3schools.com/cssref/pr_background-image.asp)
-    - [Animation using Jquery](https://www.w3schools.com/jquery/jquery_animate.asp)
-    - [Hide scrollbar for a page](https://www.w3schools.com/howto/howto_css_hide_scrollbars.asp)
+- [W3schools](https://www.w3schools.com/) 
 
-- [Bootstrap](https://getbootstrap.com/)
-    -[Bootstrap modal](https://getbootstrap.com/docs/5.0/components/modal/)
-    -[Buttons](https://getbootstrap.com/docs/5.0/components/buttons/)
+  Used in general to solve issues related to HTML and CSS.
+ 
+- [Materializecss](https://materializecss.com/)
+
+  Mostly materializecss card component is used for this website. 
 
 - [Jquery](https://jquery.com/)
-    - Jquery overall documentation used to understand concepts mainly for creating and updating DOM, animation, and event handler.
+
+  jquery code is used as required by materializecss.
 
 - [MDN Resources](https://developer.mozilla.org/en-US/docs/Web/Reference)
-    - MDS resources are used to understand concepts mainly for creating and updating DOM, animation, and event handler.
 
-- For continuous animation of Pokeball at Index.html page help is taken from [this link](https://css-tricks.com/using-multi-step-animations-transitions/)
+    MDS resources are used to get more understanding some concepts and some regular help
 
-- For rotation of Pokeball while falling help is taken from [this link](https://css-tricks.com/almanac/properties/t/transform-origin/) 
+- [Google Fonts](https://fonts.google.com/)
+   
+   Roboto font link from google fonts used all over the site.
 
-- Transfering opponent player information from index.html to game.html, help is taken from [this link](https://www.aspsnippets.com/Articles/Redirect-to-another-Page-with-multiple-Parameters-using-JavaScript.aspx)
+- HTML and CSS for star rating is taken from this [Youtube Video](https://www.youtube.com/watch?v=zDHC4r5eCdY)
+
 
 **Color**
 
-- Color codes taken pokemon theme color palette at [this link](https://brandpalettes.com/pokemon-color-codes/)
-
-- Apart from the above color white and whitesmoke colors are used.
-
-- When all coins are filled in a particular column rgba(197, 192, 192, 0.9) color is used to indicate not possible to enter any coin.
-
-**Media**
-
-- Index page background image taken from [this link](https://wallpapercave.com/w/HrO79ZR)
-
-- Pokeball images extracted from the image found at [this link](https://www.clipartkey.com/search/pokeball/)
-
-- Music file while playing the game is downloaded from [this link](https://www.bensound.com/royalty-free-music/track/ukulele)
-
-- Error page background image is taken from [freepik website](www.freepik.com) and image is downloaded from [this link](https://www.freepik.com/vectors/clouds)
-        
-
-## **Credits**
-
+- Standard color used as given in [Materializecss colors](https://materializecss.com/color.html)
 
 
 ## **Acknowledgements**
@@ -428,12 +413,10 @@ I would like to thank:
 - My mentor Akshat Garg for his encouragement and valuable comments for this project. 
 Thanks to his guidance and tips to improve my code.
 
-- Lessons from code institute helped. Used regularly to check if I am following the correct method of coding.
+- Lessons from code mainly mini project on backend develoopment institute helped a lot during this project. Used regularly to check if I am following the correct method of coding.
 
 - Help from in the Slack community.
 
 - Tutor support and student care team.
-
-- My kids because of whom I came up with the idea of this project.
 
 Should you have any queries please reach me at rajendradanve@gmail.com.
