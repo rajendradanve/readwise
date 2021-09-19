@@ -2,7 +2,7 @@
     
 ![Main Page Responsive Design](./static/images/readwise-responsive-main-page.png)
 
-![Game Page Responsive Design](./static/images/readwise-responsive-all-book-page.png)
+![All Book Page Responsive Design](./static/images/readwise-responsive-all-book-page.png)
 
 For live website [click here](https://read-wise.herokuapp.com/)
 
