@@ -198,20 +198,20 @@ def profile():
 @app.route("/book/<book_id>/view")
 def book_detail(book_id):
 
-    if is_logged_in():
-        is_already_commented = False
-
-        is_already_commented = mongo.db.comments.find_one(
-            {"username": session["username"],
-             "book_id": book_id})
-
     try:
         book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
         if not book:
             return redirect(url_for("home"))
 
         comments = mongo.db.comments.find(
-            {"book_id": book_id})
+               {"book_id": book_id})
+
+        is_already_commented = False
+
+        if is_logged_in():
+            is_already_commented = mongo.db.comments.find_one(
+                {"username": session["username"],
+                 "book_id": book_id})
 
         return render_template("book.html", book=book,
                                is_user_logged=is_logged_in(),
@@ -220,6 +220,7 @@ def book_detail(book_id):
 
     except:
         return redirect(url_for("home"))
+
 
 
 # Book review function and function to calculate avg review
@@ -437,4 +438,4 @@ def search():
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=False)
+            debug=True)

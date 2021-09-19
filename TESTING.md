@@ -6,33 +6,25 @@ For GitHub repository [click here](https://github.com/rajendradanve/readwise)
 
 ## **HTML**
 HTML is validated using online [HTML Validator](https://validator.w3.org/) tool.
-
--   **index.html:** Validation showed an error that "Element h4 not allowed as child of element label"
-    h4 element removed from the label instead <br> is used to show player name bellow icon.
-    After this, no error was shown for the index.html page.
--   **game.html:** Validation showed an error that "Attribute type not allowed on element audio at this point".
-    Removed "type" attribute from audio element to remove an error.
-
+All pages showing errors which can be ignored. Errors are shown for jinja and flask templates 
 
 ## **CSS**
 CSS is validated using online [CSS Validator](https://validator.w3.org/) tool.
--   **style.css :** Validation showed error that "scrollbar-width property doesn't exist" and "-ms-overflow-style" is an unknown vendor extension
-    This is not removed as this CSS property is used to hide the scrollbar for a page on firefox and EDGE browser for as mentioned in [this link](https://www.w3schools.com/howto/howto_css_hide_scrollbars.asp)
+-   **style.css :** 
+CSS validator did not found any errors. 
 
 ## **Javascript**
 Javascript is validated using online [JSHint](https://jshint.com/) tool.
--   **main-page.js :** Received warnings related to use of let and use of $ sign which can be ignored.
+-   **script.js :** all JS and jQuery has been passed through the Validator, however, various warnings were presented with regards to the $ in jQuery. This was expected and considered that code is okay to pass.
 
--   **game-script.js :** Received warning related to use of let, template literal syntax, and use of const which can be ignored.
+## **Python**
+- **app.py :** Python code with flask template is checked using [PEP8 Online](http://pep8online.com/). No errors found with the code. 
 
 
 ## **Testing Based on User Stories**
 
-### **General player**
-As the aim of the game was to make it a simple game with minimal controls and avoid distractions of any kind. 
-After testing the index.html page, I released that when I use the radio button user has to perform one click extra to enter the game.
-To avoid this I changed the radio option to buttons that will directly redirect to the game by choosing the correct option of 2nd player.
-icons are used inside buttons to provide visual information about with whom users want to play. This also provides a better look.
+### **Non Register User**
+
 
 ### **Kids**
 - For kids aim was to have a simple and easy screen layout.

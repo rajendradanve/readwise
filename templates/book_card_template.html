@@ -15,13 +15,13 @@
                         {% for i in range(5)%} 
                         
                           {% if book.avg_review > i %}
-                          <span class="color-star"></span>
+                          <span class="color-star">
                             <i id="stars-{{i}}" class="fas fa-star"></i>
                           </span>
                           {% else%}
-                          <span class="color-no-star-"></span>
+                          <span class="color-no-star">
                             <i id="stars-{{i}}" class="far fa-star"></i>
-                            <span class="color-star"></span>
+                            </span>
                           {% endif %} 
                         
                         {% endfor %} 
