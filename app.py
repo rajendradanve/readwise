@@ -139,7 +139,7 @@ def add_book():
             add_book = {
                 "name": book_name,
                 "author": request.form.get("book_author"),
-                "language": request.form.get("book_language"),
+                "lang": request.form.get("book_language"),
                 "category": request.form.get("book_category"),
                 "age_group": request.form.get("book_age_group"),
                 "summary": request.form.get("book_summary"),
@@ -220,7 +220,6 @@ def book_detail(book_id):
 
     except:
         return redirect(url_for("home"))
-
 
 
 # Book review function and function to calculate avg review
@@ -403,7 +402,7 @@ def edit_book_id(book_id):
 
 
 # Function to delete Book
-@app.route("/delete/book/<book_id>")
+@app.route("/book/<book_id>/delete")
 def delete_book(book_id):
 
     # check is user is log in to show profile page.
@@ -428,10 +427,12 @@ def delete_book(book_id):
 # Search book
 @app.route("/search", methods=["GET", "POST"])
 def search():
-    query = request.form.get("query")
-    books = list(mongo.db.books.find({"$text": {"$search": query}}))
 
-    return render_template("all_books.html", books=books,
+    if request.method == "POST":
+        query = request.form.get("query")
+        books = list(mongo.db.books.find({"$text": {"$search": query}}))
+
+    return render_template("all_books.html", books_list=books,
                            is_user_logged=is_logged_in())
 
 
