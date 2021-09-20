@@ -154,7 +154,7 @@ def add_book():
             flash("Book Data Added Successfully")
             return redirect(url_for("add_book"))
 
-    languages = mongo.db.languages.find().sort("language", 1)
+    languages = mongo.db.languages.find().sort("lang", 1)
     categories = mongo.db.categories.find().sort("category", 1)
     age_groups = mongo.db.age_groups.find().sort("age_group", 1)
     return render_template(
@@ -309,12 +309,12 @@ def add_language():
         new_language = new_language.strip().title()
         # Check if category already exist in the list
         existing_language = mongo.db.languages.find_one(
-                {"language": new_language})
+                {"lang": new_language})
 
         if existing_language:
             flash("Language Already Exists")
         else:
-            mongo.db.languages.insert_one({"language": new_language})
+            mongo.db.languages.insert_one({"lang": new_language})
             flash("Language Added Successfully")
             return redirect(url_for("add_language"))
     return render_template("add_language.html", is_user_logged=is_logged_in(),
@@ -353,7 +353,7 @@ def delete_language():
         flash("Language Deleted Successfully")
         return redirect(url_for("delete_language"))
 
-    languages = mongo.db.languages.find().sort("language", 1)
+    languages = mongo.db.languages.find().sort("lang", 1)
     return render_template("delete_language.html", languages=languages,
                            is_user_logged=is_logged_in(),
                            is_admin=is_admin())
@@ -374,7 +374,7 @@ def edit_book_id(book_id):
         update_book = {
             "name": book_name,
             "author": request.form.get("book_author"),
-            "language": request.form.get("book_language"),
+            "lang": request.form.get("book_language"),
             "category": request.form.get("book_category"),
             "age_group": request.form.get("book_age_group"),
             "summary": request.form.get("book_summary"),
@@ -392,7 +392,7 @@ def edit_book_id(book_id):
         return redirect(url_for('book_detail', book_id=book_id))
 
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
-    languages = mongo.db.languages.find().sort("language", 1)
+    languages = mongo.db.languages.find().sort("lang", 1)
     categories = mongo.db.categories.find().sort("category", 1)
     age_groups = mongo.db.age_groups.find().sort("age_group", 1)
     return render_template(
