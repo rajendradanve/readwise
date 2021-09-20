@@ -200,7 +200,9 @@ def book_detail(book_id):
 
     try:
         book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
+
         if not book:
+            flash("book not found")
             return redirect(url_for("home"))
 
         comments = mongo.db.comments.find(
