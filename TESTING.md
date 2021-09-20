@@ -21,30 +21,43 @@ Javascript is validated using online [JSHint](https://jshint.com/) tool.
 - **app.py :** Python code with flask template is checked using [PEP8 Online](http://pep8online.com/). No errors found with the code. 
 
 
-## **Testing Based on User Stories**
+## ** Manual Testing Based on User Stories**
+
+### ** General Testing **
+- Chrome Developer Tools were used to test responsiveness on different screen sizes.
+- Checked website on different devices available to me which includes desktop, mobile phones.
+- Checked website on different browsers such as Google Chrome, Safari, Edge and Firefox.
+- Asked friends and family members to go through website to know the issues if any.
+- Tested all links working properly.
+- All CRUD functions were tested to make sure that they work as intended.
+
+Lighthouse test report
+![Lighthouse test report](./static/images/readwise-lighthouse-result.png)
+
+Previously accessibility score was low for the site. Below are the actions taken to improve the score.
+
+- Background colors adjusted to increase contrast. 
+- Aria, Aria-label added to the links
 
 ### **Non Register User**
 
+- Verified that home page, all book and register user page available for non register users.
+- Verified that profile page is not accessible to the non register users.
+- Verified that non register user can not submit review before sign up.
+- Checked that when non register user tries to register username will be unique. 
+- Checked that password is validated before user is register.
 
-### **Kids**
-- For kids aim was to have a simple and easy screen layout.
-  The main page has only 2 buttons with attractive background. One button to enter a new game which provides an option to choose an opponent player. 
-  The second button provides instructions about how to play the game. It is assumed that parents will explain instructions to the kids who can not read.
-  Images are provided to show different possibilities of winning the game.
-  The game page has 3 buttons and the main game layout. The game can be played with only a simple left-click to the correct row. 
-  Maximum available spaced tried to use for the game board. 
 
--   Game with few controls.
-    On the main page, there are 2 main buttons and buttons to choose the player. 
-    On the game page, there are 3 buttons to refresh/restart the game, go to the homepage and music toggle button. 
-    The game can be played simply left-click at the column where the user wanted to put a Pokeball coin.
+### **Register User**
 
--   Game which can be played alone or with a friend/family
-    Pokeball connects four is a 2 player game. But the option is provided to play against the computer. 
-    Currently, the computer is taking random places to put a coin. In a future version of the game, some more logic can be added to computer moves to make the game more challenging.
+- Verified that user correctly sign in after entering correct username and password.
+- Verified that register page is not available to sign in user.
+- Verified that review form available to the sign in user as each book page if user did not submitted reviews already.
+- Verified that user who has reviewed the book gets message that he already reviewed book.
+- Verified that add book and profile pages available for sign in page.
+- Verified that after adding book profile page shows book added by user with possibility to edit or delete book.
+- Verified that user who added book able to edit book or delete it. 
 
--   Game to teach strategic thinking
-    A basic aim of the game to make strategic moves of the coin to win. Kids will learn to think and observe before making decisions.
     
 ### **Parents**
 -   Destraction free layout
