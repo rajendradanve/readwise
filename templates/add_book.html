@@ -36,7 +36,7 @@
 
             <div class="input-field col s10 offset-s1 m10 offset-m1">
                <i class="fas fa-globe prefix light-blue-text text-darken-4"></i>
-               <select name="book_language">
+               <select name="book_language" class="validate" required>
                   <option value="" disabled selected>Choose your option</option>
                   {% for language in languages %}
                   <option value="{{language.language}}">{{language.language}}</option>
@@ -47,7 +47,7 @@
 
             <div class="input-field col s10 offset-s1 m10 offset-m1">
                <i class="fas fa-cogs prefix light-blue-text text-darken-4"></i>
-               <select name="book_category">
+               <select name="book_category" class="validate" required>
                   <option value="" disabled selected>Choose your option</option>
                   {% for category in categories %}
                   <option value="{{category.category}}">{{category.category}}</option>
@@ -58,7 +58,7 @@
 
             <div class="input-field col s10 offset-s1 m10 offset-m1">
                <i class="fas fa-user-shield prefix light-blue-text text-darken-4"></i>
-               <select name="book_age_group">
+               <select name="book_age_group" class="validate" required>
                   <option value="" disabled selected>Choose your option</option>
                   {% for age_group in age_groups %}
                   <option value="{{age_group.age_group}}">{{age_group.age_group}}</option>
