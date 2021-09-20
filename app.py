@@ -218,7 +218,8 @@ def book_detail(book_id):
                                is_already_commented=is_already_commented,
                                comments=comments, is_admin=is_admin())
 
-    except:
+    except Exception as e:
+        print(e)
         return redirect(url_for("home"))
 
 
@@ -236,16 +237,15 @@ def book_review(book_id):
             if not book:
                 return redirect(url_for("home"))
 
-            star_rating = 0
-
-            if request.form.get("star_rating"):
-                star_rating = int(request.form.get("star_rating"))
+            if not request.form.get("star_rating"):
+                flash("Please provide star evalution for your review")
+                return redirect(url_for("book_detail", book_id=book_id))
 
             comment = {
                 "username": session["username"],
                 "book_id": book_id,
                 "review_text": request.form.get("review_text"),
-                "star_value": star_rating,
+                "star_value": request.form.get("star_rating"),
                 "time_stamp": datetime.datetime.now()
             }
 
@@ -268,7 +268,8 @@ def book_review(book_id):
             flash("Review Added Successfully")
             return redirect(url_for("book_detail", book_id=book_id))
 
-        except:
+        except Exception as e:
+            print(e)
             return redirect(url_for("home"))
 
 
@@ -419,8 +420,8 @@ def delete_book(book_id):
         flash("Book Deleted Successfully")
         return redirect(url_for("profile"))
 
-    except:
-        flash("Error To Delete Book. Try Again.")
+    except Exception as e:
+        print(e)
         return redirect(url_for("profile"))
 
 
