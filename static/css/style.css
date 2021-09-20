@@ -32,6 +32,20 @@ main {
 .index-card {
 	border-radius: 10px;
 }
+
+.main-card-text-size{
+	font-size: 1.5em;
+	font-weight: bolder;
+}
+
+.text-hero-card{
+	font-size: 1.3em;
+	line-height: 140%;
+}
+
+.home-card-text{
+	padding-bottom: 20px;
+}
 /* ------- Base Template and common------ */
 
 .text-shadow {
@@ -40,6 +54,7 @@ main {
 .brand-logo {
 	margin-left: 20px;
 }
+
 /* ------- Book Card ------ */
 
 #book_info_card {

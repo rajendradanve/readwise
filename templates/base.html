@@ -24,11 +24,11 @@
 
   <header>
     <!-- top navbar-->
-    <div class="navbar-fixed">
+    <div id="navbar-id" class="navbar-fixed">
     <nav class="nav-extended text-shadow">
       <div class="nav-wrapper blue">
         <a href="{{url_for('home')}}" class="left brand-logo"><i class="fas fa-book-reader"></i> ReadWise</a>
-        <a href="#" data-target="mobile-demo" class="right sidenav-trigger"><i class="fas fa-bars"></i></a>
+        <a href="#" data-target="mobile-demo" aria-label="Open Side Navbar" aria-labelledby="navbar-id" class="right sidenav-trigger"><i class="fas fa-bars"></i></a>
         <ul class="right hide-on-med-and-down">
           <li><a href="{{url_for('home')}}">Home</a></li>
           <li><a href="{{url_for('all_books')}}">All Books</a></li>
@@ -92,17 +92,17 @@
     {% endblock %}
   </main>
 
-  <footer class="page-footer blue">
+  <footer class="page-footer blue darken-2">
     <div class="container">
       <div class="row">
-        <div class="col s12 center-align">
+        <div id="footer-social-icon" class="col s12 center-align">
           <ul>
             <li class="social-icon"><a class="grey-text text-lighten-3" href="https://www.facebook.com/"
-                target="_blank"><i class="fab fa-facebook fa-3x"></i></a></li>
+                target="_blank" rel="noopener" aria-label="Open Facebook" role="link" ><i class="fab fa-facebook fa-3x"></i></a></li>
             <li class="social-icon"><a class="grey-text text-lighten-3" href="https://www.youtube.com/"
-                target="_blank"><i class="fab fa-youtube fa-3x"></i></a></li>
+                target="_blank" rel="noopener" aria-label="Open Youtube" role="link"><i class="fab fa-youtube fa-3x"></i></a></li>
             <li class="social-icon"><a class="grey-text text-lighten-3" href="https://www.linkedin.com/"
-                target="_blank"><i class="fab fa-linkedin fa-3x"></i></a></li>
+                target="_blank" rel="noopener" aria-label="Open Linkedin" role="link"><i class="fab fa-linkedin fa-3x"></i></a></li>
           </ul>
         </div>
       </div>

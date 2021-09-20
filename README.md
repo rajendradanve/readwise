@@ -126,7 +126,7 @@ Materializecss is a modern responsive front-end framework based on Material Desi
 
 ## **Colour Scheme**
 
-The main colors used are as light blue accent-2 (#40c4ff) for navbar and light blue assent-4 (#0091ea) used for footer. Also used blue accent-1 (#82b1ff) at some sections. 
+The main colors used are as light blue (#2196f3) for navbar and light blue darken-2 (#1976d2) used for footer. Also used light-blue darken-2 (#0288d1) at some sections. 
 Refer to [materializecss color](https://materializecss.com/color.html) for more details about these colors.  
 
 
