@@ -10,14 +10,14 @@
                <select name="language-to-delete">
                 <option value="" disabled selected>Choose your option</option>
                 {% for language in languages %}
-                <option value="{{language._id}}">{{language.language}}</option>
+                <option value="{{language._id}}">{{language.lang}}</option>
                 {% endfor %}
              </select>
                <label for="language-to-delete">Delete Language</label>
             </div>
          </div>
          <div class="row">
-            <button type="submit" class="col s4 offset-s4 btn red text-darken-4 text-shadow">Delete Language</button>
+            <button type="submit" class="col s4 offset-s4 btn-large red darken-2 text-darken-4 text-shadow">Delete Language</button>
          </div>
       </div>
    </form>

@@ -205,8 +205,8 @@ def book_detail(book_id):
             flash("book not found")
             return redirect(url_for("home"))
 
-        comments = mongo.db.comments.find(
-               {"book_id": book_id})
+        comments = list(mongo.db.comments.find(
+               {"book_id": book_id}))
 
         is_already_commented = False
 
