@@ -247,7 +247,7 @@ def book_review(book_id):
                 "username": session["username"],
                 "book_id": book_id,
                 "review_text": request.form.get("review_text"),
-                "star_value": request.form.get("star_rating"),
+                "star_value": int(request.form.get("star_rating")),
                 "time_stamp": datetime.datetime.now()
             }
 
