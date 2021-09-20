@@ -35,10 +35,12 @@
                       <i class="fas fa-globe prefix light-blue-text text-darken-4"></i>
                       <select name="book_language">
                           <option value="" disabled selected>Choose your option</option>
-                          {% for language in languages %} {% if language.language == book.language %}
-                          <option value="{{language.language}}" selected>{{language.language}}</option>
-                          {% endif %}
-                          <option value="{{language.language}}">{{language.language}}</option>
+                          {% for language in languages %} 
+                            {% if language.lang == book.lang %}
+                                <option value="{{language.lang}}" selected>{{language.lang}}</option>
+                            {% else %}
+                          <option value="{{language.lang}}">{{language.lang}}</option>
+                            {% endif %}
                           {% endfor %}
                       </select>
                       <label>Language</label>
@@ -50,10 +52,12 @@
                       <i class="fas fa-cogs prefix light-blue-text text-darken-4"></i>
                       <select name="book_category">
                           <option value="" disabled selected>Choose your option</option>
-                          {% for category in categories %} {% if category.category == book.category%}
-                          <option value="{{category.category}}" selected>{{category.category}}</option>
-                          {% endif %}
-                          <option value="{{category.category}}">{{category.category}}</option>
+                          {% for category in categories %} {
+                            {% if category.category == book.category%}
+                                <option value="{{category.category}}" selected>{{category.category}}</option>
+                            {% else %}
+                                <option value="{{category.category}}">{{category.category}}</option>
+                            {% endif %}
                           {% endfor %}
                       </select>
                       <label>Choose Categories</label>
@@ -65,10 +69,12 @@
                       <i class="fas fa-user-shield prefix light-blue-text text-darken-4"></i>
                       <select name="book_age_group">
                           <option value="" disabled selected>Choose your option</option>
-                          {% for age_group in age_groups %} {% if age_group.age_group %}
-                          <option value="{{age_group.age_group}}" selected>{{age_group.age_group}}</option>
-                          {% endif %}
-                          <option value="{{age_group.age_group}}">{{age_group.age_group}}</option>
+                          {% for age_group in age_groups %} 
+                            {% if age_group.age_group == book.age_group %}
+                                <option value="{{age_group.age_group}}" selected>{{age_group.age_group}}</option>
+                            {% else %}
+                                <option value="{{age_group.age_group}}">{{age_group.age_group}}</option>
+                            {% endif %}
                           {% endfor %}
                       </select>
                       <label>Choose Age Group</label>

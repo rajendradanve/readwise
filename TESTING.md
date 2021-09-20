@@ -59,14 +59,17 @@ Previously accessibility score was low for the site. Below are the actions taken
 - Verified that user who added book able to edit book or delete it. 
 
     
-### **Parents**
--   Destraction free layout
-    The layout is quite simple and aims to increase focus while playing the game. On the main page, some animation was added to generate interest. 
-    On the game page, big icons are added and most of the space is used for the game board. This page has only 3 controls. 
-    Fancy looks and a lot of animation are avoided. 
-
--   Able to develop logical thinking while playing.
-    This game is a logical game and the player has to think before playing his moves. 
+### **Admin**
+- Verified that admin correctly sign in after entering correct username and password.
+- Verified that all books open correctly for admin and shows edit and delete buttons.
+- Verified that review form available for admin and admin can add reviews for the book.
+- Verified that add book link showed "featured book" switch option in the form.
+- Verified that profile page shows cards for category and langauge with add and delete buttons.
+- Verified that add category and delete category works properly.
+- Verified that add language and delete language works properly.
+- Verified that new language and categories shows in add book form.
+- Verified that deleted category and langages removed from add book form.
+- Verified that admin can add and edit book. 
 
 ### **Adult**
 -   Need some brain activity while relaxing
