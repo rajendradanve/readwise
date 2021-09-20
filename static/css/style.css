@@ -63,7 +63,7 @@ main {
 }
 .book-card-image {
 	height: 350px;
-	object-fit: fill;
+	object-fit: cover;
 }
 .book-card {
 	height: 500px;
@@ -89,7 +89,18 @@ main {
 /* Book Info */
 
 .summary-text {
-	text-align: justify;
+	display: flex;
+    align-items: flex-end;
+    justify-content: center!important;
+    flex-direction: column;
+}
+
+.book-detail-image-card{
+	display: flex!important;
+    align-items: center!important;
+    justify-content: center!important;
+    flex-direction: column!important;
+
 }
 /*styling star rating*/
 
