@@ -89,7 +89,7 @@ Previously accessibility score was low for the site. Below are the actions are t
 - Background colors adjusted to increase contrast. 
 - Aria, Aria-label added to the links
 
-## ** Important Bugs Solved**
+## **Important Bugs Solved**
 
 -   Initially book image was done by file upload.
     After discussion with mentor and email from tutor team it was implemented by using link. 
