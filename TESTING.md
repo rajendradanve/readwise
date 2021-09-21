@@ -89,6 +89,14 @@ Previously accessibility score was low for the site. Below are the actions are t
 - Background colors adjusted to increase contrast. 
 - Aria, Aria-label added to the links
 
+## ** Important Bugs Solved**
+
+-   Initially book image was done by file upload.
+    After discussion with mentor and email from tutor team it was implemented by using link. 
+-   Was getting error "Got error object of type 'Cursor' has no len() flask"
+    After discussion with tutor and some googling results from Mongodb is converted to list.
+-   MongoDB database gave error "pymongo.errors.WriteError: language override unsupported" to "Polish" langauage.   After some research and guidance from mentor field name changed from "language" to "lang".
+
 ## **Known Bugs**
 
 - In admin profile page button for add category, delete categories, add language and delete language buttons are misaligned for some of the pixel sizes on the medium screen. As this is a minor issue, due to time constraints this will be fixed in near future. 
