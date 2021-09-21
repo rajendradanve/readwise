@@ -1,169 +1,154 @@
 {% extends "base.html" %} 
 {% block content %} 
-
   {% if book.added_by_user == session["username"] or is_admin %}
     <div class="row row-top-margin">
-        <div class="col s12 center-align">
-            <a class="waves-effect waves-light blue btn" href="{{url_for('edit_book_id', book_id=book._id)}}">Edit Book <i class="fas fa-edit"></i></a>
-            <a class="waves-effect waves-light red btn delete-btn modal-trigger" href="#delete-book-modal" >Delete Book</a>
-        </div>
+      <div class="col s12 center-align"> <a class="waves-effect waves-light blue btn" href="{{url_for('edit_book_id', book_id=book._id)}}">Edit Book <i class="fas fa-edit"></i></a>
+        <a class="waves-effect waves-light red btn delete-btn modal-trigger" href="#delete-book-modal">Delete Book</a>
+      </div>
     </div>
   {% endif%}
-
   <div class="row row-top-margin">
-      <div class="col s12 m3 book-detail-image-card">
-        .
-          <div class="row">
-              <div class="col">
-                  <img id="book-detail-cover-image" class="responsive-img" alt="book cover image" src="{{book.image_url}}" />
-              </div>
-          </div>
-          <div class="row">
-              <div class="col valign-wrapper">
-                {% if book.avg_review == null or book.avg_review == None %}
-                    <p class="grey-text">No reviews yet</p>
-                  {% else %} 
-                    {% for i in range(5)%} 
-                      {% if (book.avg_review > i) %}
-                        <span class="color-star"><i id="stars_comments-{{i}}" class="fas fa-star"></i></span>
-                      {% else %}
-                      <span class="color-no-star">
-                        <i id="stars_comments-{{i}}" class="far fa-star"></i>
-                      </span>
-                      {% endif %} 
-                    {% endfor %} 
-                  {% endif %}
-              </div>
-          </div>
+    <div class="col s12 m3 book-detail-image-card">.
+      <div class="row">
+        <div class="col">
+          <img id="book-detail-cover-image" class="responsive-img" alt="book cover image" src="{{book.image_url}}" />
+        </div>
       </div>
+      <div class="row">
+        <div class="col valign-wrapper">
+          {% if book.avg_review == null or book.avg_review == None %}
+            <p class="grey-text">No reviews yet</p>
+          {% else %} 
+            {% for i in range(5)%} 
+              {% if (book.avg_review > i) %} 
+                <span class="color-star"><i id="stars_comments-{{i}}" class="fas fa-star"></i></span>
+              {% else %} 
+                <span class="color-no-star"><i id="stars_comments-{{i}}" class="far fa-star"></i></span>
+              {% endif %} 
+            {% endfor %} 
+          {% endif %}
+        </div>
+      </div>
+    </div>
 
-
-      <div class="col s12 m7">
-        <div class="left-align">
-          <h3><span class="black-text">{{book.name}}</span></h3>
-          <p><strong>Author: </strong>{{book.author}}</p>
-          <p><strong>Language: </strong>{{book.lang}}</p>
-          <a href="{{book.shopping_link}}" target="_blank"><i class="fas fa-shopping-cart fa-2x"></i></a>
+    <div class="col s12 m7">
+      <div class="left-align">
+        <h3><span class="black-text">{{book.name}}</span></h3>
+        <p><strong>Author: </strong>{{book.author}}</p>
+        <p><strong>Language: </strong>{{book.lang}}</p> <a href="{{book.shopping_link}}" target="_blank"><i class="fas fa-shopping-cart fa-2x"></i></a>
+        <hr class="solid" />
+        <h6><strong>Other Information</strong></h6>
+        <p><strong>Age: </strong>{{book.age_group}}</p>
+        <p><strong>Category: </strong>{{book.category}}</p>
+        <div class="hide-on-med-and-down">
           <hr class="solid" />
-          <h6><strong>Other Information</strong></h6>
-          <p><strong>Age: </strong>{{book.age_group}}</p>
-          <p><strong>Category: </strong>{{book.category}}</p>
-          <div class="hide-on-med-and-down"> 
-            <hr class="solid" />
-            <h6><strong>Summary</strong></h6>
-            <p class="summary-text">{{book.summary}}</p>
-        </div>
-          
+          <h6><strong>Summary</strong></h6>
+          <p class="summary-text">{{book.summary}}</p>
         </div>
       </div>
+    </div>
   </div>
-
+  <!--Summary to be shown only for medium size scree only-->
   <div class="row show-on-medium hide-on-large-only">
     <div class="col m12 ">
       <hr class="solid" />
       <h6><strong>Summary</strong></h6>
-            <p class="summary-text">{{book.summary}}</p>   
+      <p class="summary-text">{{book.summary}}</p>
     </div>
   </div>
 
   <hr class="solid grey" />
- <!--Comment form if not commented by user -->
-    {% if is_user_logged and is_already_commented %}
-      <!-- review already submitted by the logged in user-->
-      <div class="row">
-          <div class="col s12 center-align">
-              <h6 class="blue-text text-darken-2">Your already reviewed this book</h6>
-          </div>
-      </div>
 
-    {% elif is_user_logged and not is_already_commented %}
-      <!-- review submission form-->
-      <div class="row">
-        <div class="col s12 m8 offset-m2">
-          <div class="card-panel">
-      <form action="{{url_for('book_review', book_id=book._id)}}" method="POST">
-          
-                  <fieldset class="rating">
-                    <input type="radio" id="star5" name="star_rating" value="5"/><label for="star5" class="full"></label>
-                    <input type="radio" id="star4" name="star_rating" value="4"/><label for="star4" class="full"></label>
-                    <input type="radio" id="star3" name="star_rating" value="3"/><label for="star3" class="full"></label>
-                    <input type="radio" id="star2" name="star_rating" value="2"/><label for="star2" class="full"></label>
-                    <input type="radio" id="star1" name="star_rating" value="1"/><label for="star1" class="full"></label>
-                  </fieldset>
-          <div class="row">
+  <!--Comment form if not commented by user -->
+  {% if is_user_logged and is_already_commented %}
+    <!-- review already submitted by the logged in user-->
+    <div class="row">
+      <div class="col s12 center-align">
+        <h6 class="blue-text text-darken-2">Your already reviewed this book</h6>
+      </div>
+    </div>
+  {% elif is_user_logged and not is_already_commented %}
+    <!-- review submission form-->
+    <div class="row">
+      <div class="col s12 m8 offset-m2">
+        <div class="card-panel">
+          <form action="{{url_for('book_review', book_id=book._id)}}" method="POST">
+            <fieldset class="rating">
+              <input type="radio" id="star5" name="star_rating" value="5" />
+              <label for="star5" class="full"></label>
+              <input type="radio" id="star4" name="star_rating" value="4" />
+              <label for="star4" class="full"></label>
+              <input type="radio" id="star3" name="star_rating" value="3" />
+              <label for="star3" class="full"></label>
+              <input type="radio" id="star2" name="star_rating" value="2" />
+              <label for="star2" class="full"></label>
+              <input type="radio" id="star1" name="star_rating" value="1" />
+              <label for="star1" class="full"></label>
+            </fieldset>
+            <div class="row">
               <div class="input-field col s12">
-                  <textarea id="review_text" name="review_text" class="materialize-textarea" required></textarea>
-                  <label for="review_text">Write Book Review</label>
+                <textarea id="review_text" name="review_text" class="materialize-textarea" required></textarea>
+                <label for="review_text">Write Book Review</label>
               </div>
-          </div>
-
-          <div class="row">
+            </div>
+            <div class="row">
               <button type="submit" class="col s6 offset-s3 btn light-blue text-darken-4 text-shadow">Submit Review</button>
-          </div>
-      </form>
-    </div>
-    </div>
-  </div>
-    {% else%}
-    <!-- Sign in before submitting review-->
-      <div class="row">
-          <div class="col s12 m8 offset-m2">
-              <p><a href="{{url_for('sign_in')}}">Sign in</a> to register your review for the book</p>
-          </div>
+            </div>
+          </form>
+        </div>
       </div>
-    {% endif %} 
-    
-    <!--Showing all comments made by users-->
-    <hr class="solid grey" />
-    {% if comments | length > 0 %} 
+    </div>
+  {% else%}
+    <!-- Sign in before submitting review-->
+    <div class="row">
+      <div class="col s12 m8 offset-m2">
+        <p><a href="{{url_for('sign_in')}}">Sign in</a> to register your review for the book</p>
+      </div>
+    </div>
+  {% endif %}
+
+  <!--Showing all comments made by users-->
+  <hr class="solid grey" />
+  {% if comments | length > 0 %}
     <div class="row">
       <div class="col s12 m8 offset-m2">
         <h6>Comments from users</h6>
       </div>
     </div>
-    
-      {% for comment in comments%}
-      
-        <div class="row">
-            <div class="col s12 m8 offset-m2">
-                {% for i in range(5)%} 
-                  {% if (comment.star_value > i) %}
-                    <span class="color-star">
-                      <i class="fas fa-star"></i>
-                    </span>
-                  {% else %}
-                    <span class="color-no-star">
-                      <i class="far fa-star"></i>
-                    </span>
-                  {% endif %} 
-                {% endfor %}
-                <p>{{comment.review_text}}</p>
-                <p class="grey-text">{{comment.username}}</p>
-                
-            </div>
-            
-        </div>
-        <hr class="solid grey" />
-      {% endfor %} 
-    {% else %}
-      <hr class="solid" />
+    {% for comment in comments%}
       <div class="row">
-          <div class="col">
-              <p>No reveiws yet. You will be first to review.</p>
-          </div>
+        <div class="col s12 m8 offset-m2">
+          {% for i in range(5)%} 
+            {% if (comment.star_value > i) %} 
+              <span class="color-star"><i class="fas fa-star"></i></span>
+            {% else %} 
+              <span class="color-no-star"><i class="far fa-star"></i></span>
+            {% endif %} 
+          {% endfor %}
+          <p>{{comment.review_text}}</p>
+          <p class="grey-text">{{comment.username}}</p>
+        </div>
       </div>
-    {% endif %} 
+      <hr class="solid grey" />
+    {% endfor %} 
+  {% else %}
+    <hr class="solid" />
+    <div class="row">
+      <div class="col">
+        <p>No reveiws yet. You will be first to review.</p>
+      </div>
+    </div>
+  {% endif %}
 
-<!-- Delete Modal -->
-<div id="delete-book-modal" class="modal">
-  <div class="modal-content">
-    <h5>Delete Book</h5>
-    <p >Are you sure you want to delete "<snap class="red-text" >{{book.name}}</snap>"?</p>
+  <!-- Delete Modal -->
+  <div id="delete-book-modal" class="modal">
+      <div class="modal-content">
+        <h5>Delete Book</h5>
+        <p>Are you sure you want to delete "
+          <snap class="red-text">{{book.name}}</snap>"?</p>
+      </div>
+      <div class="modal-footer"> <a href="{{url_for('delete_book', book_id=book._id)}}" class="modal-close waves-effect waves-green btn-flat">Confirm</a>
+        <a href="#" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+      </div>
   </div>
-  <div class="modal-footer">
-    <a href="{{url_for('delete_book', book_id=book._id)}}" class="modal-close waves-effect waves-green btn-flat">Confirm</a>
-    <a href="#" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-  </div>
-</div>
-  
 {% endblock %}

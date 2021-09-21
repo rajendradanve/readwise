@@ -1,34 +1,27 @@
 <div class="row">
-    {% for book in books_list %}
-      <div class="col s12 m3">
-          <div class="card book-card center-align">
-              <a href="{{url_for('book_detail', book_id=book._id)}}">
-                  <div class="card-image">
-                      <img class="book-card-image" alt="book cover image" src="{{book.image_url}}" />
-                  </div>
-                  <!--Showing review-->
-                  <div class="card-content">
-                      <h6 class="card-title black-text">{{book.name}}</h6>
-                      {% if book.avg_review == null or book.avg_review == None %}
-                        <p class="grey-text text-darken-2">No reviews yet</p>
-                      {% else %} 
-                        {% for i in range(5)%} 
-                        
-                          {% if book.avg_review > i %}
-                          <span class="color-star">
-                            <i class="fas fa-star"></i>
-                          </span>
-                          {% else%}
-                          <span class="color-no-star">
-                            <i class="far fa-star"></i>
-                            </span>
-                          {% endif %} 
-                        
-                        {% endfor %} 
-                      {% endif %}
-                  </div>
-              </a>
-          </div>
-      </div>
-    {% endfor %}
+  {% for book in books_list %}
+	<div class="col s12 m3">
+		<div class="card book-card center-align">
+			<a href="{{url_for('book_detail', book_id=book._id)}}">
+				<div class="card-image">
+					<img class="book-card-image" alt="book cover image" src="{{book.image_url}}" />
+				</div>
+				<!--Showing review-->
+				<div class="card-content">
+					<h6 class="card-title black-text">{{book.name}}</h6>
+					{% if book.avg_review == null or book.avg_review == None %}
+					  <p class="grey-text text-darken-2">No reviews yet</p>
+          {% else %} 
+            {% for i in range(5)%} 
+              {% if book.avg_review > i %} 
+                <span class="color-star"><i class="fas fa-star"></i></span>
+					    {% else%} 
+                <span class="color-no-star"><i class="far fa-star"></i></span>
+					    {% endif %} 
+            {% endfor %} 
+          {% endif %}</div>
+			</a>
+		</div>
+	</div>
+  {% endfor %}
 </div>

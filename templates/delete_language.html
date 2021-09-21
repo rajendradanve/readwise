@@ -1,25 +1,21 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 {% block content %}
-<div class="row row-top-margin">
-   <form class="col s12 m8 offset-m2" method="POST" action="{{url_for('delete_language')}}">
-      <div class="card-panel">
-         <h4 class="center-align">Delete Language</h4>
-         <div class="row">
-            <div class="input-field col s12">
-               <i class="fas fa-globe prefix light-blue-text text-darken-4"></i>
-               <select name="language-to-delete">
-                <option value="" disabled selected>Choose your option</option>
-                {% for language in languages %}
-                <option value="{{language._id}}">{{language.lang}}</option>
-                {% endfor %}
-             </select>
-               <label for="language-to-delete">Delete Language</label>
+   <div class="row row-top-margin">
+      <form class="col s12 m8 offset-m2" method="POST" action="{{url_for('delete_language')}}">
+         <div class="card-panel">
+            <h4 class="center-align">Delete Language</h4>
+            <div class="row">
+               <div class="input-field col s12"> <i class="fas fa-globe prefix light-blue-text text-darken-4"></i>
+                  <select name="language-to-delete">
+                     <option value="" disabled selected>Choose your option</option>{% for language in languages %}
+                     <option value="{{language._id}}">{{language.lang}}</option>{% endfor %}</select>
+                  <label for="language-to-delete">Delete Language</label>
+               </div>
+            </div>
+            <div class="row">
+               <button type="submit" class="col s4 offset-s4 btn-large red darken-2 text-darken-4 text-shadow">Delete Language</button>
             </div>
          </div>
-         <div class="row">
-            <button type="submit" class="col s4 offset-s4 btn-large red darken-2 text-darken-4 text-shadow">Delete Language</button>
-         </div>
-      </div>
-   </form>
-</div>
+      </form>
+   </div>
 {% endblock %}

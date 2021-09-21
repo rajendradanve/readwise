@@ -6,15 +6,15 @@
 
 For live website [click here](https://read-wise.herokuapp.com/)
 
-For GitHub repository [click here](https://github.com/rajendradanve/readwise)
+For the GitHub repository [click here](https://github.com/rajendradanve/readwise)
 
 ##   **Table of Content**
 
  1. [About](#About)
  2. [UX](#UX)
     *   [Project Goals](#project-goals)
-    *   [Targeted Audiance](#targeted-audiance)
-    *   [User Goals](#player-goals)
+    *   [Targeted Audience](#targeted-audience)
+    *   [User Goals](#user-goals)
     *   [Developer Goals](#developer-goals)
     *   [User Stories](#user-stories)
     *   [Design Choice](#design-choice)
@@ -25,8 +25,12 @@ For GitHub repository [click here](https://github.com/rajendradanve/readwise)
     *   [Features Left to Implement](#features-left-to-implement)
 
 3.  [Technologies Used](#technologies-used)
+    *   [Languages Used](#languages-used)
+    *   [Frameworks, Libraries, Programs and Tools Used](#frameworks-libraries-programs-and-tools-used)
    
-4.  [Testing](#testing)
+4. [Mongodb Database](#mongodb-database) 
+
+5. [Testing](#testing)
 
 5. [Deployment](#deployment)
 
@@ -36,120 +40,121 @@ For GitHub repository [click here](https://github.com/rajendradanve/readwise)
   
 
  # **About**
- This is my third project to exibhit my learning during backend development. 
- For this project I made a website name [ReadWise](https://read-wise.herokuapp.com/).
- ReadWise is the website to register book with summary and other book information and allowing users to add book reviews. 
- This will help book readers to get overview of the books before buying it. Books are categorized based on subject, language and age group. 
- This website also gives direct link to buy this book. Register user can provide star rating and write review about the book. 
+ This is my third project to exhibit my learning during backend development. 
+ For this project, I made a website name [ReadWise](https://read-wise.herokuapp.com/).
+ ReadWise is the website to register books with summary and other book information and allowing users to add book reviews. 
+ This will help book readers to get an overview of the books before buying them. Books are categorized based on subject, language, and age group. 
+ This website also gives a direct link to buy this book. Register users can provide star ratings and write a review about the book. 
 
 
  # **UX**
 
 ##  **Project Goals**
-Goal of this website is to add as much as book information along with user reviews as possible. 
-Register user to add different books and reviews for already added book.
-Book will provide information such as author, category, age group, language and basic book summary. User will also able to buy book online by  provided buying link. Non register users will able to browse or search book and read book information and reviews.  
-Admin (website owner) of the website has authority to add or delete category and language, set book as featured book and delete book. User who added book can also delete their book. 
+The goal of this website is to add as much book information along with user reviews as possible. 
+Register users to add different books and reviews for the already added book.
+Book will provide information such as author, category, age group, language, and basic book summary. Users will also be able to buy a book online by provided buying link. Non-register users will be able to browse or search books and read book information and reviews.  
+Admin (website owner) of the website has authority to add or delete category and language, set book as a featured book, and delete the book. The user who added a book can also delete their book. 
 
-## **Targeted Audiance**
-- This website can be use by any book reader.
-- Non register users can browse or search book and read related book information along with reviews.
-- Register users can add, delete and provide book review which can help to other readers.
+## **Targeted Audience**
+- This website can be used by any book reader.
+- Non-register users can browse or search books and read related book information along with reviews.
+- Register users can add, delete and provide book reviews which can help other readers.
 
 
-##   **User Goals**
+## **User Goals**
 
 **Goad for Non-register Users** 
 
 * Simple webpage layout    
-* Get overview of the some good books at main page.
-* Easy navigaton tab to access to all books page.
-* Getting good information about book along with reivews if available.
-* Easy access to register as new user. Minimal information to fill to register as new user.
+* Get an overview of some good books on the main page.
+* Easy navigation tab to access all books page.
+* Getting good information about the book along with reviews if available.
+* Easy access to register a new user. Minimal information to fill in to register as a new user.
 
 **Goal for Register Users**
 
 * Good and simple page layout for all pages.
-* Easy access to sign in page.
-* Simple accessable page to add new book with proper informaiton such as category, language, age-group, book summary, buying link etc.
-* Possibility to add review for the book along with review stars which helps other book readers.
-* Possibility to delete book added by register user.
+* Easy access to the sign-in page.
+* Simple accessible page to add a new book with proper information such as category, language, age-group, book summary, buying link, etc.
+* Possibility to add a review for the book along with review stars which helps other book readers.
+* Possibility to delete book added by the registered user.
 
 **Goal for Admin**
 
 * Good and simple page layout for all pages which suitable for all users.
-* Able to add book. 
+* Able to add a book. 
 * Able to set book as featured or non featured.
-* Simple accessable page to add new book with proper informaiton such as category, language, age-group, book summary, buying link etc.
-* Possibility to add review for the book along with review stars which helps other book readers.
+* Simple accessible page to add a new book with proper information such as category, language, age-group, book summary, buying link, etc.
+* Possibility to add a review for the book along with review stars which helps other book readers.
 * Possibility to delete book added by any users.
 * Possibility to add or delete category and language.
 
-**Developer Goals**
+## **Developer Goals**
 
 To develop the ReadWise website which has
 * Shows developer's understanding of backend development along with interactive front end.
-* Simple webpages with simple layout which to be accessable by register and also non register users.
-* Webpages suitable for all screen sizes. 
+* Simple web pages with a simple layout which to be accessible by the register and also non-register users.
+* Webpages are suitable for all screen sizes. 
        
-# **User Stories**
+## **User Stories**
 
-**Non-register User**
+### **Non-register User**
 
-* As a non register user, I shall able to access book list and book pages to get more information without registration.
-* As a non register user, I want to be able to register as new user on the site.
+* As a non-registered user, I shall be able to access book lists and book pages to get more information without registration.
+* As a non-registered user, I want to be able to register as a new user on the site.
 
-**Registered User**
+### **Registered User**
 
-* As a registered user, I shall able to sign in and sign out off the site successfully.
-* As a registered user, I shall able to access all pages meant for registered users.
-* As a registered user, I shall able to add new book. 
-* As a registered user, I shall able to add review and star rating to any book.
-* As a registered user, I shall able to edit book added by me.
-* As a registered user, I shall able to delete book added by me.
+* As a registered user, I shall be able to sign in and sign out of the site successfully.
+* As a registered user, I shall be able to access all pages meant for registered users.
+* As a registered user, I shall be able to add a new book. 
+* As a registered user, I shall be able to add review and star ratings to any book.
+* As a registered user, I shall be able to edit the book added by me.
+* As a registered user, I shall be able to delete the book added by me.
 
-**Admin**
+### **Admin**
 
-* As a admin, I shall able to sign in and sign out off the site successfully.
-* As a admin, I shall able to access all pages.
-* As a admin, I shall able to add new book. 
-* As a admin, I shall able to add review and star rating to any book.
-* As a admin, I shall able to edit or delete book added by anyone.
-* As a admin, I shall able to add or delete category and language.
+* As an admin, I shall be able to sign in and sign out of the site successfully.
+* As an admin, I shall be able to access all pages.
+* As an admin, I shall be able to add a new book. 
+* As an admin, I shall be able to add review and star ratings to any book.
+* As an admin, I shall be able to edit or delete books added by anyone.
+* As an admin, I shall be able to add or delete categories and language.
 
-# **Design Choice**
+## **Design Choice**
 
-## **Framework**
+### **Framework**
 
 ReadWise used [materializecss](https://materializecss.com/) for its design.
 Materializecss is a modern responsive front-end framework based on Material Design.
 
-## **Colour Scheme**
+### **Colour Scheme**
 
 The main colors used are as light blue (#2196f3) for navbar and light blue darken-2 (#1976d2) used for footer. Also used light-blue darken-2 (#0288d1) at some sections. 
 Refer to [materializecss color](https://materializecss.com/color.html) for more details about these colors.  
 
 
-## **Typography**
+### **Typography**
 
 Roboto font is mainly used throughout the website with a sans-serif as a backup font in case of any reason the font isn't being imported into the site correctly.
-Roboto isclean font to read and correctly goes with a simple design. Fonts are imported using [Google Fonts](https://fonts.google.com/).
+Roboto is a clean font to read and correctly goes with a simple design. Fonts are imported using [Google Fonts](https://fonts.google.com/).
 
-## **Pages**
+### **Pages**
 
-Readwise has 12 pages all together.
+Readwise has 12 pages altogether.
 Homepage - Showing featured books
 All Book - Showing all books
-Register - To register new user
+Register - To register a new user
 Sign In - To sign in user
 Profile - To show profile for admin and register users
-Add Book - To add new book
-Add Language - Add new language 
+Add Book - To add a new book
+Add Language - Add a new language 
 Delete Language - Delete language
-Add Category - Add new category
+Add Category - Add a new category
 Delete Category - Delete category
 
-#  **Wireframes**
+##  **Wireframes**
+Refer to the below files for basic wireframe design created for different screen sizes. Design is updated during actual webiste development as required, but main design is same.
 
 *   [Desktop wireframe](static/wireframe/ReadWise-DesktopWireframe.pdf)
 
@@ -161,22 +166,22 @@ Delete Category - Delete category
 
 ## **Existing Features**
 
-- Showing featured books decided by admin.
-- Adding new book which are categorized based on type of book, suitable age-group, language.
+- Showing featured books decided by the admin.
+- Adding new books which are categorized based on the type of book, suitable age group, language.
 - Register user able to edit or delete books added by himself.
-- Admin able to add, edit or delete any books.
-- Admin able to set featured book.
-- Admin able to add or delete category or language.
+- Admin is able to add, edit or delete any books.
+- Admin is able to set featured book.
+- Admin is able to add or delete categories or language.
 
 ## **Features Left to Implement**
 
 - Allow user to change password. 
-- Finding cheapest buying link automatically.
-- Finding E-reader and audio book link if available.
-- Able to sort books based on category, language or age-group.
+- Finding the cheapest buying link automatically.
+- Finding E-reader and audiobook link if available.
+- Able to sort books based on category, language, or age group.
 - Ability to save favorite books for future reference.
-- Getting user email during registration and sending recommendaded books weekly.
-- Pagination for to avoid showing all books on one page.
+- Getting user email during registration and sending recommended books weekly.
+- Pagination to avoid showing all books on one page.
 
 # **Technologies Used**
 
@@ -192,15 +197,15 @@ Delete Category - Delete category
   - Used for activiating materialized functionality
 
 - [Python](https://www.python.org/)
-  - Use to build main logic of the website.
+  - Use to build the main logic of the website.
 
-## **Frameworks, Libraries, Programs & Tools Used**
+## **Frameworks, Libraries, Programs and Tools Used**
 
 - [Bootstrap](https://getbootstrap.com/)
     - Bootstrap library is used to create responsive design, beautiful buttons, modal templates.
 
 - [Jquery](https://jquery.com/)
-    - Jquery library used to create DOM elements, event handling, animation.
+    - Jquery library is used to create DOM elements, event handling, animation.
 
 - [Flask](https://flask.palletsprojects.com/en/1.1.x/)
   - Flast template is used to manage all HTML pages.
@@ -230,7 +235,7 @@ Delete Category - Delete category
   - The wireframes were created using Balsamiq.
 
 - [Google DevTools](https://developer.chrome.com/docs/devtools/)
-  - Google DevTools was extensively used throughout the project for various styling, testing, performance and debugging purposes.
+  - Google DevTools was extensively used throughout the project for various styling, testing, performance, and debugging purposes.
 
 - [Am I Responsive](http://ami.responsivedesign.is/)
   - Am I responsive to create the mock-up image presented at the start of this document.
@@ -248,13 +253,13 @@ Delete Category - Delete category
   - Used to check Python Code is PEP8 compliant.
 
 - [WAVE](https://wave.webaim.org/)
-  - Used to test accesibility of site.
+  - Used to test the accessibility of the site.
 
 # **Mongodb Database**
-Mongodb database for ReadWise website consist of mainly 6 collections as below.
+MongoDB database for ReadWise website consists of mainly 6 collections as below.
 
 - books
-  - Collection for all books data.
+  - Collection of all books data.
 - users
   - Collection for all registered users.
 - age_group
@@ -276,37 +281,37 @@ The site is hosted on [Heroku](https://www.heroku.com/home)
 
 Project files are stored on [GitHub](https://github.com/)
 
-Deployment of ths ReadWise done as per mentioned in code institute mini project. 
+Deployment of the ReadWise done as mentioned in code institute mini-project. 
 
 ## Steps for GitHub and Gitpod
 
 1. Logged into Github account.
-2. Create a new repository with name readwise.
+2. Create a new repository with name reads.
 3. Open repository in the GitPod IDE.
-4. Created a requirements.txt file by using command "pip3 freeze --local>requirements.text" in the terminal window. This will create files which tells Heroku what are dependencies required to be install for this project. 
-5. Creat a Procfile for Heroku by command "echo web: python app.py>Procfile" in the terminal window. (Remove any exta line from Procfile as this creates problem sometimes)
+4. Created a requirements.txt file by using the command "pip3 freeze --local>requirements. text" in the terminal window. This will create files that tell Heroku what are dependencies required to be installed for this project. 
+5. Create a Procfile for Heroku by command "echo web: python app.py>Procfile" in the terminal window. (Remove any extra line from Procfile as this creates problem sometimes)
 6. Commit and push new files to the GitHub
 
 ## Steps for Heroku
 
 1. Logged in to Heroku and select "Create New App".
-2. Provide unique name in the "App Name" suitable for the website.
+2. Provide a unique name in the "App Name" suitable for the website.
 3. Select the region closest for you.
 4. Click "Create App".
 5. Select "Deploy" from the Heroku app menu.
-6. From the deployment menu select "GitHub" option.
-7. Verify that "Github" profile name is showing int the "Connect to GitHub" section.
-8. Search "readwise" repositary and click "Connect" to connect GitHub repositary with Heroku.
+6. From the deployment menu select the "GitHub" option.
+7. Verify that the "Github" profile name is showing in the "Connect to GitHub" section.
+8. Search the "readwise" repository and click "Connect" to connect the GitHub repository with Heroku.
 9. Select "Settings" from the Heroku App menu.
-10. Select "Reveal Config Vars" and add the relevant key and value information. In case of ReadWise it is IP, PORT, MONGO_URI, MONGO_DBNAME, SECRET_KEY.
-11. Select "Deploy" from Heroku App menu.
-12. Scrolled down the page and select "Enable Automatic Deployent" option.
+10. Select "Reveal Config Vars" and add the relevant key and value information. In case of ReadWise, it is IP, PORT, MONGO_URI, MONGO_DBNAME, SECRET_KEY.
+11. Select "Deploy" from the Heroku App menu.
+12. Scrolled down the page and select the "Enable Automatic Deployment" option.
 13. Select "Master Branch" under "Branch Selected". 
 14. Click "Deploy Branch"
-15. If everything is sucessfull then you get "Deployment Sucessfull message" and Click "View" to launch the app to see website in the browser. 
+15. If everything is successful then you get "Deployment Successful message" and click "View" to launch the app to see the website in the browser. 
 
 
-## **Making a clone or download zip to run locally**
+## Making a clone or download zip to run locally
 
 1. Log into GitHub account.
 
@@ -314,15 +319,15 @@ Deployment of ths ReadWise done as per mentioned in code institute mini project.
 
 3. Click on the Code dropdown button next to the green Gitpod button.
 
-4. Either, download the zip file or clone the repo using  gh repo clone rajendradanve/readwise in the terminal.
+4. Either, download the zip file or clone the repo using GitHub repo clone rajendradanve/readwise in the terminal.
 
 5. Install the modules listed in the requirements.txt file using "python -m pip -r requirements.txt" in the terminal.
 
 6. You will need to create a new project in [MongoDB](https://www.mongodb.com/3) create a new collection called "readwise".
 
-7. Create collections as age_groups, books, categories, comments, languages and users. 
+7. Create collections as age_groups, books, categories, comments, languages, and users. 
 
-8. insert age groups in age_groups collection based on your choice of age groups for book readers. 
+8. insert age groups in the age_groups collection based on your choice of age groups for book readers. 
 
 9. Create an env.py file in your application folder and add the following:
 
@@ -339,17 +344,18 @@ os.environ.setdefault("MONGO_DB_NAME", "readwise")
 
 Update your own "SECRET_KEY", "YOUR ROOT" and "YOUR CLUSTER NAME" info above.
 
-10. The app can now be run locally by typing "python3 app.py" in the terminal and website will be available in the browser. 
+10. The app can now be run locally by typing "python3 app.py" in the terminal and the website will be available in the browser. 
 
 
 # **Credits**
 
 **Images**
-Main page library image is taken from [Pexels](https://www.pexels.com/photo/row-of-books-in-shelf-256541/)
+
+The main page library image is taken from [Pexels](https://www.pexels.com/photo/row-of-books-in-shelf-256541/)
 
 **Text**
 
-Text for added book are mostly taken from [Amazon](https://www.amazon.com/).
+Text for the added book is mostly taken from [Amazon](https://www.amazon.com/).
 
 Ideas for book categories, age groups are taken from [Book Depository](https://www.bookdepository.com/).
 
@@ -369,7 +375,7 @@ Ideas for book categories, age groups are taken from [Book Depository](https://w
 
 - [MDN Resources](https://developer.mozilla.org/en-US/docs/Web/Reference)
 
-    MDS resources are used to get more understanding some concepts and some regular help
+    MDS resources are used to get more understanding of some concepts and some regular help
 
 - [Google Fonts](https://fonts.google.com/)
    
@@ -390,10 +396,10 @@ I would like to thank:
 - My mentor Akshat Garg for his encouragement and valuable comments for this project. 
 Thanks to his guidance and tips to improve my code.
 
-- Lessons from code mainly mini project on backend develoopment institute helped a lot during this project. Used regularly to check if I am following the correct method of coding.
+- Lessons from code mainly mini projects on backend development institute helped a lot during this project. Used regularly to check if I am following the correct method of coding.
 
 - Help from in the Slack community.
 
-- Tutor support and student care team.
+- Code Institute Tutor support .
 
 Should you have any queries please reach me at rajendradanve@gmail.com.

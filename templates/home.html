@@ -1,33 +1,32 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} 
+{% block content %}
   <!--Hero image with main middle text-->
   <div class="top-container">
-      <div class="row">
-          <div class="col s12 m10 offset-m1">
-              <div class="card light-blue darken-2 index-card">
-                  <div class="card-content white-text center-align">
-                      <span class=" main-card-text-size text-shadow">Welcome to ReadWise</span>
-                      <p class="text-hero-card text-shadow">Explore books, read reviews of the books and add reviews books you read to help others</p>
-                  </div>
-                  {% if not is_user_logged %}
-                    <div class="center-align ">
-                        <a class="waves-effect waves-light btn teal darken-3" href="{{url_for('register')}}">Register</a>
-                        <p class="white-text home-card-text text-shadow">Already Registered? <a href="{{ url_for('sign_in')}}" class="white-text center-align">Sign In</a></p>
-                    
-                    </div>
-                  {% endif %}
-              </div>
+    <div class="row">
+      <div class="col s12 m10 offset-m1">
+        <div class="card light-blue darken-2 index-card">
+          <div class="card-content white-text center-align"> <span class=" main-card-text-size text-shadow">Welcome to ReadWise</span>
+            <p class="text-hero-card text-shadow">Explore books, read reviews of the books and add reviews books you read to help others</p>
           </div>
+          {% if not is_user_logged %}
+            <div class="center-align "> <a class="waves-effect waves-light btn teal darken-3" href="{{url_for('register')}}">Register</a>
+              <p class="white-text home-card-text text-shadow">Already Registered? <a href="{{ url_for('sign_in')}}" class="white-text center-align">Sign In</a>
+              </p>
+            </div>
+          {% endif %}
+        </div>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h4 class="blue-text text-darken-2">Featured Books</h4>
+    </div>
   </div>
 
-  <div class="row">
-      <div class="col">
-          <h4 class="blue-text text-darken-2">Featured Books</h4>
-      </div>
-  </div>
   <!--Showing featured books-->
-  {% if books_list | length > 0 %}
-    {% include "book_card_template.html" %}
+  {% if books_list | length > 0 %} 
+    {% include "book_card_template.html" %} 
   {% else %}
     <h5 class="center-align">No featured books available currently</h5>
     <h5 class="center-align"><a href="{{url_for('all_books')}}">Click Here</a> to see all books</h5>
